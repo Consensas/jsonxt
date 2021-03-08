@@ -1,0 +1,64 @@
+{
+  "F": "vc:credentialSubject.schema:patient.schema:firstName",
+  "L": "vc:credentialSubject.schema:patient.schema:lastName",
+  "M": "vc:credentialSubject.schema:patient.schema:additionalName",
+  "": {
+    "@context": [
+      {
+        "schema": "http://schema.org/", 
+        "vc": "https://www.w3.org/2018/credentials/v1/"
+      }, 
+      "https://w3id.org/security/v2"
+    ], 
+    "@type": "vc:VerifiableCredential", 
+    "proof": {
+      "proofPurpose": "assertionMethod", 
+      "type": "RsaSignature2018", 
+      "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+    }, 
+    "vc:credentialSubject": {
+      "@type": "schema:ImmunizationRecord", 
+      "schema:doseSequence": 2, 
+      "schema:location": {
+        "@type": "schema:Hospital", 
+        "schema:address": {
+          "@type": "schema:PostalAddress"
+        }
+      }, 
+      "schema:patient": {
+        "@type": "schema:Patient", 
+        "schema:healthCard": {
+          "@type": "schema:HealthCard"
+        }
+      }, 
+      "schema:primaryPrevention": {
+        "@type": "schema:ImmunizationRecommendation", 
+        "schema:drug": {
+          "@type": "schema:Drug", 
+          "schema:code": {
+            "@type": "schema:MedicalCode", 
+            "schema:codeValue": "207", 
+            "schema:codingSystem": "CVX"
+          }, 
+          "schema:manufacturer": {
+            "@type": "schema:Organization", 
+            "schema:identifier": "MOD", 
+            "schema:name": "Moderna US, Inc."
+          }, 
+          "schema:name": "Moderna COVID-19 Vaccine"
+        }, 
+        "schema:healthCondition": {
+          "@type": "schema:MedicalCondition", 
+          "schema:code": {
+            "@type": "schema:MedicalCode", 
+            "schema:codeValue": "U07", 
+            "schema:codingSystem": "ICD-10"
+          }, 
+          "schema:name": "COVID-19"
+        }, 
+        "schema:name": "Moderna COVID-19 Vaccine"
+      }
+    }, 
+    "vc:issuer": "https://passport.consensas.com"
+  }
+}

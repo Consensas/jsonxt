@@ -1,0 +1,77 @@
+{
+  "@context": [
+    {
+      "schema": "http://schema.org/",
+      "vc": "https://www.w3.org/2018/credentials/v1/"
+    },
+    "https://w3id.org/security/v2"
+  ],
+  "@type": "vc:VerifiableCredential",
+  "vc:issuer": "https://passport.consensas.com",
+  "vc:issuanceDate": "2021-03-03T22:22:51.641Z",
+  "vc:credentialSubject": {
+    "@type": "schema:ImmunizationRecord",
+    "schema:name": "Adrian Steele - Moderna COVID-19 Vaccine",
+    "schema:patient": {
+      "@type": "schema:Patient",
+      "schema:name": "Adrian Steele",
+      "schema:birthDate": "••••-••-25",
+      "schema:familyName": "Steele",
+      "schema:givenName": "Adrian",
+      "schema:healthCard": {
+        "@type": "schema:HealthCard",
+        "schema:identifier": "•••••••••••2097",
+        "schema:issuedBy": "CA-BC",
+        "schema:validUntil": "2025-06"
+      }
+    },
+    "schema:primaryPrevention": {
+      "@type": "schema:ImmunizationRecommendation",
+      "schema:drug": {
+        "@type": "schema:Drug",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "207",
+          "schema:codingSystem": "CVX"
+        },
+        "schema:manufacturer": {
+          "@type": "schema:Organization",
+          "schema:identifier": "MOD",
+          "schema:name": "Moderna US, Inc."
+        },
+        "schema:name": "Moderna COVID-19 Vaccine"
+      },
+      "schema:healthCondition": {
+        "@type": "schema:MedicalCondition",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "U07",
+          "schema:codingSystem": "ICD-10"
+        },
+        "schema:name": "COVID-19"
+      },
+      "schema:name": "Moderna COVID-19 Vaccine"
+    },
+    "schema:immunizationDate": "2021-01-01",
+    "schema:doseSequence": 2,
+    "schema:lotNumber": "123-456-789",
+    "schema:location": {
+      "@type": "schema:Hospital",
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:addressCountry": "CA",
+        "schema:addressRegion": "BC",
+        "schema:addressLocality": "Port Jennifer"
+      },
+      "schema:name": "Shopper's"
+    },
+    "vc:id": "did:example:GKLISABB3H"
+  },
+  "proof": {
+    "type": "RsaSignature2018",
+    "created": "2021-03-03T22:22:51Z",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..QcFxH2IAl95ugL4zkBFFquyySkKCoigzQhkS-sZFBGonJjI2j1lSdLQfHHAB9sWDeXD35mTaSWxFWe-Rcw9JfsweDXhRVtiXa8-aANyrvhiXCm762bQcRcNX-I1PO3zxAW812UKW6pdAtAk2fIBK1Jsck3SdbrfpPRcIm1wgARjhWOHmyjhrj4mAo87JJTiF3iRpljFkE2b0cyI3J7zWmW3ddD8yM5TCGET5uE92_is8gpl1DCRKORnlcN1ipbVZTI6FhRlJFQVSfzH-NkTCUnjAVWsnYiTYgBdh8b4Z0TT26IxM2ULGr_2qxDeQKMLxmmmuncrYN_NTOkSdVb-iug",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+  }
+}
