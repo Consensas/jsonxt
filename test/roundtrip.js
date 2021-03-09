@@ -44,24 +44,39 @@ describe("roundtrip", function() {
         _util.shims_off()
     })
 
-    it(`works`, async function() {
-        const NAME = `xt-1`
+    for (let NAME  of [ "xt-1", "xt-2" ]) {
+        it(`works: ${NAME}`, async function() {
+            const template = await _util.read_json(`${NAME}-template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
 
-        const template = await _util.read_json(`${NAME}-template.json`)
-        const original = await _util.read_json(`${NAME}.json`)
+            const compressed = jsonxt.compress(original, template)
+            {
+                const got = compressed
 
-        const compressed = jsonxt.compress(original, template)
-        /*
-        console.log(compressed)
-        console.log(JSON.stringify(compressed).length)
+                const FILE = `${NAME}-compressed.json`
+                if (DUMP) {
+                    console.log("compressed", JSON.stringify(got, null, 2))
+                }
+                if (WRITE) {
+                    await _util.write_json(got, FILE)
+                }
+                const want = await _util.read_json(FILE)
 
-        let length = "jxt:".length
-        _.mapValues(compressed, (value, key) => {
-            length += key.length + 1 + `${value}`.length
+                assert.deepEqual(got, want)
+            }
+            {
+                const got = jsonxt.serialize.csv(compressed)
+                const FILE = `${NAME}-jxt-csv.txt`
+                if (DUMP) {
+                    console.log("jxt", got)
+                }
+                if (WRITE) {
+                    await _util.write_file(got, FILE)
+                }
+                const want = await _util.read_file(FILE)
+
+                assert.deepEqual(got, want)
+            }
         })
-        console.log(length)
-        */
-
-        console.log(jsonxt.serialize.csv(compressed))
-    })
+    }
 })
