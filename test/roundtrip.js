@@ -97,5 +97,26 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
+        it(`decompress: ${NAME}`, async function() {
+            const template = await _util.read_json(`${NAME}-template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+            const compressed = await _util.read_json(`${NAME}-compressed.json`)
+
+            const decompressed = await jsonxt.decompress(compressed, template_url => {
+                return template
+            })
+
+            const got = decompressed
+            if (DUMP) {
+                console.log("decompressed", got)
+            }
+            const want = original
+
+            // console.log(JSON.stringify(got, null, 2))
+            // console.log(JSON.stringify(want, null, 2))
+
+            assert.deepEqual(got, want)
+        })
+
     }
 })

@@ -2,7 +2,7 @@
   "A": "credentialSubject.administeringCentre",
   "B": "credentialSubject.vaccine.atcCode",
   "C": "credentialSubject.batchNumber",
-  "D": "recipient.birthDate",
+  "D": "credentialSubject.recipient.birthDate",
   "E": "credentialSubject.countryOfVaccination",
   "F": "proof.created",
   "H": "expirationDate",
@@ -27,6 +27,7 @@
     ],
     "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3",
     "credentialSubject": {
+      "type": "VaccinationEvent",
       "recipient": {
         "type": "VaccineRecipient"
       },
