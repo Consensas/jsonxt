@@ -49,7 +49,7 @@ describe("roundtrip", function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
-            const compressed = jsonxt.compress(original, template)
+            const compressed = jsonxt.compress(original, template, "https://example.com/template")
             {
                 const got = compressed
 
