@@ -68,7 +68,20 @@ describe("roundtrip", function() {
                 const got = jsonxt.urn.csv(compressed)
                 const FILE = `${NAME}-jxt-csv.txt`
                 if (DUMP) {
-                    console.log("jxt", got)
+                    console.log("jxt", got, got?.length)
+                }
+                if (WRITE) {
+                    await _util.write_file(got, FILE)
+                }
+                const want = await _util.read_file(FILE)
+
+                assert.deepEqual(got, want)
+            }
+            {
+                const got = jsonxt.urn.json(compressed)
+                const FILE = `${NAME}-jxt-json.txt`
+                if (DUMP) {
+                    console.log("jxt", got, got?.length)
                 }
                 if (WRITE) {
                     await _util.write_file(got, FILE)
