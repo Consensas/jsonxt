@@ -51,6 +51,7 @@ describe("roundtrip", function() {
         const original = await _util.read_json(`${NAME}.json`)
 
         const compressed = jsonxt.compress(original, template)
+        /*
         console.log(compressed)
         console.log(JSON.stringify(compressed).length)
 
@@ -59,5 +60,8 @@ describe("roundtrip", function() {
             length += key.length + 1 + `${value}`.length
         })
         console.log(length)
+        */
+
+        console.log(jsonxt.serialize.csv(compressed))
     })
 })
