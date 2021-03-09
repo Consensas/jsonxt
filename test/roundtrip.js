@@ -65,7 +65,7 @@ describe("roundtrip", function() {
                 assert.deepEqual(got, want)
             }
             {
-                const got = jsonxt.serialize.csv(compressed)
+                const got = jsonxt.urn.csv(compressed)
                 const FILE = `${NAME}-jxt-csv.txt`
                 if (DUMP) {
                     console.log("jxt", got)
