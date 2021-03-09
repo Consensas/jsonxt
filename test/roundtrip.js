@@ -45,51 +45,57 @@ describe("roundtrip", function() {
     })
 
     for (let NAME  of [ "xt-1", "xt-2" ]) {
-        it(`works: ${NAME}`, async function() {
+        it(`compress: ${NAME}`, async function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             const compressed = jsonxt.compress(original, template, "https://example.com/template")
-            {
-                const got = compressed
+            const got = compressed
 
-                const FILE = `${NAME}-compressed.json`
-                if (DUMP) {
-                    console.log("compressed", JSON.stringify(got, null, 2))
-                }
-                if (WRITE) {
-                    await _util.write_json(got, FILE)
-                }
-                const want = await _util.read_json(FILE)
-
-                assert.deepEqual(got, want)
+            const FILE = `${NAME}-compressed.json`
+            if (DUMP) {
+                console.log("compressed", JSON.stringify(got, null, 2))
             }
-            {
-                const got = jsonxt.urn.csv(compressed)
-                const FILE = `${NAME}-jxt-csv.txt`
-                if (DUMP) {
-                    console.log("jxt", got, got?.length)
-                }
-                if (WRITE) {
-                    await _util.write_file(got, FILE)
-                }
-                const want = await _util.read_file(FILE)
-
-                assert.deepEqual(got, want)
+            if (WRITE) {
+                await _util.write_json(got, FILE)
             }
-            {
-                const got = jsonxt.urn.json(compressed)
-                const FILE = `${NAME}-jxt-json.txt`
-                if (DUMP) {
-                    console.log("jxt", got, got?.length)
-                }
-                if (WRITE) {
-                    await _util.write_file(got, FILE)
-                }
-                const want = await _util.read_file(FILE)
+            const want = await _util.read_json(FILE)
 
-                assert.deepEqual(got, want)
+            assert.deepEqual(got, want)
+        })
+        it(`csv: ${NAME}`, async function() {
+            const template = await _util.read_json(`${NAME}-template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+            const compressed = await _util.read_json(`${NAME}-compressed.json`)
+
+            const got = jsonxt.urn.csv(compressed)
+            const FILE = `${NAME}-jxt-csv.txt`
+            if (DUMP) {
+                console.log("jxt", got, got?.length)
             }
+            if (WRITE) {
+                await _util.write_file(got, FILE)
+            }
+            const want = await _util.read_file(FILE)
+
+            assert.deepEqual(got, want)
+        })
+        it(`json: ${NAME}`, async function() {
+            const template = await _util.read_json(`${NAME}-template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+            const compressed = await _util.read_json(`${NAME}-compressed.json`)
+
+            const got = jsonxt.urn.json(compressed)
+            const FILE = `${NAME}-jxt-json.txt`
+            if (DUMP) {
+                console.log("jxt", got, got?.length)
+            }
+            if (WRITE) {
+                await _util.write_file(got, FILE)
+            }
+            const want = await _util.read_file(FILE)
+
+            assert.deepEqual(got, want)
         })
     }
 })
