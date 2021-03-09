@@ -1,7 +1,21 @@
 {
-  "F": "vc:credentialSubject.schema:patient.schema:firstName",
-  "L": "vc:credentialSubject.schema:patient.schema:lastName",
-  "M": "vc:credentialSubject.schema:patient.schema:additionalName",
+  "A": "vc:credentialSubject.schema:patient.schema:givenName",
+  "B": "vc:credentialSubject.schema:patient.schema:familyName",
+  "C": "vc:credentialSubject.schema:patient.schema:additionalName",
+  "D": "vc:issuanceDate",
+  "E": "vc:credentialSubject.schema:patient.schema:birthDate",
+  "F": "vc:credentialSubject.schema:patient.schema:healthCard.schema:identifier",
+  "G": "vc:credentialSubject.schema:patient.schema:healthCard.schema:issuedBy",
+  "H": "vc:credentialSubject.schema:patient.schema:healthCard.schema:validUntil",
+  "I": "vc:credentialSubject.schema:immunizationDate",
+  "J": "vc:credentialSubject.schema:doseSequence",
+  "K": "vc:credentialSubject.schema:lotNumber",
+  "L": "vc:credentialSubject.schema:location.schema:address.schema:addressCountry",
+  "M": "vc:credentialSubject.schema:location.schema:address.schema:addressRegion",
+  "N": "vc:credentialSubject.schema:location.schema:address.schema:addressLocality",
+  "O": "vc:credentialSubject.schema:location.schema:name",
+  "P": "proof.created",
+  "Q": "proof.jws",
   "": {
     "@context": [
       {
@@ -22,13 +36,16 @@
       "schema:location": {
         "@type": "schema:Hospital", 
         "schema:address": {
-          "@type": "schema:PostalAddress"
+          "@type": "schema:PostalAddress",
+          "schema:addressCountry": "CA",
+          "schema:addressRegion": "BC"
         }
       }, 
       "schema:patient": {
         "@type": "schema:Patient", 
         "schema:healthCard": {
-          "@type": "schema:HealthCard"
+          "@type": "schema:HealthCard",
+          "schema:issuedBy": "CA-BC"
         }
       }, 
       "schema:primaryPrevention": {

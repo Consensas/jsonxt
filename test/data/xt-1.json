@@ -11,10 +11,8 @@
   "vc:issuanceDate": "2021-03-03T22:22:51.641Z",
   "vc:credentialSubject": {
     "@type": "schema:ImmunizationRecord",
-    "schema:name": "Adrian Steele - Moderna COVID-19 Vaccine",
     "schema:patient": {
       "@type": "schema:Patient",
-      "schema:name": "Adrian Steele",
       "schema:birthDate": "••••-••-25",
       "schema:familyName": "Steele",
       "schema:givenName": "Adrian",
@@ -64,8 +62,7 @@
         "schema:addressLocality": "Port Jennifer"
       },
       "schema:name": "Shopper's"
-    },
-    "vc:id": "did:example:GKLISABB3H"
+    }
   },
   "proof": {
     "type": "RsaSignature2018",
