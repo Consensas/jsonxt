@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>JSON-XT</title>
+    <style>
+body {
+    background-color: #FFE;
+}
+* {
+    font-family: 'Manrope', sans-serif;
+}
+h1 {
+    font-weight: 700;
+}
+h2 {
+    font-size: 1.8rem;
+}
+h3 {
+    font-size: 1.6rem;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JSON-XT</h2>
+        <p>
+        URL friendly JSON compression using eXternal Templates.
+        For constrained environments, such as QR codes.
+        </p>
+        <h2>Introduction</h2>
+        <h3>The Basic Idea</h3>
+        <ul>
+            <li>Create a <b>Template</b> that has all the "framing" type information
+            that is frequently repeated, plus information on how to reconstitue the original document.
+            <li>Using the original JSON and the Template, create a <b>Compressed</b> document.
+            <li>To create a URL (in the spirit of <code>data:</code>), either use:
+            <ul>
+                <li>
+                    the <b>CSV Encoding</b>, where all the fields are fairly well known, or
+                </li>
+                <li>
+                    the <b>JSON Encoding</b>, which allows for more flexibility but doesn't compress as well.
+                </li>
+            </ul>
+        </ul>
+        <h3>Code Usage</h3>
+        <h2>
+        Examples
+        </h2>
+        <h3>
+        CCCC4 Vaccination Credential
+        </h3>
+        <p>
+        See <a href="https://cccc4.ca">here</a> for more details.
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/xt-1.json">Original</a> - 2254 bytes
+                (<a href="https://github.com/Consensas/jsonxt/blob/main/test/data/xt-1-template.json">template</a>,
+                <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/xt-1-compressed.json">compressed</a>)
+            </li>
+            <li>
+                "CSV" Encoded - 609 bytes
+                <br />
+                <code>jxt:@//example.com/template,Adrian,Steele,,2021-03-03T22:22:51.641Z,••••-••-25,•••••••••••2097,,2025-06,2021-01-01,,123-456-789,,,Port Jennifer,Shopper's,2021-03-03T22:22:51Z,eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..QcFxH2IAl95ugL4zkBFFquyySkKCoigzQhkS-sZFBGonJjI2j1lSdLQfHHAB9sWDeXD35mTaSWxFWe-Rcw9JfsweDXhRVtiXa8-aANyrvhiXCm762bQcRcNX-I1PO3zxAW812UKW6pdAtAk2fIBK1Jsck3SdbrfpPRcIm1wgARjhWOHmyjhrj4mAo87JJTiF3iRpljFkE2b0cyI3J7zWmW3ddD8yM5TCGET5uE92_is8gpl1DCRKORnlcN1ipbVZTI6FhRlJFQVSfzH-NkTCUnjAVWsnYiTYgBdh8b4Z0TT26IxM2ULGr_2qxDeQKMLxmmmuncrYN_NTOkSdVb-iug</code>
+            </li>
+            <li>
+                "JSON" Encoded - 780 bytes
+                <br />
+                <code>jxt://example.com/template","A":"Adrian","B":"Steele","D":"2021-03-03T22:22:51.641Z","E":"%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2-%E2%80%A2%E2%80%A2-25","F":"%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A2%E2%80%A22097","H":"2025-06","I":"2021-01-01","K":"123-456-789","N":"Port%20Jennifer","O":"Shopper's","P":"2021-03-03T22:22:51Z","Q":"eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..QcFxH2IAl95ugL4zkBFFquyySkKCoigzQhkS-sZFBGonJjI2j1lSdLQfHHAB9sWDeXD35mTaSWxFWe-Rcw9JfsweDXhRVtiXa8-aANyrvhiXCm762bQcRcNX-I1PO3zxAW812UKW6pdAtAk2fIBK1Jsck3SdbrfpPRcIm1wgARjhWOHmyjhrj4mAo87JJTiF3iRpljFkE2b0cyI3J7zWmW3ddD8yM5TCGET5uE92_is8gpl1DCRKORnlcN1ipbVZTI6FhRlJFQVSfzH-NkTCUnjAVWsnYiTYgBdh8b4Z0TT26IxM2ULGr_2qxDeQKMLxmmmuncrYN_NTOkSdVb-iug"</code>
+            </li>
+        </ul>
+        <h3>
+        Mattr/W3C Vaccination Credential
+        </h3>
+        <p>
+        See <a href="https://github.com/w3c-ccg/vaccination-vocab">here</a> for more details.
+        </p>
+        <ul>
+            <li>
+                <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/xt-2.json">Original</a> - 1021 bytes
+                (<a href="https://github.com/Consensas/jsonxt/blob/main/test/data/xt-2-template.json">template</a>,
+                <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/xt-1-compressed.json">compressed</a>)
+            </li>
+            <li>
+                "CSV" Encoded - 428 bytes
+                <br />
+                <code>jxt:@//example.com/template,MoH,J07BX03,"1183738569",1958-07-17,NZ,2021-02-18T23:49:52Z,2029-12-03T12:19:52Z,SMITH,Male,JOHN,urn:uvci:af5vshde843jf831j128fj,2019-12-03T12:19:52Z,eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..a3UqIuKSOmCKrdn2knl_hCjiN4f4Ud1eO5ckwEHb623V9vdCwWCDB7GBHlRBYSI8ek2E-By7xysVFwutcpOeDg,did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3#z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3</code>
+            </li>
+            <li>
+                "JSON" Encoded - 510 bytes
+                <br />
+                <code>jxt://example.com/template","A":"MoH","B":"J07BX03","C":"1183738569","D":"1958-07-17","E":"NZ","F":"2021-02-18T23:49:52Z","G":"2029-12-03T12:19:52Z","H":"SMITH","I":"Male","J":"JOHN","K":"urn:uvci:af5vshde843jf831j128fj","L":"2019-12-03T12:19:52Z","M":"eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..a3UqIuKSOmCKrdn2knl_hCjiN4f4Ud1eO5ckwEHb623V9vdCwWCDB7GBHlRBYSI8ek2E-By7xysVFwutcpOeDg","N":"did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3#z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3"</code>
+            </li>
+        </ul>
+        
+    </div>
+</body>
+</html>
