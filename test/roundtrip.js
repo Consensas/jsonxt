@@ -136,5 +136,23 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
+        it(`roundtrip unpack json: ${NAME}`, async function() {
+            const template = await _util.read_json(`${NAME}-template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+            const compressed = await _util.read_json(`${NAME}-compressed.json`)
+            const packed = await _util.read_file(`${NAME}-jxt-json.txt`)
+            const unpacked = jsonxt.urn.unpack(packed)
+
+            const got = unpacked
+            const want = compressed
+
+            if (DUMP) {
+                console.log("packed", packed)
+                console.log("got", got)
+                console.log("want", want)
+            }
+
+            assert.deepEqual(got, want)
+        })
     }
 })
