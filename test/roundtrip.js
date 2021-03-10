@@ -45,6 +45,7 @@ describe("roundtrip", function() {
     })
 
     for (let NAME  of [ "xt-1", "xt-2" ]) {
+    // for (let NAME  of [ "xt-1", ]) {
         it(`compress: ${NAME}`, async function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
@@ -97,7 +98,7 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
-        it(`decompress: ${NAME}`, async function() {
+        it(`rountrip decompress: ${NAME}`, async function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const compressed = await _util.read_json(`${NAME}-compressed.json`)
@@ -117,6 +118,23 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
+        it(`roundtrip unpack csv: ${NAME}`, async function() {
+            const template = await _util.read_json(`${NAME}-template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+            const compressed = await _util.read_json(`${NAME}-compressed.json`)
+            const packed = await _util.read_file(`${NAME}-jxt-csv.txt`)
+            const unpacked = jsonxt.urn.unpack(packed)
 
+            const got = unpacked
+            const want = compressed
+
+            if (DUMP) {
+                console.log("packed", packed)
+                console.log("got", got)
+                console.log("want", want)
+            }
+
+            assert.deepEqual(got, want)
+        })
     }
 })
