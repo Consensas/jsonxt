@@ -1,9 +1,7 @@
 {
     "author": "", 
     "bugs": {
-        "url": "https://github.com/Consensas/jsonxt/issues"
-    }, 
-    "dependencies": {
+        "url": "https://github.com/dpjanes/jsonxt/issues"
     }, 
     "description": "JSON External Templates", 
     "homepage": "https://jsonxt.io", 
@@ -12,10 +10,10 @@
     "name": "jsonxt", 
     "repository": {
         "type": "git", 
-        "url": "git+https://github.com/Consensas/jsonxt.git"
+        "url": "https://github.com/dpjanes/jsonxt"
     }, 
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     }, 
-    "version": "0.0.1"
+    "version": "0.0.2"
 }
