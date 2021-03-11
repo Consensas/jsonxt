@@ -33,7 +33,10 @@ h3 {
         For constrained environments, such as QR codes.
         </p>
         <h2>Introduction</h2>
-        <h3>The Basic Idea</h3>
+        <h3>Basic Idea</h3>
+        <p>
+        <i>A more formal description of the algorithm will come with traction and or time!</i>
+        <p>
         <ul>
             <li>Create a <b>Template</b> that has all the "framing" type information
             that is frequently repeated, plus information on how to reconstitue the original document.
@@ -49,6 +52,25 @@ h3 {
             </ul>
         </ul>
         <h3>Code Usage</h3>
+        <p>
+        Note that the Javascript module has no external dependecies!
+        </p>
+        <h4>Installation</h4>
+        <pre>npm install jsonxt</pre>
+        <h4>Encoding</h4>
+<pre>const jsonxt = require("jsonxt")
+
+compressed = jsonxt.compress(original, template, "https://example.com/template")
+url = jsonxt.urn.csv(compressed)
+url = jsonxt.urn.json(compressed)</pre>
+
+        <h4>Decoding</h4>
+<pre>unpacked = jsonxt.urn.unpack(url)
+decompressed = await jsonxt.decompress(unpacked, template_url => {
+    return template
+})
+</pre>
+
         <h2>
         Examples
         </h2>
@@ -80,6 +102,8 @@ h3 {
         </h3>
         <p>
         See <a href="https://github.com/w3c-ccg/vaccination-vocab">here</a> for more details.
+        My understand is the encoding they are using now (CBOR-LD, Base64) yields a size of about
+        700 bytes.
         </p>
         <ul>
             <li>
@@ -98,7 +122,6 @@ h3 {
                 <code>jxt://example.com/template","A":"MoH","B":"J07BX03","C":"1183738569","D":"1958-07-17","E":"NZ","F":"2021-02-18T23:49:52Z","G":"2029-12-03T12:19:52Z","H":"SMITH","I":"Male","J":"JOHN","K":"urn:uvci:af5vshde843jf831j128fj","L":"2019-12-03T12:19:52Z","M":"eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..a3UqIuKSOmCKrdn2knl_hCjiN4f4Ud1eO5ckwEHb623V9vdCwWCDB7GBHlRBYSI8ek2E-By7xysVFwutcpOeDg","N":"did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3#z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3"</code>
             </li>
         </ul>
-        
     </div>
 </body>
 </html>
