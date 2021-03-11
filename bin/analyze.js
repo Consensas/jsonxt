@@ -22,6 +22,9 @@
 
 "use strict"
 
+console.log("not yet")
+process.exit(1)
+
 const _ = require("iotdb-helpers")
 const fs = require("iotdb-fs")
 
@@ -49,6 +52,8 @@ const help = message => {
 
     console.log(`\
 usage: ${name} [options] [<files>...]
+
+NOT WORKING!
 
 Analyze the structure of one or more JSON files.
 If no files specified, stdin is read
