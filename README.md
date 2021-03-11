@@ -7,6 +7,7 @@ For constrained environments, such as QR codes.
 See [jsonxt.io](https://jsonxt.io) for more.
 
 ## Installation
+
     npm install jsonxt
 
 ## Use
@@ -28,3 +29,4 @@ See [jsonxt.io](https://jsonxt.io) for more.
 ## See Also
 
 * [RFC4180](https://tools.ietf.org/html/rfc4180) - Common Format and MIME Type for CSV Files
+* [RFC2397](https://tools.ietf.org/html/rfc2397) - The "data" URL scheme
