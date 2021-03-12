@@ -1,0 +1,95 @@
+{
+  "w3vc": {
+    "": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1", 
+        "https://w3id.org/vaccination/v1"
+      ], 
+      "credentialSubject": {
+        "recipient": {
+          "type": "VaccineRecipient"
+        }, 
+        "type": "VaccinationEvent", 
+        "vaccine": {
+          "type": "Vaccine"
+        }
+      }, 
+      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "Ed25519Signature2018"
+      }, 
+      "type": [
+        "VerifiableCredential", 
+        "VaccinationCertificate"
+      ]
+    }, 
+    "A": {
+      "path": "credentialSubject.administeringCentre", 
+      "type": "string"
+    }, 
+    "B": {
+      "path": "credentialSubject.vaccine.atcCode", 
+      "type": "string"
+    }, 
+    "C": {
+      "path": "credentialSubject.batchNumber", 
+      "type": "string"
+    }, 
+    "D": {
+      "path": "credentialSubject.recipient.birthDate", 
+      "type": "date",
+      "encode": "day-delta-base64",
+      "decode": "isodate",
+      "reference": "1900-00-00"
+    }, 
+    "E": {
+      "path": "credentialSubject.countryOfVaccination", 
+      "type": "string"
+    }, 
+    "F": {
+      "path": "proof.created", 
+      "type": "date",
+      "encode": "epoch-base64",
+      "decode": "isodatetime"
+    }, 
+    "G": {
+      "path": "expirationDate", 
+      "type": "string",
+      "encode": "day-delta-base64",
+      "decode": "isodate",
+      "reference": "2021-01-01"
+    }, 
+    "H": {
+      "path": "credentialSubject.recipient.familyName", 
+      "type": "string"
+    }, 
+    "I": {
+      "path": "credentialSubject.recipient.gender", 
+      "type": "string"
+    }, 
+    "J": {
+      "path": "credentialSubject.recipient.givenName", 
+      "type": "string"
+    }, 
+    "K": {
+      "path": "id", 
+      "type": "string"
+    }, 
+    "L": {
+      "path": "issuanceDate", 
+      "type": "string",
+      "encode": "day-delta-base64",
+      "decode": "isodate",
+      "reference": "2021-01-01"
+    }, 
+    "M": {
+      "path": "proof.jws", 
+      "type": "string"
+    }, 
+    "N": {
+      "path": "proof.verificationMethod", 
+      "type": "string"
+    }
+  }
+}
