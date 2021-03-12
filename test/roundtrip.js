@@ -44,8 +44,9 @@ describe("roundtrip", function() {
         _util.shims_off()
     })
 
-    for (let NAME  of [ "xt-1", "xt-2" ]) {
     // for (let NAME  of [ "xt-1", ]) {
+    for (let NAME  of [ "xt-1", "xt-2" ]) {
+        /*
         it(`compress: ${NAME}`, async function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
@@ -64,6 +65,7 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
+        */
         it(`csv: ${NAME}`, async function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
@@ -81,6 +83,7 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
+        /*
         it(`json: ${NAME}`, async function() {
             const template = await _util.read_json(`${NAME}-template.json`)
             const original = await _util.read_json(`${NAME}.json`)
@@ -154,5 +157,6 @@ describe("roundtrip", function() {
 
             assert.deepEqual(got, want)
         })
+        */
     }
 })
