@@ -8,17 +8,17 @@
   ],
   "@type": "vc:VerifiableCredential",
   "vc:issuer": "https://passport.consensas.com",
-  "vc:issuanceDate": "2021-03-03T22:22:51.641Z",
+  "vc:issuanceDate": "2021-03-03T22:22:51Z",
   "vc:credentialSubject": {
     "@type": "schema:ImmunizationRecord",
     "schema:patient": {
       "@type": "schema:Patient",
-      "schema:birthDate": "••••-••-25",
+      "schema:birthDate": "1980-01-25",
       "schema:familyName": "Steele",
       "schema:givenName": "Adrian",
       "schema:healthCard": {
         "@type": "schema:HealthCard",
-        "schema:identifier": "•••••••••••2097",
+        "schema:identifier": "-2097",
         "schema:issuedBy": "CA-BC",
         "schema:validUntil": "2025-06"
       }

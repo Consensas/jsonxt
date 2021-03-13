@@ -76,11 +76,11 @@
     }, 
     "D": {
       "path": "vc:issuanceDate", 
-      "type": "string"
+      "type": "isodatetime-epoch-base64"
     }, 
     "E": {
       "path": "vc:credentialSubject.schema:patient.schema:birthDate", 
-      "type": "string"
+      "type": "isodate-1900-base64"
     }, 
     "F": {
       "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:identifier", 
@@ -92,11 +92,11 @@
     }, 
     "H": {
       "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:validUntil", 
-      "type": "string"
+      "type": "isoyyyymm-2020-base64"
     }, 
     "I": {
       "path": "vc:credentialSubject.schema:immunizationDate", 
-      "type": "string"
+      "type": "isodatetime-epoch-base64"
     }, 
     "J": {
       "path": "vc:credentialSubject.schema:doseSequence", 
@@ -124,11 +124,11 @@
     }, 
     "P": {
       "path": "proof.created", 
-      "type": "string"
+      "type": "isodatetime-epoch-base64"
     }, 
     "Q": {
       "path": "proof.jws", 
-      "type": "string"
+      "type": "md5-base64"
     }
   }, 
   "w3vc:1": {
@@ -170,7 +170,7 @@
     }, 
     "D": {
       "path": "credentialSubject.recipient.birthDate", 
-      "type": "iso-epoch-base64"
+      "type": "isodate-1900-base64"
     }, 
     "E": {
       "path": "credentialSubject.countryOfVaccination", 
@@ -178,11 +178,11 @@
     }, 
     "F": {
       "path": "proof.created", 
-      "type": "iso-epoch-base64"
+      "type": "isodatetime-epoch-base64"
     }, 
     "G": {
       "path": "expirationDate", 
-      "type": "iso-epoch-base64"
+      "type": "isodatetime-epoch-base64"
     }, 
     "H": {
       "path": "credentialSubject.recipient.familyName", 
@@ -202,7 +202,7 @@
     }, 
     "L": {
       "path": "issuanceDate", 
-      "type": "iso-epoch-base64"
+      "type": "isodatetime-epoch-base64"
     }, 
     "M": {
       "path": "proof.jws", 

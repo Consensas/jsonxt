@@ -44,13 +44,15 @@ describe("pack", function() {
         _util.shims_off()
     })
 
-    for (let NAME  of [ "xt-2", ]) {
-    // for (let NAME  of [ "xt-1", "xt-2" ]) {
+    for (let [ NAME, TYPE, VERSION ] of [ 
+        [ "w3vc-1-1", "w3vc", "1" ],
+        [ "c4-1-1", "c4", "1" ],
+    ]) {
         it(`compress: ${NAME}`, async function() {
             const template = await _util.read_json(`template.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
-            const compressed = jsonxt.pack(original, template, "w3vc", "1", "example.com")
+            const compressed = jsonxt.pack(original, template, TYPE, VERSION, "example.com")
             const got = compressed
 
             const FILE = `${NAME}-packed.json`
