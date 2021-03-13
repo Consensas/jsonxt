@@ -128,7 +128,7 @@
     }, 
     "Q": {
       "path": "proof.jws", 
-      "type": "md5-base64"
+      "type": "string"
     }
   }, 
   "w3vc:1": {
@@ -206,7 +206,7 @@
     }, 
     "M": {
       "path": "proof.jws", 
-      "type": "hash"
+      "type": "string"
     }
   }
 }

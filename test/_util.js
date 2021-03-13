@@ -79,16 +79,16 @@ const read_yaml = async (filename) => {
 
 /**
  */
-const write_file = async (data, filename) => {
+const write_document = async (document, filename) => {
     await fs.promises.writeFile(
         path.join(__dirname, "data", filename), 
-        data
+        document
     )
 }
 
 /**
  */
-const read_file = async (filename) => {
+const read_document = async (filename) => {
     return await fs.promises.readFile(
         path.join(__dirname, "data", filename), 
         "utf8"
@@ -106,5 +106,5 @@ exports.write_json = write_json
 exports.read_json = read_json
 exports.write_yaml = write_yaml
 exports.read_yaml = read_yaml
-exports.write_file = write_file
-exports.read_file = read_file
+exports.write_document = write_document
+exports.read_document = read_document

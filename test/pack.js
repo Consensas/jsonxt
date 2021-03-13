@@ -52,17 +52,17 @@ describe("pack", function() {
             const template = await _util.read_json(`template.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
-            const compressed = jsonxt.pack(original, template, TYPE, VERSION, "example.com")
-            const got = compressed
+            const packed = jsonxt.pack(original, template, TYPE, VERSION, "example.com")
+            const got = packed
 
-            const FILE = `${NAME}-packed.json`
+            const FILE = `${NAME}-packed.txt`
             if (DUMP) {
-                console.log("compressed", JSON.stringify(got, null, 2), got?.length)
+                console.log("pacled", got, got?.length)
             }
             if (WRITE) {
-                await _util.write_json(got, FILE)
+                await _util.write_document(got, FILE)
             }
-            const want = await _util.read_json(FILE)
+            const want = await _util.read_document(FILE)
 
             assert.deepEqual(got, want)
         })
