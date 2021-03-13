@@ -1,5 +1,137 @@
 {
-  "w3vc": {
+  "c4:1": {
+    "": {
+      "@context": [
+        {
+          "schema": "http://schema.org/", 
+          "vc": "https://www.w3.org/2018/credentials/v1/"
+        }, 
+        "https://w3id.org/security/v2"
+      ], 
+      "@type": "vc:VerifiableCredential", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "RsaSignature2018", 
+        "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+      }, 
+      "vc:credentialSubject": {
+        "@type": "schema:ImmunizationRecord", 
+        "schema:doseSequence": 2, 
+        "schema:location": {
+          "@type": "schema:Hospital", 
+          "schema:address": {
+            "@type": "schema:PostalAddress", 
+            "schema:addressCountry": "CA", 
+            "schema:addressRegion": "BC"
+          }
+        }, 
+        "schema:patient": {
+          "@type": "schema:Patient", 
+          "schema:healthCard": {
+            "@type": "schema:HealthCard", 
+            "schema:issuedBy": "CA-BC"
+          }
+        }, 
+        "schema:primaryPrevention": {
+          "@type": "schema:ImmunizationRecommendation", 
+          "schema:drug": {
+            "@type": "schema:Drug", 
+            "schema:code": {
+              "@type": "schema:MedicalCode", 
+              "schema:codeValue": "207", 
+              "schema:codingSystem": "CVX"
+            }, 
+            "schema:manufacturer": {
+              "@type": "schema:Organization", 
+              "schema:identifier": "MOD", 
+              "schema:name": "Moderna US, Inc."
+            }, 
+            "schema:name": "Moderna COVID-19 Vaccine"
+          }, 
+          "schema:healthCondition": {
+            "@type": "schema:MedicalCondition", 
+            "schema:code": {
+              "@type": "schema:MedicalCode", 
+              "schema:codeValue": "U07", 
+              "schema:codingSystem": "ICD-10"
+            }, 
+            "schema:name": "COVID-19"
+          }, 
+          "schema:name": "Moderna COVID-19 Vaccine"
+        }
+      }, 
+      "vc:issuer": "https://passport.consensas.com"
+    }, 
+    "A": {
+      "path": "vc:credentialSubject.schema:patient.schema:givenName", 
+      "type": "string"
+    }, 
+    "B": {
+      "path": "vc:credentialSubject.schema:patient.schema:familyName", 
+      "type": "string"
+    }, 
+    "C": {
+      "path": "vc:credentialSubject.schema:patient.schema:additionalName", 
+      "type": "string"
+    }, 
+    "D": {
+      "path": "vc:issuanceDate", 
+      "type": "string"
+    }, 
+    "E": {
+      "path": "vc:credentialSubject.schema:patient.schema:birthDate", 
+      "type": "string"
+    }, 
+    "F": {
+      "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:identifier", 
+      "type": "string"
+    }, 
+    "G": {
+      "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:issuedBy", 
+      "type": "string"
+    }, 
+    "H": {
+      "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:validUntil", 
+      "type": "string"
+    }, 
+    "I": {
+      "path": "vc:credentialSubject.schema:immunizationDate", 
+      "type": "string"
+    }, 
+    "J": {
+      "path": "vc:credentialSubject.schema:doseSequence", 
+      "type": "string"
+    }, 
+    "K": {
+      "path": "vc:credentialSubject.schema:lotNumber", 
+      "type": "string"
+    }, 
+    "L": {
+      "path": "vc:credentialSubject.schema:location.schema:address.schema:addressCountry", 
+      "type": "string"
+    }, 
+    "M": {
+      "path": "vc:credentialSubject.schema:location.schema:address.schema:addressRegion", 
+      "type": "string"
+    }, 
+    "N": {
+      "path": "vc:credentialSubject.schema:location.schema:address.schema:addressLocality", 
+      "type": "string"
+    }, 
+    "O": {
+      "path": "vc:credentialSubject.schema:location.schema:name", 
+      "type": "string"
+    }, 
+    "P": {
+      "path": "proof.created", 
+      "type": "string"
+    }, 
+    "Q": {
+      "path": "proof.jws", 
+      "type": "string"
+    }
+  }, 
+  "w3vc:1": {
     "": {
       "@context": [
         "https://www.w3.org/2018/credentials/v1", 
@@ -38,10 +170,7 @@
     }, 
     "D": {
       "path": "credentialSubject.recipient.birthDate", 
-      "type": "date",
-      "encode": "day-delta-base64",
-      "decode": "isodate",
-      "reference": "1900-00-00"
+      "type": "iso-epoch-base64"
     }, 
     "E": {
       "path": "credentialSubject.countryOfVaccination", 
@@ -49,16 +178,11 @@
     }, 
     "F": {
       "path": "proof.created", 
-      "type": "date",
-      "encode": "epoch-base64",
-      "decode": "isodatetime"
+      "type": "iso-epoch-base64"
     }, 
     "G": {
       "path": "expirationDate", 
-      "type": "string",
-      "encode": "day-delta-base64",
-      "decode": "isodate",
-      "reference": "2021-01-01"
+      "type": "iso-epoch-base64"
     }, 
     "H": {
       "path": "credentialSubject.recipient.familyName", 
@@ -78,18 +202,11 @@
     }, 
     "L": {
       "path": "issuanceDate", 
-      "type": "string",
-      "encode": "day-delta-base64",
-      "decode": "isodate",
-      "reference": "2021-01-01"
+      "type": "iso-epoch-base64"
     }, 
     "M": {
       "path": "proof.jws", 
-      "type": "string"
-    }, 
-    "N": {
-      "path": "proof.verificationMethod", 
-      "type": "string"
+      "type": "hash"
     }
   }
 }
