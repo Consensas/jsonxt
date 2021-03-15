@@ -1,0 +1,38 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1", 
+    "https://w3id.org/vaccination/v1"
+  ], 
+  "credentialSubject": {
+    "administeringCentre": "MOH", 
+    "batchNumber": "1183738569", 
+    "countryOfVaccination": "NZ", 
+    "recipient": {
+      "birthDate": "1958-07-17", 
+      "familyName": "SMITH", 
+      "gender": "MALE", 
+      "givenName": "JOHN", 
+      "type": "VaccineRecipient"
+    }, 
+    "type": "VaccinationEvent", 
+    "vaccine": {
+      "atcCode": "J07BX03", 
+      "type": "Vaccine"
+    }
+  }, 
+  "expirationDate": "2029-12-03T12:19:52Z", 
+  "id": "urn:uvci:af5vshde843jf831j128fj", 
+  "issuanceDate": "2019-12-03T12:19:52Z", 
+  "issuer": "DID:KEY:Z6MKIY62766B1LJKEXWMSM3QG4WTX7QPY823DXOYZR9QZVJ3", 
+  "proof": {
+    "created": "2021-02-18T23:49:52Z", 
+    "jws": "EYJHBGCIOIJFZERTQSISIMI2NCI6ZMFSC2USIMNYAXQIOLSIYJY0IL19..A3UQIUKSOMCKRDN2KNL_HCJIN4F4UD1EO5CKWEHB623V9VDCWWCDB7GBHLRBYSI8EK2E-BY7XYSVFWUTCPOEDG", 
+    "proofPurpose": "assertionMethod", 
+    "type": "Ed25519Signature2018", 
+    "verificationMethod": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3#z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3"
+  }, 
+  "type": [
+    "VerifiableCredential", 
+    "VaccinationCertificate"
+  ]
+}

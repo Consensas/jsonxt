@@ -46,6 +46,8 @@ describe("pack", function() {
 
     for (let [ NAME, TYPE, VERSION ] of [ 
         [ "w3vc-1-1", "w3vc", "1" ],
+        [ "w3vc-1-2", "w3vc", "1" ],
+        [ "w3vc-1qr-1", "w3vc", "1qr" ],
         [ "c4-1-1", "c4", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
@@ -57,7 +59,8 @@ describe("pack", function() {
 
             const FILE = `${NAME}-packed.txt`
             if (DUMP) {
-                console.log("pacled", got, got?.length)
+                console.log("packed", got, got?.length)
+                console.log("packed", got.toUpperCase(), got?.length)
             }
             if (WRITE) {
                 await _util.write_document(got, FILE)
