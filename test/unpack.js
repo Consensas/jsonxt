@@ -51,20 +51,22 @@ describe("unpack", function() {
         [ "c4-1-1", "c4", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
-            const template = await _util.read_json(`template.json`)
+            const templates = await _util.read_json(`template.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await _util.read_document(`${NAME}-packed.txt`)
 
-            const unpacked = jsonxt.unpack(packed, resolver => {
+            const unpacked = await jsonxt.unpack(packed, resolver => {
+                return templates
             })
             const got = unpacked
 
+            if (DUMP) {
+                console.log("packed", packed)
+                console.log("unpacked", unpacked)
+            }
+
             /*
             const FILE = `${NAME}-packed.txt`
-            if (DUMP) {
-                console.log("packed", got, got?.length)
-                console.log("packed", got.toUpperCase(), got?.length)
-            }
             if (WRITE) {
                 await _util.write_document(got, FILE)
             }
