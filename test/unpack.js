@@ -53,7 +53,7 @@ describe("unpack", function() {
         it(`compress: ${NAME}`, async function() {
             const template = await _util.read_json(`template.json`)
             const original = await _util.read_json(`${NAME}.json`)
-            const packed = await _util.read_json(`${NAME}-packed.json`)
+            const packed = await _util.read_document(`${NAME}-packed.txt`)
 
             const unpacked = jsonxt.unpack(packed, resolver => {
             })
