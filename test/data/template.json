@@ -96,7 +96,7 @@
     }, 
     "I": {
       "path": "vc:credentialSubject.schema:immunizationDate", 
-      "type": "isodatetime-epoch-base32"
+      "type": "isodate-1900-base32"
     }, 
     "J": {
       "path": "vc:credentialSubject.schema:doseSequence", 

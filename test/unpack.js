@@ -59,12 +59,14 @@ describe("unpack", function() {
                 return templates
             })
             const got = unpacked
+            const want = original
 
             if (DUMP) {
                 console.log("packed", packed)
                 console.log("unpacked", unpacked)
             }
 
+            assert.deepEqual(got, want)
             /*
             const FILE = `${NAME}-packed.txt`
             if (WRITE) {
@@ -72,7 +74,6 @@ describe("unpack", function() {
             }
             const want = await _util.read_document(FILE)
 
-            assert.deepEqual(got, want)
             */
         })
     }
