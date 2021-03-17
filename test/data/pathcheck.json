@@ -1,6 +1,28 @@
 {
   "coupon:1": {
-    "": {
+    "columns": [
+      {
+        "path": "vc:credentialSubject.schema:patient.pathcheck:couponNumber", 
+        "type": "pathcheck-numeric"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.pathcheck:couponTotal", 
+        "type": "pathcheck-numeric"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:address", 
+        "type": "pathcheck-string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.pathcheck:phase", 
+        "type": "pathcheck-shortstring"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.pathcheck:indicator", 
+        "type": "pathcheck-shortstring"
+      }
+    ], 
+    "template": {
       "@context": [
         {
           "pathcheck": "https://github.com/Path-Check/", 
@@ -9,31 +31,14 @@
         }, 
         "https://w3id.org/security/v2"
       ], 
-      "@type": [ "vc:VerifiableCredential", "pathcheck:CouponCredential" ],
+      "@type": [
+        "vc:VerifiableCredential", 
+        "pathcheck:CouponCredential"
+      ], 
       "vc:credentialSubject": {
-          "@type": "pathcheck:Coupon"
+        "@type": "pathcheck:Coupon"
       }, 
       "vc:issuer": "https://github.com/Path-Check"
-    }, 
-    "A": {
-      "path": "vc:credentialSubject.schema:patient.pathcheck:couponNumber", 
-      "type": "pathcheck-numeric"
-    }, 
-    "B": {
-      "path": "vc:credentialSubject.schema:patient.pathcheck:couponTotal", 
-      "type": "pathcheck-numeric"
-    }, 
-    "C": {
-      "path": "vc:credentialSubject.schema:patient.schema:address", 
-      "type": "pathcheck-string"
-    }, 
-    "D": {
-      "path": "vc:credentialSubject.schema:patient.pathcheck:phase", 
-      "type": "pathcheck-shortstring"
-    }, 
-    "E": {
-      "path": "vc:credentialSubject.schema:patient.pathcheck:indicator", 
-      "type": "pathcheck-shortstring"
     }
   }
 }
