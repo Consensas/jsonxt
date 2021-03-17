@@ -60,7 +60,26 @@ describe("pack", function() {
             const FILE = `${NAME}-packed.txt`
             if (DUMP) {
                 console.log("packed", got, got?.length)
-                console.log("packed", got.toUpperCase(), got?.length)
+            }
+            if (WRITE) {
+                await _util.write_document(got, FILE)
+            }
+            const want = await _util.read_document(FILE)
+
+            assert.deepEqual(got, want)
+        })
+        it(`compress (uppercase): ${NAME}`, async function() {
+            const template = await _util.read_json(`template.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            const packed = jsonxt.pack(original, template, TYPE, VERSION, "example.com", {
+                uppercase: true,
+            })
+            const got = packed
+
+            const FILE = `${NAME}-packed-upper.txt`
+            if (DUMP) {
+                console.log("packed", got, got?.length)
             }
             if (WRITE) {
                 await _util.write_document(got, FILE)
