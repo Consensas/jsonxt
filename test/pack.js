@@ -54,7 +54,7 @@ describe("pack", function() {
             const template = await _util.read_json(`templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
-            const packed = jsonxt.pack(original, template, TYPE, VERSION, "example.com")
+            const packed = await jsonxt.pack(original, template, TYPE, VERSION, "example.com")
             const got = packed
 
             const FILE = `${NAME}-packed.txt`
@@ -72,7 +72,7 @@ describe("pack", function() {
             const template = await _util.read_json(`templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
-            const packed = jsonxt.pack(original, template, TYPE, VERSION, "example.com", {
+            const packed = await jsonxt.pack(original, template, TYPE, VERSION, "example.com", {
                 uppercase: true,
             })
             const got = packed
