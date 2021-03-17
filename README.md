@@ -11,41 +11,64 @@ See [jsonxt.io](https://jsonxt.io) for more.
     npm install jsonxt
 
 ## Use
-### Encoding
+
+### Setup
 
     const jsonxt = require("jsonxt")
 
-    compressed = jsonxt.compress(original, template, "https://example.com/template")
-    url = jsonxt.urn.csv(compressed)
-    url = jsonxt.urn.json(compressed)
+Elided original payload - full JSON [here](https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json)
+
+    {
+      "credentialSubject": {
+        "administeringCentre": "MoH", 
+        "batchNumber": "1183738569", 
+        "countryOfVaccination": "NZ", 
+        "recipient": {
+          "birthDate": "1958-07-17", 
+          "familyName": "SMITH", 
+          "gender": "Male", 
+          "givenName": "JOHN", 
+          "type": "VaccineRecipient"
+        }, 
+        "type": "VaccinationEvent", 
+        "vaccine": {
+          "atcCode": "J07BX03", 
+          "type": "Vaccine"
+        }
+      }
+    }
+
+The `templates` can have multiple compression formats encoded,
+they will be selected by TYPE and VERSION.
+
+### Encoding
+
+This will compress the original JSON payload into a URI
+
+    const packed = await jsonxt.pack(original, templates, TYPE, VERSION, "example.com")
+
+See [test code](https://github.com/Consensas/jsonxt/blob/main/test/pack.js) for a more
+fully worked through example.
 
 ### Decoding
 
-    unpacked = jsonxt.urn.unpack(url)
-    decompressed = await jsonxt.decompress(unpacked, template_url => {
-        return template
+This will decompress the packed URI into the original URI.
+
+    const unpacked = await jsonxt.unpack(packed, resolver => {
+        return templates
     })
+
+Note that resolver will be handed e.g. "example.com" and you are expected 
+to come up with the `templates`.
+
+See [test code](https://github.com/Consensas/jsonxt/blob/main/test/unpack.js) for a more
+fully worked through example.
+
+## Resolving
 
 ## See Also
 
-* [RFC4180](https://tools.ietf.org/html/rfc4180) - Common Format and MIME Type for CSV Files
 * [RFC2397](https://tools.ietf.org/html/rfc2397) - The "data" URL scheme
-* [RFC3986](https://tools.ietf.org/html/rfc3986) - 
-* [RFC8141](https://tools.ietf.org/html/rfc8141) - 
-
-
-## URN 
-
-    namestring    = assigned-name
-    assigned-name = "urn" ":" NID ":" NSS
-    NID           = (alphanum) 0*30(ldh) (alphanum)
-    ldh           = alphanum / "-"
-    NSS           = pchar *(pchar / "/")
-
-    pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
-    unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
-    reserved      = gen-delims / sub-delims
-    gen-delims    = ":" / "/" / "?" / "#" / "[" / "]" / "@"
-    sub-delims    = "!" / "$" / "&" / "'" / "(" / ")"
-                    / "*" / "+" / "," / ";" / "="
-
+* [RFC3986](https://tools.ietf.org/html/rfc3986) - URI generic syntax
+* [RFC4180](https://tools.ietf.org/html/rfc4180) - Common Format and MIME Type for CSV Files
+* [RFC8141](https://tools.ietf.org/html/rfc8141) - Uniform Resource Names (URNs)
