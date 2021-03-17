@@ -51,7 +51,7 @@ describe("pack", function() {
         [ "c4-1-1", "c4", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
-            const template = await _util.read_json(`template.json`)
+            const template = await _util.read_json(`templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             const packed = jsonxt.pack(original, template, TYPE, VERSION, "example.com")
@@ -69,7 +69,7 @@ describe("pack", function() {
             assert.deepEqual(got, want)
         })
         it(`compress (uppercase): ${NAME}`, async function() {
-            const template = await _util.read_json(`template.json`)
+            const template = await _util.read_json(`templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             const packed = jsonxt.pack(original, template, TYPE, VERSION, "example.com", {

@@ -51,7 +51,7 @@ describe("unpack", function() {
         [ "c4-1-1", "c4", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
-            const templates = await _util.read_json(`template.json`)
+            const templates = await _util.read_json(`templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await _util.read_document(`${NAME}-packed.txt`)
 
