@@ -16,27 +16,8 @@ See [jsonxt.io](https://jsonxt.io) for more.
 
     const jsonxt = require("jsonxt")
 
-Elided original payload - full JSON [here](https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json)
-
-    {
-      "credentialSubject": {
-        "administeringCentre": "MoH", 
-        "batchNumber": "1183738569", 
-        "countryOfVaccination": "NZ", 
-        "recipient": {
-          "birthDate": "1958-07-17", 
-          "familyName": "SMITH", 
-          "gender": "Male", 
-          "givenName": "JOHN", 
-          "type": "VaccineRecipient"
-        }, 
-        "type": "VaccinationEvent", 
-        "vaccine": {
-          "atcCode": "J07BX03", 
-          "type": "Vaccine"
-        }
-      }
-    }
+* An example `original` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json)
+* An example `templates` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/templates.json)
 
 The `templates` can have multiple compression formats encoded,
 they will be selected by TYPE and VERSION.
