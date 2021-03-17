@@ -3,22 +3,24 @@
     "": {
       "@context": [
         {
-          "pathcheck": "https://github.com/Path-Check", 
+          "pathcheck": "https://github.com/Path-Check/", 
           "schema": "http://schema.org/", 
           "vc": "https://www.w3.org/2018/credentials/v1/"
         }, 
         "https://w3id.org/security/v2"
       ], 
-      "@type": "vc:VerifiableCredential", 
-      "vc:credentialSubject": {}, 
+      "@type": [ "vc:VerifiableCredential", "pathcheck:CouponCredential" ],
+      "vc:credentialSubject": {
+          "@type": "pathcheck:Coupon"
+      }, 
       "vc:issuer": "https://github.com/Path-Check"
     }, 
     "A": {
-      "path": "vc:credentialSubject.schema:patient.pathcheck:number", 
+      "path": "vc:credentialSubject.schema:patient.pathcheck:couponNumber", 
       "type": "pathcheck-numeric"
     }, 
     "B": {
-      "path": "vc:credentialSubject.schema:patient.pathcheck:total", 
+      "path": "vc:credentialSubject.schema:patient.pathcheck:couponTotal", 
       "type": "pathcheck-numeric"
     }, 
     "C": {
