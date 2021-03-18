@@ -45,10 +45,10 @@ describe("pack", function() {
     })
 
     for (let [ NAME, TYPE, VERSION ] of [ 
-        [ "w3vc-1-1", "w3vc", "1" ],
-        [ "w3vc-1-2", "w3vc", "1" ],
-        [ "w3vc-1qr-1", "w3vc", "1qr" ],
-        [ "c4-1-1", "c4", "1" ],
+        // [ "w3vc-1-1", "w3vc", "1" ],
+        // [ "w3vc-1-2", "w3vc", "1" ],
+        // [ "w3vc-1qr-1", "w3vc", "1qr" ],
+        // [ "c4-1-1", "c4", "1" ],
         [ "simple-1-1", "simple", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
