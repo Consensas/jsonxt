@@ -22,6 +22,27 @@
         "type": "pathcheck-shortstring"
       }
     ], 
+    "components": [
+        {
+            "NOTE": "this is not used, just an idea",
+            "type": "value",
+            "value": "cred"
+        },
+        {
+            "type": "value",
+            "value": "coupon"
+        },
+        {
+            "type": "value",
+            "value": "1"
+        },
+        {
+            "type": "pathcheck-signature"
+        },
+        {
+            "type": "payload"
+        }
+    ],
     "template": {
       "@context": [
         {
