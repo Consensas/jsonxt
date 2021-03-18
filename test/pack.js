@@ -49,6 +49,7 @@ describe("pack", function() {
         [ "w3vc-1-2", "w3vc", "1" ],
         [ "w3vc-1qr-1", "w3vc", "1qr" ],
         [ "c4-1-1", "c4", "1" ],
+        [ "simple-1-1", "simple", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
             const template = await _util.read_json(`templates.json`)
@@ -59,7 +60,8 @@ describe("pack", function() {
 
             const FILE = `${NAME}-packed.txt`
             if (DUMP) {
-                console.log("packed", got, got?.length)
+                const p = Math.round(got.length / JSON.stringify(original).length * 100)
+                console.log("packed", got, got.length, `${p}%`)
             }
             if (WRITE) {
                 await _util.write_document(got, FILE)
@@ -79,7 +81,8 @@ describe("pack", function() {
 
             const FILE = `${NAME}-packed-upper.txt`
             if (DUMP) {
-                console.log("packed", got, got?.length)
+                const p = Math.round(got.length / JSON.stringify(original).length * 100)
+                console.log("packed", got, got.length, `${p}%`)
             }
             if (WRITE) {
                 await _util.write_document(got, FILE)

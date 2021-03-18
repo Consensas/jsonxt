@@ -133,31 +133,32 @@
       "vc:issuer": "https://passport.consensas.com"
     }
   }, 
-  "w3vc:1": {
+  "simple:1": {
+    "columns": [
+      {
+        "path": "ical:summary", 
+        "type": "string"
+      }, 
+      {
+        "path": "ical:location", 
+        "type": "string"
+      }, 
+      {
+        "path": "ical:dtstart", 
+        "type": "isodatetime-epoch-base32"
+      }
+    ], 
     "template": {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1", 
-        "https://w3id.org/vaccination/v1"
-      ], 
-      "credentialSubject": {
-        "recipient": {
-          "type": "VaccineRecipient"
+      "@context": {
+        "ical": "http://www.w3.org/2002/12/cal/ical#", 
+        "ical:dtstart": {
+          "@type": "xsd:dateTime"
         }, 
-        "type": "VaccinationEvent", 
-        "vaccine": {
-          "type": "Vaccine"
-        }
-      }, 
-      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
-      "proof": {
-        "proofPurpose": "assertionMethod", 
-        "type": "Ed25519Signature2018"
-      }, 
-      "type": [
-        "VerifiableCredential", 
-        "VaccinationCertificate"
-      ]
-    }, 
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+      }
+    }
+  }, 
+  "w3vc:1": {
     "columns": [
       {
         "path": "credentialSubject.administeringCentre", 
@@ -211,33 +212,33 @@
         "path": "proof.jws", 
         "type": "string"
       }
-    ]
+    ], 
+    "template": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1", 
+        "https://w3id.org/vaccination/v1"
+      ], 
+      "credentialSubject": {
+        "recipient": {
+          "type": "VaccineRecipient"
+        }, 
+        "type": "VaccinationEvent", 
+        "vaccine": {
+          "type": "Vaccine"
+        }
+      }, 
+      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "Ed25519Signature2018"
+      }, 
+      "type": [
+        "VerifiableCredential", 
+        "VaccinationCertificate"
+      ]
+    }
   }, 
   "w3vc:1qr": {
-    "template": {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1", 
-        "https://w3id.org/vaccination/v1"
-      ], 
-      "credentialSubject": {
-        "recipient": {
-          "type": "VaccineRecipient"
-        }, 
-        "type": "VaccinationEvent", 
-        "vaccine": {
-          "type": "Vaccine"
-        }
-      }, 
-      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
-      "proof": {
-        "proofPurpose": "assertionMethod", 
-        "type": "Ed25519Signature2018"
-      }, 
-      "type": [
-        "VerifiableCredential", 
-        "VaccinationCertificate"
-      ]
-    }, 
     "columns": [
       {
         "path": "credentialSubject.administeringCentre", 
@@ -291,6 +292,30 @@
         "path": "proof.jws", 
         "type": "string-base32"
       }
-    ]
+    ], 
+    "template": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1", 
+        "https://w3id.org/vaccination/v1"
+      ], 
+      "credentialSubject": {
+        "recipient": {
+          "type": "VaccineRecipient"
+        }, 
+        "type": "VaccinationEvent", 
+        "vaccine": {
+          "type": "Vaccine"
+        }
+      }, 
+      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "Ed25519Signature2018"
+      }, 
+      "type": [
+        "VerifiableCredential", 
+        "VaccinationCertificate"
+      ]
+    }
   }
 }

@@ -16,6 +16,49 @@ See [jsonxt.io](https://jsonxt.io) for more.
 
     const jsonxt = require("jsonxt")
 
+    // sample data…
+    const original = {
+      "@context": {
+        "ical": "http://www.w3.org/2002/12/cal/ical#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "ical:dtstart": {
+          "@type": "xsd:dateTime"
+        }
+      },
+      "ical:summary": "Lady Gaga Concert",
+      "ical:location": "New Orleans Arena, New Orleans, Louisiana, USA",
+      "ical:dtstart": "2011-04-09T20:00:00Z"
+    }
+    const templates = {
+      "simple:1": {
+        "columns": [
+          {
+            "path": "ical:summary", 
+            "type": "string"
+          }, 
+          {
+            "path": "ical:location", 
+            "type": "string"
+          }, 
+          {
+            "path": "ical:dtstart", 
+            "type": "isodatetime-epoch-base32"
+          }
+        ], 
+        "template": {
+          "@context": {
+            "ical": "http://www.w3.org/2002/12/cal/ical#", 
+            "ical:dtstart": {
+              "@type": "xsd:dateTime"
+            }, 
+            "xsd": "http://www.w3.org/2001/XMLSchema#"
+          }
+        }
+      }
+    }
+    const TYPE = "simple"
+    const VERSION = "1"
+
 * An example `original` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json)
 * An example `templates` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/templates.json)
 
@@ -27,6 +70,11 @@ they will be selected by TYPE and VERSION.
 This will compress the original JSON payload into a URI
 
     const packed = await jsonxt.pack(original, templates, TYPE, VERSION, "example.com")
+
+Which yields (ignore newline)
+
+    jxt:example.com:simple:1:Lady%20Gaga%20Concert/
+    New%20Orleans%20Arena%2C%20New%20Orleans%2C%20Louisiana%2C%20USA/16Q1EM0
 
 See [test code](https://github.com/Consensas/jsonxt/blob/main/test/pack.js) for a more
 fully worked through example.
