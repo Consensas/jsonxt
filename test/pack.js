@@ -92,4 +92,63 @@ describe("pack", function() {
             assert.deepEqual(got, want)
         })
     }
+    describe("expected failures", function() {
+        const NAME = "w3vc-1-1"
+        const TYPE = "w3vc"
+        const VERSION ="1"
+
+        it("works with all parameters", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+            const packed = await jsonxt.pack(original, template, TYPE, VERSION, "example.com")
+        })
+        it("missing original", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            assert.rejects(async () => {
+                const packed = await jsonxt.pack(null, template, TYPE, VERSION, "example.com")
+            })
+        })
+        it("missing templates", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            assert.rejects(async () => {
+                const packed = await jsonxt.pack(original, null, TYPE, VERSION, "example.com")
+            })
+        })
+        it("missing type", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            assert.rejects(async () => {
+                const packed = await jsonxt.pack(original, template, null, VERSION, "example.com")
+            })
+        })
+        it("missing version", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            assert.rejects(async () => {
+                const packed = await jsonxt.pack(original, template, TYPE, null, "example.com")
+            })
+        })
+        it("numeric version", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            assert.rejects(async () => {
+                const packed = await jsonxt.pack(original, template, TYPE, 1, "example.com")
+            })
+        })
+        it("missing resolver", async function() {
+            const template = await _util.read_json(`templates.json`)
+            const original = await _util.read_json(`${NAME}.json`)
+
+            assert.rejects(async () => {
+                const packed = await jsonxt.pack(original, template, TYPE, VERSION, null)
+            })
+        })
+    })
 })
