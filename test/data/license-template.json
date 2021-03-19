@@ -1,0 +1,306 @@
+{
+  "lic:1": {
+    "template": {
+      "@context": "https://example.com/license/",
+      "@type": "DriversLicense"
+    },
+    "columns": [
+      {
+        "path": "dbd",
+        "name": "Issue",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "dba",
+        "name": "Expiration",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "dca",
+        "name": "Juris Vehicle Class",
+        "placeholder": "2",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcb",
+        "name": "Juris Restrictions",
+        "placeholder": "Glasses, ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcd",
+        "name": "Juris Privileges",
+        "placeholder": "1A, 2A, ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcp",
+        "name": "Juris Vehicle Class Desc",
+        "placeholder": "2",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcq",
+        "name": "Juris Endorsement Desc",
+        "placeholder": "Glasses, ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcr",
+        "name": "Juris Restriction Desc",
+        "placeholder": "1A, 2A, ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dch",
+        "name": "Fed Commercial Vehicle",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcm",
+        "name": "Std Vehicle Class",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcn",
+        "name": "Std Endorsement",
+        "type": "string-empty"
+      },
+      {
+        "path": "dco",
+        "name": "Std Restriction",
+        "type": "string-empty"
+      },
+      {
+        "path": "dda",
+        "name": "Compliance Type",
+        "placeholder": "F, N, ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "ddb",
+        "name": "Card Revision Date",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "ddc",
+        "name": "Card Hazardous Exp.",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "dcj",
+        "name": "Audit Information",
+        "type": "string-empty"
+      },
+      {
+        "path": "dck",
+        "name": "Inventory Control",
+        "type": "integer-base32"
+      },
+      {
+        "path": "daq",
+        "name": "Customer ID",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcf",
+        "name": "Document Discriminator",
+        "type": "integer-base32"
+      },
+      {
+        "path": "dac",
+        "name": "First Name",
+        "placeholder": "First Name ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dad",
+        "name": "Middle Name",
+        "placeholder": "Middle Name ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcs",
+        "name": "Last Name",
+        "placeholder": "Last Name ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dct",
+        "name": "Given Name",
+        "placeholder": "Given Name ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcu",
+        "name": "Suffix",
+        "placeholder": "Dr. Jr. ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dbb",
+        "name": "DoB",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "dbc",
+        "name": "Gender",
+        "placeholder": "Gender ...",
+        "type": "integer-base32"
+      },
+      {
+        "path": "ddd",
+        "name": "Lawful Status",
+        "type": "integer-base32"
+      },
+      {
+        "path": "ddk",
+        "name": "Organ Donor",
+        "type": "integer-base32"
+      },
+      {
+        "path": "ddl",
+        "name": "Veteran",
+        "type": "integer-base32"
+      },
+      {
+        "path": "dci",
+        "name": "Place of Birth",
+        "type": "string-empty"
+      },
+      {
+        "path": "dbn",
+        "name": "Last Name Alias",
+        "placeholder": "Last Name ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dbg",
+        "name": "Given Name Alias",
+        "placeholder": "Given Name ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "dbs",
+        "name": "Suffix Alias",
+        "placeholder": "Dr. Jr. ...",
+        "type": "string-empty"
+      },
+      {
+        "path": "ddh",
+        "name": "18Y Anniversary",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "ddi",
+        "name": "19Y Anniversary",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "ddj",
+        "name": "21Y Anniversary",
+        "placeholder": "YYYYMMDD",
+        "type": "isodate-1900-base32"
+      },
+      {
+        "path": "zva",
+        "name": "ZVA",
+        "placeholder": "YYYYMMDD",
+        "type": "integer-base32"
+      },
+      {
+        "path": "day",
+        "name": "Eye Color",
+        "type": "string-empty"
+      },
+      {
+        "path": "daz",
+        "name": "Hair Color",
+        "type": "string-empty"
+      },
+      {
+        "path": "dcl",
+        "name": "Race",
+        "type": "string-empty"
+      },
+      {
+        "path": "dau",
+        "name": "Height",
+        "type": "integer-base32"
+      },
+      {
+        "path": "dce",
+        "name": "Weight Range",
+        "type": "integer-base32"
+      },
+      {
+        "path": "daw",
+        "name": "Weight (lbs)",
+        "type": "string-empty"
+      },
+      {
+        "path": "dax",
+        "name": "Weight (kgs)",
+        "type": "string-empty"
+      },
+      {
+        "path": "dag",
+        "name": "Address 1",
+        "placeholder": "3rd St",
+        "type": "string-empty"
+      },
+      {
+        "path": "dah",
+        "name": "Address 2",
+        "placeholder": "Apt xx",
+        "type": "string-empty"
+      },
+      {
+        "path": "dai",
+        "name": "City",
+        "placeholder": "Somerville",
+        "type": "string-empty"
+      },
+      {
+        "path": "daj",
+        "name": "State",
+        "placeholder": "MA",
+        "type": "string-empty"
+      },
+      {
+        "path": "dak",
+        "name": "Zip",
+        "placeholder": "02141",
+        "type": "integer-base32"
+      },
+      {
+        "path": "dcg",
+        "name": "Country",
+        "placeholder": "USA",
+        "type": "string-empty"
+      },
+      {
+        "path": "aam-version",
+        "name": "AAMVAVersion",
+        "type": "integer-base32"
+      },
+      {
+        "path": "version",
+        "name": "Juris Version",
+        "type": "integer-base32"
+      },
+      {
+        "path": "iin",
+        "name": "IIN",
+        "type": "integer-base32"
+      }
+    ]
+  }
+}
