@@ -3,71 +3,71 @@
     "columns": [
       {
         "path": "vc:credentialSubject.schema:patient.schema:givenName", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:familyName", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:additionalName", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:issuanceDate", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:birthDate", 
-        "type": "isodate-1900-base32"
+        "encoder": "isodate-1900-base32"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:identifier", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:issuedBy", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:validUntil", 
-        "type": "isoyyyymm-2020-base32"
+        "encoder": "isoyyyymm-2020-base32"
       }, 
       {
         "path": "vc:credentialSubject.schema:immunizationDate", 
-        "type": "isodate-1900-base32"
+        "encoder": "isodate-1900-base32"
       }, 
       {
         "path": "vc:credentialSubject.schema:doseSequence", 
-        "type": "integer"
+        "encoder": "integer"
       }, 
       {
         "path": "vc:credentialSubject.schema:lotNumber", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:location.schema:address.schema:addressCountry", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:location.schema:address.schema:addressRegion", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:location.schema:address.schema:addressLocality", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "vc:credentialSubject.schema:location.schema:name", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "proof.created", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "proof.jws", 
-        "type": "string"
+        "encoder": "string"
       }
     ], 
     "template": {
@@ -137,15 +137,15 @@
     "columns": [
       {
         "path": "ical:summary", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "ical:location", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "ical:dtstart", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }
     ], 
     "template": {
@@ -162,55 +162,55 @@
     "columns": [
       {
         "path": "credentialSubject.administeringCentre", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "credentialSubject.vaccine.atcCode", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "credentialSubject.batchNumber", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "credentialSubject.recipient.birthDate", 
-        "type": "isodate-1900-base32"
+        "encoder": "isodate-1900-base32"
       }, 
       {
         "path": "credentialSubject.countryOfVaccination", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "proof.created", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "expirationDate", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "credentialSubject.recipient.familyName", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "credentialSubject.recipient.gender", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "credentialSubject.recipient.givenName", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "id", 
-        "type": "string"
+        "encoder": "string"
       }, 
       {
         "path": "issuanceDate", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "proof.jws", 
-        "type": "string"
+        "encoder": "string"
       }
     ], 
     "template": {
@@ -242,55 +242,55 @@
     "columns": [
       {
         "path": "credentialSubject.administeringCentre", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "credentialSubject.vaccine.atcCode", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "credentialSubject.batchNumber", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "credentialSubject.recipient.birthDate", 
-        "type": "isodate-1900-base32"
+        "encoder": "isodate-1900-base32"
       }, 
       {
         "path": "credentialSubject.countryOfVaccination", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "proof.created", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "expirationDate", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "credentialSubject.recipient.familyName", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "credentialSubject.recipient.gender", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "credentialSubject.recipient.givenName", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "id", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }, 
       {
         "path": "issuanceDate", 
-        "type": "isodatetime-epoch-base32"
+        "encoder": "isodatetime-epoch-base32"
       }, 
       {
         "path": "proof.jws", 
-        "type": "string-base32"
+        "encoder": "string-base32"
       }
     ], 
     "template": {

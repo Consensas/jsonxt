@@ -3,23 +3,23 @@
     "columns": [
       {
         "path": "vc:credentialSubject.schema:patient.pathcheck:couponNumber", 
-        "type": "pathcheck-numeric"
+        "encoder": "pathcheck-numeric"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.pathcheck:couponTotal", 
-        "type": "pathcheck-numeric"
+        "encoder": "pathcheck-numeric"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:address", 
-        "type": "pathcheck-string"
+        "encoder": "pathcheck-string"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.pathcheck:phase", 
-        "type": "pathcheck-shortstring"
+        "encoder": "pathcheck-shortstring"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.pathcheck:indicator", 
-        "type": "pathcheck-shortstring"
+        "encoder": "pathcheck-shortstring"
       }
     ], 
     "components": [
@@ -37,7 +37,7 @@
             "value": "1"
         },
         {
-            "type": "pathcheck-signature"
+            "encoder": "pathcheck-signature"
         },
         {
             "type": "payload"
