@@ -1,306 +1,319 @@
 {
   "lic:1": {
-    "template": {
-      "@context": "https://example.com/license/",
-      "@type": "DriversLicense"
-    },
     "columns": [
       {
-        "path": "dbd",
-        "name": "Issue",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "Issue", 
+        "path": "dbd", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "dba",
-        "name": "Expiration",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "Expiration", 
+        "path": "dba", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "dca",
-        "name": "Juris Vehicle Class",
-        "placeholder": "2",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Juris Vehicle Class", 
+        "path": "dca", 
+        "placeholder": "2"
+      }, 
       {
-        "path": "dcb",
-        "name": "Juris Restrictions",
-        "placeholder": "Glasses, ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Juris Restrictions", 
+        "path": "dcb", 
+        "placeholder": "Glasses, ..."
+      }, 
       {
-        "path": "dcd",
-        "name": "Juris Privileges",
-        "placeholder": "1A, 2A, ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Juris Privileges", 
+        "path": "dcd", 
+        "placeholder": "1A, 2A, ..."
+      }, 
       {
-        "path": "dcp",
-        "name": "Juris Vehicle Class Desc",
-        "placeholder": "2",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Juris Vehicle Class Desc", 
+        "path": "dcp", 
+        "placeholder": "2"
+      }, 
       {
-        "path": "dcq",
-        "name": "Juris Endorsement Desc",
-        "placeholder": "Glasses, ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Juris Endorsement Desc", 
+        "path": "dcq", 
+        "placeholder": "Glasses, ..."
+      }, 
       {
-        "path": "dcr",
-        "name": "Juris Restriction Desc",
-        "placeholder": "1A, 2A, ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Juris Restriction Desc", 
+        "path": "dcr", 
+        "placeholder": "1A, 2A, ..."
+      }, 
       {
-        "path": "dch",
-        "name": "Fed Commercial Vehicle",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Fed Commercial Vehicle", 
+        "path": "dch"
+      }, 
       {
-        "path": "dcm",
-        "name": "Std Vehicle Class",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Std Vehicle Class", 
+        "path": "dcm"
+      }, 
       {
-        "path": "dcn",
-        "name": "Std Endorsement",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Std Endorsement", 
+        "path": "dcn"
+      }, 
       {
-        "path": "dco",
-        "name": "Std Restriction",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Std Restriction", 
+        "path": "dco"
+      }, 
       {
-        "path": "dda",
-        "name": "Compliance Type",
-        "placeholder": "F, N, ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Compliance Type", 
+        "path": "dda", 
+        "placeholder": "F, N, ..."
+      }, 
       {
-        "path": "ddb",
-        "name": "Card Revision Date",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "Card Revision Date", 
+        "path": "ddb", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "ddc",
-        "name": "Card Hazardous Exp.",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "Card Hazardous Exp.", 
+        "path": "ddc", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "dcj",
-        "name": "Audit Information",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Audit Information", 
+        "path": "dcj"
+      }, 
       {
-        "path": "dck",
-        "name": "Inventory Control",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Inventory Control", 
+        "path": "dck"
+      }, 
       {
-        "path": "daq",
-        "name": "Customer ID",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Customer ID", 
+        "path": "daq"
+      }, 
       {
-        "path": "dcf",
-        "name": "Document Discriminator",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Document Discriminator", 
+        "path": "dcf"
+      }, 
       {
-        "path": "dac",
-        "name": "First Name",
-        "placeholder": "First Name ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "First Name", 
+        "path": "dac", 
+        "placeholder": "First Name ..."
+      }, 
       {
-        "path": "dad",
-        "name": "Middle Name",
-        "placeholder": "Middle Name ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Middle Name", 
+        "path": "dad", 
+        "placeholder": "Middle Name ..."
+      }, 
       {
-        "path": "dcs",
-        "name": "Last Name",
-        "placeholder": "Last Name ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Last Name", 
+        "path": "dcs", 
+        "placeholder": "Last Name ..."
+      }, 
       {
-        "path": "dct",
-        "name": "Given Name",
-        "placeholder": "Given Name ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Given Name", 
+        "path": "dct", 
+        "placeholder": "Given Name ..."
+      }, 
       {
-        "path": "dcu",
-        "name": "Suffix",
-        "placeholder": "Dr. Jr. ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Suffix", 
+        "path": "dcu", 
+        "placeholder": "Dr. Jr. ..."
+      }, 
       {
-        "path": "dbb",
-        "name": "DoB",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "DoB", 
+        "path": "dbb", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "dbc",
-        "name": "Gender",
-        "placeholder": "Gender ...",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Gender", 
+        "path": "dbc", 
+        "placeholder": "Gender ..."
+      }, 
       {
-        "path": "ddd",
-        "name": "Lawful Status",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Lawful Status", 
+        "path": "ddd"
+      }, 
       {
-        "path": "ddk",
-        "name": "Organ Donor",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Organ Donor", 
+        "path": "ddk"
+      }, 
       {
-        "path": "ddl",
-        "name": "Veteran",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Veteran", 
+        "path": "ddl"
+      }, 
       {
-        "path": "dci",
-        "name": "Place of Birth",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Place of Birth", 
+        "path": "dci"
+      }, 
       {
-        "path": "dbn",
-        "name": "Last Name Alias",
-        "placeholder": "Last Name ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Last Name Alias", 
+        "path": "dbn", 
+        "placeholder": "Last Name ..."
+      }, 
       {
-        "path": "dbg",
-        "name": "Given Name Alias",
-        "placeholder": "Given Name ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Given Name Alias", 
+        "path": "dbg", 
+        "placeholder": "Given Name ..."
+      }, 
       {
-        "path": "dbs",
-        "name": "Suffix Alias",
-        "placeholder": "Dr. Jr. ...",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Suffix Alias", 
+        "path": "dbs", 
+        "placeholder": "Dr. Jr. ..."
+      }, 
       {
-        "path": "ddh",
-        "name": "18Y Anniversary",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "18Y Anniversary", 
+        "path": "ddh", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "ddi",
-        "name": "19Y Anniversary",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "19Y Anniversary", 
+        "path": "ddi", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "ddj",
-        "name": "21Y Anniversary",
-        "placeholder": "YYYYMMDD",
-        "encoder": "isodate-1900-base32"
-      },
+        "encoder": "isodate-1900-base32", 
+        "name": "21Y Anniversary", 
+        "path": "ddj", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "zva",
-        "name": "ZVA",
-        "placeholder": "YYYYMMDD",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "ZVA", 
+        "path": "zva", 
+        "placeholder": "YYYY-MM-DD"
+      }, 
       {
-        "path": "day",
-        "name": "Eye Color",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-blank", 
+        "NOTE": "enumeration for future use",
+        "enumeration": {
+          "BLK": "Black", 
+          "BLU": "Blue", 
+          "BRO": "Brown", 
+          "DIC": "Dichromatic", 
+          "GRN": "Green", 
+          "GRY": "Gray", 
+          "HAZ": "Hazel", 
+          "MAR": "Maroon", 
+          "PNK": "Pink", 
+          "UNK": "Unknown"
+        }, 
+        "name": "Eye Color", 
+        "path": "day"
+      }, 
       {
-        "path": "daz",
-        "name": "Hair Color",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Hair Color", 
+        "path": "daz"
+      }, 
       {
-        "path": "dcl",
-        "name": "Race",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Race", 
+        "path": "dcl"
+      }, 
       {
-        "path": "dau",
-        "name": "Height",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Height", 
+        "path": "dau"
+      }, 
       {
-        "path": "dce",
-        "name": "Weight Range",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Weight Range", 
+        "path": "dce"
+      }, 
       {
-        "path": "daw",
-        "name": "Weight (lbs)",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Weight (lbs)", 
+        "path": "daw"
+      }, 
       {
-        "path": "dax",
-        "name": "Weight (kgs)",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Weight (kgs)", 
+        "path": "dax"
+      }, 
       {
-        "path": "dag",
-        "name": "Address 1",
-        "placeholder": "3rd St",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Address 1", 
+        "path": "dag", 
+        "placeholder": "3rd St"
+      }, 
       {
-        "path": "dah",
-        "name": "Address 2",
-        "placeholder": "Apt xx",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Address 2", 
+        "path": "dah", 
+        "placeholder": "Apt xx"
+      }, 
       {
-        "path": "dai",
-        "name": "City",
-        "placeholder": "Somerville",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "City", 
+        "path": "dai", 
+        "placeholder": "Somerville"
+      }, 
       {
-        "path": "daj",
-        "name": "State",
-        "placeholder": "MA",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "State", 
+        "path": "daj", 
+        "placeholder": "MA"
+      }, 
       {
-        "path": "dak",
-        "name": "Zip",
-        "placeholder": "02141",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Zip", 
+        "path": "dak", 
+        "placeholder": "02141"
+      }, 
       {
-        "path": "dcg",
-        "name": "Country",
-        "placeholder": "USA",
-        "encoder": "string-empty"
-      },
+        "encoder": "string-empty", 
+        "name": "Country", 
+        "path": "dcg", 
+        "placeholder": "USA"
+      }, 
       {
-        "path": "aam-version",
-        "name": "AAMVAVersion",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "AAMVAVersion", 
+        "path": "aam-version"
+      }, 
       {
-        "path": "version",
-        "name": "Juris Version",
-        "encoder": "integer-base32"
-      },
+        "encoder": "integer-base32", 
+        "name": "Juris Version", 
+        "path": "version"
+      }, 
       {
-        "path": "iin",
-        "name": "IIN",
-        "encoder": "integer-base32"
+        "encoder": "integer-base32", 
+        "name": "IIN", 
+        "path": "iin"
       }
-    ]
+    ], 
+    "template": {
+      "@context": "https://example.com/license/", 
+      "@type": "DriversLicense"
+    }
   }
 }
