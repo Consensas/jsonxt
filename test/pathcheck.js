@@ -47,7 +47,7 @@ describe("pack", function() {
 
     describe("coupon", function() {
         it("coupon decode", async function() {
-            const templates = await _util.read_json(`pathcheck.json`)
+            const templates = await _util.read_json(`pathcheck-templates.json`)
             const template = templates["coupon:1"]
             const uri = `CRED:COUPON:1:GBDAEIIA42QDQ5BDUUXVMSQ4VIMMA7RETIZSXB573OL24M4L67LYB24CZYVQEIIA2EZ5W2QXLR7LUSLQW6MLAFV3N7OTT3BDAZCNCRMYBMUYC6WMXMNQ:KEYS.PATHCHECK.ORG:1/5000/SOMERVILLE%20MA%20US/1A/%3E65`
             const parts = uri.split(":")

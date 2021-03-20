@@ -52,7 +52,7 @@ describe("pack", function() {
         [ "simple-1-1", "simple", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION, "example.com")
@@ -71,7 +71,7 @@ describe("pack", function() {
             assert.deepEqual(got, want)
         })
         it(`compress (uppercase): ${NAME}`, async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION, "example.com", {
@@ -98,7 +98,7 @@ describe("pack", function() {
             const TYPE = "w3vc"
             const VERSION ="1"
 
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await jsonxt.pack(original, templates, TYPE.toUpperCase(), VERSION, "example.com")
         })
@@ -107,7 +107,7 @@ describe("pack", function() {
             const TYPE = "w3vc"
             const VERSION ="1"
 
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await jsonxt.pack(original, templates, TYPE.toLowerCase(), VERSION, "example.com")
         })
@@ -116,7 +116,7 @@ describe("pack", function() {
             const TYPE = "w3vc"
             const VERSION ="1qr"
 
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION.toUpperCase(), "example.com")
         })
@@ -125,7 +125,7 @@ describe("pack", function() {
             const TYPE = "w3vc"
             const VERSION ="1qr"
 
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION.toLowerCase(), "example.com")
         })
@@ -136,12 +136,12 @@ describe("pack", function() {
         const VERSION ="1"
 
         it("works with all parameters", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION, "example.com")
         })
         it("missing original", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
@@ -149,7 +149,7 @@ describe("pack", function() {
             })
         })
         it("missing templates", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
@@ -157,7 +157,7 @@ describe("pack", function() {
             })
         })
         it("missing type", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
@@ -165,7 +165,7 @@ describe("pack", function() {
             })
         })
         it("missing version", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
@@ -173,7 +173,7 @@ describe("pack", function() {
             })
         })
         it("numeric version", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
@@ -181,7 +181,7 @@ describe("pack", function() {
             })
         })
         it("missing resolver", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
@@ -189,7 +189,7 @@ describe("pack", function() {
             })
         })
         it("template is not defined", async function() {
-            const templates = await _util.read_json(`templates.json`)
+            const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
 
             assert.rejects(async () => {
