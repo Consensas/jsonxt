@@ -1,0 +1,321 @@
+{
+  "c4:1": {
+    "columns": [
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:givenName", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:familyName", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:additionalName", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:issuanceDate", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:birthDate", 
+        "encoder": "isodate-1900-base32"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:identifier", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:issuedBy", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:patient.schema:healthCard.schema:validUntil", 
+        "encoder": "isoyyyymm-2020-base32"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:immunizationDate", 
+        "encoder": "isodate-1900-base32"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:doseSequence", 
+        "encoder": "integer"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:lotNumber", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:location.schema:address.schema:addressCountry", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:location.schema:address.schema:addressRegion", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:location.schema:address.schema:addressLocality", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "vc:credentialSubject.schema:location.schema:name", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "proof.created", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "proof.jws", 
+        "encoder": "string"
+      }
+    ], 
+    "template": {
+      "@context": [
+        {
+          "schema": "http://schema.org/", 
+          "vc": "https://www.w3.org/2018/credentials/v1/"
+        }, 
+        "https://w3id.org/security/v2"
+      ], 
+      "@type": "vc:VerifiableCredential", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "RsaSignature2018", 
+        "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+      }, 
+      "vc:credentialSubject": {
+        "@type": "schema:ImmunizationRecord", 
+        "schema:doseSequence": 2, 
+        "schema:location": {
+          "@type": "schema:Hospital", 
+          "schema:address": {
+            "@type": "schema:PostalAddress", 
+            "schema:addressCountry": "CA", 
+            "schema:addressRegion": "BC"
+          }
+        }, 
+        "schema:patient": {
+          "@type": "schema:Patient", 
+          "schema:healthCard": {
+            "@type": "schema:HealthCard", 
+            "schema:issuedBy": "CA-BC"
+          }
+        }, 
+        "schema:primaryPrevention": {
+          "@type": "schema:ImmunizationRecommendation", 
+          "schema:drug": {
+            "@type": "schema:Drug", 
+            "schema:code": {
+              "@type": "schema:MedicalCode", 
+              "schema:codeValue": "207", 
+              "schema:codingSystem": "CVX"
+            }, 
+            "schema:manufacturer": {
+              "@type": "schema:Organization", 
+              "schema:identifier": "MOD", 
+              "schema:name": "Moderna US, Inc."
+            }, 
+            "schema:name": "Moderna COVID-19 Vaccine"
+          }, 
+          "schema:healthCondition": {
+            "@type": "schema:MedicalCondition", 
+            "schema:code": {
+              "@type": "schema:MedicalCode", 
+              "schema:codeValue": "U07", 
+              "schema:codingSystem": "ICD-10"
+            }, 
+            "schema:name": "COVID-19"
+          }, 
+          "schema:name": "Moderna COVID-19 Vaccine"
+        }
+      }, 
+      "vc:issuer": "https://passport.consensas.com"
+    }
+  }, 
+  "simple:1": {
+    "columns": [
+      {
+        "path": "ical:summary", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "ical:location", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "ical:dtstart", 
+        "encoder": "isodatetime-epoch-base32"
+      }
+    ], 
+    "template": {
+      "@context": {
+        "ical": "http://www.w3.org/2002/12/cal/ical#", 
+        "ical:dtstart": {
+          "@type": "xsd:dateTime"
+        }, 
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+      }
+    }
+  }, 
+  "w3vc:1": {
+    "columns": [
+      {
+        "path": "credentialSubject.administeringCentre", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "credentialSubject.vaccine.atcCode", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "credentialSubject.batchNumber", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "credentialSubject.recipient.birthDate", 
+        "encoder": "isodate-1900-base32"
+      }, 
+      {
+        "path": "credentialSubject.countryOfVaccination", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "proof.created", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "expirationDate", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "credentialSubject.recipient.familyName", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "credentialSubject.recipient.gender", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "credentialSubject.recipient.givenName", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "id", 
+        "encoder": "string"
+      }, 
+      {
+        "path": "issuanceDate", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "proof.jws", 
+        "encoder": "string"
+      }
+    ], 
+    "template": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1", 
+        "https://w3id.org/vaccination/v1"
+      ], 
+      "credentialSubject": {
+        "recipient": {
+          "type": "VaccineRecipient"
+        }, 
+        "type": "VaccinationEvent", 
+        "vaccine": {
+          "type": "Vaccine"
+        }
+      }, 
+      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "Ed25519Signature2018"
+      }, 
+      "type": [
+        "VerifiableCredential", 
+        "VaccinationCertificate"
+      ]
+    }
+  }, 
+  "w3vc:1qr": {
+    "columns": [
+      {
+        "path": "credentialSubject.administeringCentre", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "credentialSubject.vaccine.atcCode", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "credentialSubject.batchNumber", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "credentialSubject.recipient.birthDate", 
+        "encoder": "isodate-1900-base32"
+      }, 
+      {
+        "path": "credentialSubject.countryOfVaccination", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "proof.created", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "expirationDate", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "credentialSubject.recipient.familyName", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "credentialSubject.recipient.gender", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "credentialSubject.recipient.givenName", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "id", 
+        "encoder": "string-base32"
+      }, 
+      {
+        "path": "issuanceDate", 
+        "encoder": "isodatetime-epoch-base32"
+      }, 
+      {
+        "path": "proof.jws", 
+        "encoder": "string-base32"
+      }
+    ], 
+    "template": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1", 
+        "https://w3id.org/vaccination/v1"
+      ], 
+      "credentialSubject": {
+        "recipient": {
+          "type": "VaccineRecipient"
+        }, 
+        "type": "VaccinationEvent", 
+        "vaccine": {
+          "type": "Vaccine"
+        }
+      }, 
+      "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
+      "proof": {
+        "proofPurpose": "assertionMethod", 
+        "type": "Ed25519Signature2018"
+      }, 
+      "type": [
+        "VerifiableCredential", 
+        "VaccinationCertificate"
+      ]
+    }
+  }
+}
