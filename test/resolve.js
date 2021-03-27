@@ -64,7 +64,7 @@ describe("resolve", function() {
         const templates$ = await jsonxt.resolve("jsonxt.io", "templates.json")
         assert.ok(templates$)
     })
-    it("end-to-end", async function() {
+    describe("end-to-end", function() {
         for (let [ NAME, TYPE, VERSION ] of [ 
             [ "w3vc-1-1", "w3vc", "1" ],
             [ "w3vc-1-2", "w3vc", "1" ],
