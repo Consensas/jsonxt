@@ -67,14 +67,6 @@ describe("unpack", function() {
             }
 
             assert.deepEqual(got, want)
-            /*
-            const FILE = `${NAME}-packed.txt`
-            if (WRITE) {
-                await _util.write_document(got, FILE)
-            }
-            const want = await _util.read_document(FILE)
-
-            */
         })
     }
 })
