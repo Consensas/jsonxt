@@ -43,7 +43,7 @@ describe("resolvers/dns", function() {
         _util.shims_off()
     })
 
-    it("works (sample1._jsonxt.jsonxt.io)", async function() {
+    it("works (sample1 @ jsonxt.io)", async function() {
         const RESOLVER_NAME = "jsonxt.io"
         const RESOLVER_KEY = "sample1"
 
@@ -52,7 +52,16 @@ describe("resolvers/dns", function() {
 
         assert.strictEqual(got, want)
     })
-    it("works - expected null (doesnotexist._jsonxt.jsonxt.io)", async function() {
+    it("ignores extension (sample1.txt @ jsonxt.io)", async function() {
+        const RESOLVER_NAME = "jsonxt.io"
+        const RESOLVER_KEY = "sample1.txt"
+
+        const got = await jsonxt.resolvers.dns(RESOLVER_NAME, RESOLVER_KEY)
+        const want = "value1"
+
+        assert.strictEqual(got, want)
+    })
+    it("works - expected null (doesnotexist @ jsonxt.io)", async function() {
         const RESOLVER_NAME = "jsonxt.io"
         const RESOLVER_KEY = "doesnotexist"
 

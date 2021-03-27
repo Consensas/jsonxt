@@ -43,9 +43,9 @@ describe("resolvers/uri", function() {
         _util.shims_off()
     })
 
-    it("works (sample1 @ jsonxt.io/.well-known)", async function() {
+    it("works (sample1.txt @ jsonxt.io/.well-known)", async function() {
         const RESOLVER_NAME = "jsonxt.io/.well-known"
-        const RESOLVER_KEY = "sample1"
+        const RESOLVER_KEY = "sample1.txt"
 
         const got = await jsonxt.resolvers.uri(RESOLVER_NAME, RESOLVER_KEY)
         const want = "value1\n"

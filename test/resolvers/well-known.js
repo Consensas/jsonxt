@@ -43,16 +43,16 @@ describe("resolvers/well-known", function() {
         _util.shims_off()
     })
 
-    it("works (sample1._jsonxt.jsonxt.io)", async function() {
+    it("works (sample1.txt @ jsonxt.io)", async function() {
         const RESOLVER_NAME = "jsonxt.io"
-        const RESOLVER_KEY = "sample1"
+        const RESOLVER_KEY = "sample1.txt"
 
         const got = await jsonxt.resolvers.well_known(RESOLVER_NAME, RESOLVER_KEY)
         const want = "value1\n"
 
         assert.strictEqual(got, want)
     })
-    it("works - expected null (doesnotexist._jsonxt.jsonxt.io)", async function() {
+    it("works - expected null (doesnotexist @ jsonxt.io)", async function() {
         const RESOLVER_NAME = "jsonxt.io"
         const RESOLVER_KEY = "doesnotexist"
 
