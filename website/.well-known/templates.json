@@ -310,7 +310,8 @@
       "issuer": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3", 
       "proof": {
         "proofPurpose": "assertionMethod", 
-        "type": "Ed25519Signature2018"
+        "type": "Ed25519Signature2018",
+        "verificationMethod": "did:key:z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3#z6MkiY62766b1LJkExWMsM3QG4WtX7QpY823dxoYzr9qZvJ3"
       }, 
       "type": [
         "VerifiableCredential", 

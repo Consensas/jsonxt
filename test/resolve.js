@@ -64,4 +64,6 @@ describe("resolve", function() {
         const templates$ = await jsonxt.resolve("jsonxt.io", "templates.json")
         assert.ok(templates$)
     })
+    it("end-to-end", async function() {
+    })
 })

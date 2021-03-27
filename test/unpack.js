@@ -45,9 +45,8 @@ describe("unpack", function() {
     })
 
     for (let [ NAME, TYPE, VERSION ] of [ 
-        // [ "w3vc-1-1", "w3vc", "1" ],
-        // [ "w3vc-1-2", "w3vc", "1" ],
-        // [ "w3vc-1qr-1", "w3vc", "1qr" ],
+        [ "w3vc-1-1", "w3vc", "1" ],
+        [ "w3vc-1-2", "w3vc", "1" ],
         [ "c4-1-1", "c4", "1" ],
     ]) {
         it(`compress: ${NAME}`, async function() {
@@ -62,6 +61,7 @@ describe("unpack", function() {
             const want = original
 
             if (DUMP) {
+                console.log("original", original)
                 console.log("packed", packed)
                 console.log("unpacked", unpacked)
             }
