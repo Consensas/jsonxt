@@ -13,8 +13,8 @@
         "url": "https://github.com/dpjanes/jsonxt"
     }, 
     "scripts": {
-        "cover": "nyc --reporter=html mocha --recursive",
+        "cover": "nyc --reporter=html mocha --recursive", 
         "test": "mocha --recursive --bail"
     }, 
-    "version": "0.0.2"
+    "version": "0.0.4"
 }
