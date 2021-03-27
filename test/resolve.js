@@ -65,5 +65,28 @@ describe("resolve", function() {
         assert.ok(templates$)
     })
     it("end-to-end", async function() {
+        for (let [ NAME, TYPE, VERSION ] of [ 
+            [ "w3vc-1-1", "w3vc", "1" ],
+            [ "w3vc-1-2", "w3vc", "1" ],
+            [ "c4-1-1", "c4", "1" ],
+        ]) {
+            it(`compress: ${NAME}`, async function() {
+                const original = await _util.read_json(`${NAME}.json`)
+                const packed = await _util.read_document(`${NAME}-packed.txt`)
+
+                const unpacked = await jsonxt.unpack(packed, jsonxt.resolve)
+
+                if (DUMP) {
+                    console.log("original", original)
+                    console.log("packed", packed)
+                    console.log("unpacked", unpacked)
+                }
+
+                const got = unpacked
+                const want = original
+
+                assert.deepEqual(got, want)
+            })
+        }
     })
 })
