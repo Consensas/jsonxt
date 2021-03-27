@@ -43,4 +43,25 @@ describe("resolve", function() {
     after(function() {
         _util.shims_off()
     })
+
+    it("works - (sample-dns @ jsonxt.io - DNS)", async function() {
+        const templates$ = await jsonxt.resolve("jsonxt.io", "sample-dns")
+        assert.ok(templates$)
+    })
+    it("works - (sample-wk @ jsonxt.io - well-known)", async function() {
+        const templates$ = await jsonxt.resolve("jsonxt.io", "sample-wk.txt")
+        assert.ok(templates$)
+    })
+    it("works - (sample-wk @ jsonxt.io - partial uri)", async function() {
+        const templates$ = await jsonxt.resolve("jsonxt.io/.well-known/", "sample-wk.txt")
+        assert.ok(templates$)
+    })
+    it("works - (sample-wk @ jsonxt.io - full uri)", async function() {
+        const templates$ = await jsonxt.resolve("https://jsonxt.io/.well-known/", "sample-wk.txt")
+        assert.ok(templates$)
+    })
+    it("works - (templates.json @ jsonxt.io - well-known)", async function() {
+        const templates$ = await jsonxt.resolve("jsonxt.io", "templates.json")
+        assert.ok(templates$)
+    })
 })
