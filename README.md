@@ -90,7 +90,7 @@ fully worked through example.
 
 ## Resolving
 
-Resolving takes a "resolver name" like `jsonxt.io` embedded in the URI 
+Resolving takes a "resolver name" like `example.com` embedded in the URI 
 and a file name and retrieves a document.
 
 The following rules are used:
