@@ -60,7 +60,7 @@ See [jsonxt.io](https://jsonxt.io) for more.
     const VERSION = "1"
 
 * An example `original` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json)
-* An example `templates` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/templates.json)
+* An example `templates` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/covid-templates.json)
 
 The `templates` can have multiple compression formats encoded,
 they will be selected by TYPE and VERSION.
