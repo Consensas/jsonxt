@@ -88,7 +88,7 @@ This will decompress the packed URI into the original URI.
 See [test code](https://github.com/Consensas/jsonxt/blob/main/test/resolve.js) for a more
 fully worked through example.
 
-## Resolving
+### Resolving
 
 Resolving takes a "resolver name" like `example.com` embedded in the URI 
 and a file name and retrieves a document.
@@ -98,6 +98,8 @@ The following rules are used:
 * if it has a slash or a colon, it's treated a a URL (`https://` is assumed if no scheme)
 * otherwise we check `https://resolver/.well-known/name`
 * otherwise we check DNS `name._jsonxt.resolver` for a TXT record, with any extension stripped from `name`
+
+Generally you can just use `jsonxt.resolve`.
 
 ## See Also
 

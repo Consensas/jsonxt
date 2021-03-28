@@ -51,20 +51,111 @@ h3 {
         package on <a href="https://www.npmjs.com/package/jsonxt">npm</a>.
         Note that the Javascript module has no external dependecies!
         </p>
-        <h4>Installation</h4>
-        <pre>npm install jsonxt</pre>
-        <h4>Encoding</h4>
-<pre>const jsonxt = require("jsonxt")
+<h2 id="toc_1">Use</h2>
 
-url = jsonxt.pack(document, template, "c4", "1", "example.com")
-</pre>
+<h3 id="toc_2">Installation</h3>
+<pre><code>npm install jsonxt
+</code></pre>
 
-        <h4>Decoding</h4>
-        <i>API in progress</i>
-<pre>document = await jsonxt.unpack(original, resolver => {
-    return template
-})
-</pre>
+
+<h3 id="toc_3">Setup</h3>
+
+<pre><code>const jsonxt = require(&quot;jsonxt&quot;)
+
+// sample data…
+const original = {
+  &quot;@context&quot;: {
+    &quot;ical&quot;: &quot;http://www.w3.org/2002/12/cal/ical#&quot;,
+    &quot;xsd&quot;: &quot;http://www.w3.org/2001/XMLSchema#&quot;,
+    &quot;ical:dtstart&quot;: {
+      &quot;@type&quot;: &quot;xsd:dateTime&quot;
+    }
+  },
+  &quot;ical:summary&quot;: &quot;Lady Gaga Concert&quot;,
+  &quot;ical:location&quot;: &quot;New Orleans Arena, New Orleans, Louisiana, USA&quot;,
+  &quot;ical:dtstart&quot;: &quot;2011-04-09T20:00:00Z&quot;
+}
+const templates = {
+  &quot;simple:1&quot;: {
+    &quot;columns&quot;: [
+      {
+        &quot;path&quot;: &quot;ical:summary&quot;,
+        &quot;type&quot;: &quot;string&quot;
+      },
+      {
+        &quot;path&quot;: &quot;ical:location&quot;,
+        &quot;type&quot;: &quot;string&quot;
+      },
+      {
+        &quot;path&quot;: &quot;ical:dtstart&quot;,
+        &quot;type&quot;: &quot;isodatetime-epoch-base32&quot;
+      }
+    ],
+    &quot;template&quot;: {
+      &quot;@context&quot;: {
+        &quot;ical&quot;: &quot;http://www.w3.org/2002/12/cal/ical#&quot;,
+        &quot;ical:dtstart&quot;: {
+          &quot;@type&quot;: &quot;xsd:dateTime&quot;
+        },
+        &quot;xsd&quot;: &quot;http://www.w3.org/2001/XMLSchema#&quot;
+      }
+    }
+  }
+}
+const TYPE = &quot;simple&quot;
+const VERSION = &quot;1&quot;
+</code></pre>
+
+<ul>
+<li>An example <code>original</code> is <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json">here</a></li>
+<li>An example <code>templates</code> is <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/covid-templates.json">here</a></li>
+</ul>
+
+<p>The <code>templates</code> can have multiple compression formats encoded,
+they will be selected by TYPE and VERSION.</p>
+
+<h3 id="toc_4">Encoding</h3>
+
+<p>This will compress the original JSON payload into a URI</p>
+
+<pre><code>const packed = await jsonxt.pack(original, templates, TYPE, VERSION, &quot;example.com&quot;)
+</code></pre>
+
+<p>Which yields (ignore newline)</p>
+
+<pre><code>jxt:example.com:simple:1:Lady%20Gaga%20Concert/
+New%20Orleans%20Arena%2C%20New%20Orleans%2C%20Louisiana%2C%20USA/16Q1EM0
+</code></pre>
+
+<p>See <a href="https://github.com/Consensas/jsonxt/blob/main/test/pack.js">test code</a> for a more
+fully worked through example.</p>
+
+<h3 id="toc_5">Decoding</h3>
+
+<p>This will decompress the packed URI into the original URI.</p>
+
+<pre><code>const unpacked = await jsonxt.unpack(packed, jsonxt.resolve)
+</code></pre>
+
+<p>See <a href="https://github.com/Consensas/jsonxt/blob/main/test/resolve.js">test code</a> for a more
+fully worked through example.</p>
+
+<h3 id="toc_6">Resolving</h3>
+
+<p>Resolving takes a &quot;resolver name&quot; like <code>example.com</code> embedded in the URI
+and a file name and retrieves a document.</p>
+
+<p>The following rules are used:</p>
+
+<ul>
+<li>if it has a slash or a colon, it&#39;s treated a a URL (<code>https://</code> is assumed if no scheme)</li>
+<li>otherwise we check <code>https://resolver/.well-known/name</code></li>
+<li>otherwise we check DNS <code>name._jsonxt.resolver</code> for a TXT record, with any extension stripped from <code>name</code></li>
+</ul>
+
+<p>
+Generally you can just use <code>jsonxt.resolve</code>.
+</p>
 
         <h2>
         Examples
@@ -113,3 +204,4 @@ url = jsonxt.pack(document, template, "c4", "1", "example.com")
     </div>
 </body>
 </html>
+
