@@ -37,6 +37,7 @@ echo "=================="
         package.json \
         index.js \
         lib/*.js \
+        lib/resolvers/*.js \
         lib/encoders/*.js \
         |
     ( cd "${NPM_DST}" && tar xvf - && npm publish ) || exit 1

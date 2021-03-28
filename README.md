@@ -83,17 +83,21 @@ fully worked through example.
 
 This will decompress the packed URI into the original URI.
 
-    const unpacked = await jsonxt.unpack(packed, resolver => {
-        return templates
-    })
+    const unpacked = await jsonxt.unpack(packed, jsonxt.resolve)
 
-Note that resolver will be handed e.g. "example.com" and you are expected 
-to come up with the `templates`.
-
-See [test code](https://github.com/Consensas/jsonxt/blob/main/test/unpack.js) for a more
+See [test code](https://github.com/Consensas/jsonxt/blob/main/test/resolve.js) for a more
 fully worked through example.
 
 ## Resolving
+
+Resolving takes a "resolver name" like `jsonxt.io` embedded in the URI 
+and a file name and retrieves a document.
+
+The following rules are used:
+
+* if it has a slash or a colon, it's treated a a URL (`https://` is assumed if no scheme)
+* otherwise we check `https://resolver/.well-known/name`
+* otherwise we check DNS `name._jsonxt.resolver` for a TXT record, with any extension stripped from `name`
 
 ## See Also
 
