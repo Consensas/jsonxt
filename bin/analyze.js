@@ -24,6 +24,7 @@
 
 const _ = require("iotdb-helpers")
 const fs = require("iotdb-fs")
+const _util = require("../lib/_util")
 
 const minimist = require("minimist")
 const ad = minimist(process.argv.slice(2), {
@@ -31,11 +32,15 @@ const ad = minimist(process.argv.slice(2), {
         "verbose", "trace", "debug",
     ],
     string: [
+        "type",
+        "version",
         "_",
     ],
     alias: {
     },
     default: {
+        "type": "thetype",
+        "version": "1",
     },
 });
 
@@ -48,7 +53,7 @@ const help = message => {
     }
 
     console.log(`\
-usage: ${name} [options] [<files>...]
+usage: ${name} [options] <file1> <file2> [<fileN>...]
 
 NOT WORKING!
 
@@ -60,7 +65,7 @@ If no files specified, stdin is read
 }
 
 if (ad._.length === 0) {
-    ad._.push("-")
+    help("at least two file arguments are required")
 }
 
 _.logger.levels({
@@ -93,9 +98,9 @@ const _one = _.promise((self, done) => {
     _.promise(self)
         .validate(_one)
 
-        .conditional(self.path === "-", fs.read.stdin, fs.read.utf8)
+        .then(fs.read.json.magic)
         .make(sd => {
-            _descend(JSON.parse(sd.document), null)
+            _descend(sd.json, null)
         })
 
         .end(done, self, _one)
@@ -117,14 +122,83 @@ _one.produces = {
  */
 _.promise({
     paths: ad._,
+    path: ad._[0],
     map: {},
 })
+    .then(fs.read.json.magic)
     .each({
         method: _one,
         inputs: "paths:path",
     })
+
     .make(sd => {
-        console.log(sd.map)
+        const columns = _.pairs(sd.map)
+            .filter(([ key, vs ]) => vs.size !== 1)
+            .map(([ key, vs ]) => {
+                const d = {
+                    path: key,
+                    encoder: "string",
+                }
+
+                let string = 0
+                let nonstring = 0
+                let nulls = 0
+                const encoders = new Set()
+                for (const v of vs) {
+                    if (_.is.Boolean(v)) {
+                        nonstring++
+                        encoders.add("boolean")
+                    } else if (_.is.Integer(v)) {
+                        nonstring++
+                        encoders.add("integer")
+                    } else if (_.is.Number(v)) {
+                        nonstring++
+                        encoders.add("number")
+                    } else if (_.is.Null(v)) {
+                        nulls++
+                    } else if (v.match(/^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ$/)) {
+                        string++
+                        encoders.add("isodatetime-epoch-base32")
+                    } else if (v.match(/^\d\d\d\d-\d\d-\d\d$/)) {
+                        string++
+                        encoders.add("isodate-1900-base32")
+                    } else if (v.match(/^\d\d\d\d-\d\d$/)) {
+                        string++
+                        encoders.add("isoyyyymm-2020-base32")
+                    } else {
+                        string++
+                        encoders.add("string")
+                    }
+                }
+
+                if (string && nonstring) {
+                    d.encoder = "json"
+                } else if (encoders.size === 1) {
+                    d.encoder = Array.from(encoders)[0]
+                } else if (string) {
+                    d.encoder = "string"
+                } else if (nonstring) {
+                    d.encoder = "number"
+                } else {
+                    console.log("#", "can't figure out key:", key)
+                    process.exit(1)
+                }
+
+                return d
+            })
+
+        const template = sd.json
+        for (const column of columns) {
+            _util.delete(template, column.path)
+        }
+
+        const templates = {
+            [ `${ad.type}:${ad.version}` ]: {
+                columns: columns,
+                template: template,
+            }
+        }
+        console.log(JSON.stringify(templates, null, 2))
     })
 
     .except(error => {
