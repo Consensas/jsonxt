@@ -22,9 +22,6 @@
 
 "use strict"
 
-console.log("not yet")
-process.exit(1)
-
 const _ = require("iotdb-helpers")
 const fs = require("iotdb-fs")
 
@@ -71,46 +68,34 @@ _.logger.levels({
     trace: ad.trace || ad.verbose,
 })
 
-const _flatten = json => {
-    const keys = []
-
-    const _flatten = (o, ps, keep) => {
+/**
+ */
+const _one = _.promise((self, done) => {
+    const _descend = (o, ps) => {
         const key = ps ?? ""
-        if (keys.indexOf(key)) {
-            keys.push(key)
-        }
-        // fd[ps ?? ""] = null // keep ? o : fd[ps ?? ""] || null
 
         if (_.is.Dictionary(o)) {
             const nd = {}
 
             _.mapObject(o, (value, key) => {
-                nd[key] = _flatten(value, ps ? ps + "." + key : key, true)
+                _descend(value, ps ? ps + "." + key : key, true)
             })
 
             return nd
         } else if (_.is.Array(o)) {
-            return o.map(so => _flatten(so, null, false))
+            return
         } else {
-            return o
+            self.map[ps] = self.map[ps] || new Set()
+            self.map[ps].add(o)
         }
     }
 
-    _flatten(json, null, true)
-
-    console.log(keys)
-}
-
-/**
- */
-const _one = _.promise((self, done) => {
     _.promise(self)
         .validate(_one)
 
         .conditional(self.path === "-", fs.read.stdin, fs.read.utf8)
         .make(sd => {
-            sd.json = JSON.parse(sd.document)
-            _flatten(sd.json)
+            _descend(JSON.parse(sd.document), null)
         })
 
         .end(done, self, _one)
@@ -120,6 +105,7 @@ _one.method = "_one"
 _one.description = ``
 _one.requires = {
     path: _.is.String,
+    map: _.is.Dictionary,
 }
 _one.accepts = {
 }
@@ -131,10 +117,14 @@ _one.produces = {
  */
 _.promise({
     paths: ad._,
+    map: {},
 })
     .each({
         method: _one,
         inputs: "paths:path",
+    })
+    .make(sd => {
+        console.log(sd.map)
     })
 
     .except(error => {
