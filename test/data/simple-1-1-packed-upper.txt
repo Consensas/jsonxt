@@ -1,1 +1,1 @@
-JXT:JSONXT.IO:SIMPLE:1:Lady%20Gaga%20Concert/New%20Orleans%20Arena%2C%20New%20Orleans%2C%20Louisiana%2C%20USA/16Q1EM0
+JXT:JSONXT.IO:SIMPLE:1:Lady~Gaga~Concert/New~Orleans~Arena%2C~New~Orleans%2C~Louisiana%2C~USA/16Q1EM0
