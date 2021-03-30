@@ -1,7 +1,6 @@
 <img src="https://consensas-aws.s3.amazonaws.com/icons/jsonxt-logo.png" align="right" />
 
-# jsonxt
-JSON External Templates
+# JSON External Templates
 
 JSONXT compresses JSON documents into short URIs, using eXternal Templates.
 Depending on the application, these URIs are 25 - 35% of the original
