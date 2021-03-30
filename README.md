@@ -3,8 +3,11 @@
 # jsonxt
 JSON External Templates
 
-URL friendly JSON compression using eXternal Templates.
-For constrained environments, such as QR codes.
+JSONXT compresses JSON documents into short URIs, using eXternal Templates.
+Depending on the application, these URIs are 25 - 35% of the original
+JSON document size.
+
+Great for constrained environments, such as encoding data in QR codes.
 
 See [jsonxt.io](https://jsonxt.io) for more.
 
@@ -77,6 +80,8 @@ Which yields (ignore newline)
 
     jxt:jsonxt.io:simple:1:Lady~Gaga~Concert/
       New~Orleans~Arena%2C~New~Orleans%2C~Louisiana%2C~USA/16Q1EM0
+
+This is a compression of 279 bytes to 101 bytes: 36% of the original size.
 
 See [test code](https://github.com/Consensas/jsonxt/blob/main/test/pack.js) for a more
 fully worked through example.
