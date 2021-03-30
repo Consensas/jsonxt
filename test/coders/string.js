@@ -1,0 +1,152 @@
+/*
+ *  test/coders/string.js
+ *
+ *  David Janes
+ *  Consenas.com
+ *  2021-03-30
+ *
+ *  Copyright (2013-2021) Consensas
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+"use strict"
+
+const _ = require("lodash")
+const jsonxt = require("../..")
+
+const fs = require("fs")
+const path = require("path")
+const assert = require("assert")
+
+const _util = require("./../_util")
+
+const WRITE = process.env.WRITE === "1"
+const DUMP = process.env.DUMP === "1"
+
+describe("coders/string", function() {
+    before(function() {
+        _util.shims_on()
+    })
+
+    after(function() {
+        _util.shims_off()
+    })
+
+    const rule_simple = {
+    }
+    const rule_compact = {
+        compact: [
+            "Foo",
+            "Bar",
+            "Hello, World",
+        ],
+    }
+
+    it("works - simple string", function() {
+        const start = "Hello World"
+        const got_encoded = jsonxt.encoders.string(rule_simple, start)
+        const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
+        const want = "Hello~World"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+    it("works - null", function() {
+        const start = null
+        const got_encoded = jsonxt.encoders.string(rule_simple, start)
+        const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
+        const want = "~."
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+    it("works - undefined", function() {
+        const start = undefined
+        const got_encoded = jsonxt.encoders.string(rule_simple, start)
+        const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
+        const want = ""
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+    it("works - starts with ~", function() {
+        const start = "~hello"
+        const got_encoded = jsonxt.encoders.string(rule_simple, start)
+        const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
+        const want = "~~hello"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+    it("works - compact (in set)", function() {
+        const start = "Hello, World"
+        const got_encoded = jsonxt.encoders.string(rule_compact, start)
+        const got_decoded = jsonxt.decoders.string(rule_compact, got_encoded)
+        const want = "~2"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+    it("works - compact (out of set)", function() {
+        const start = "Hello, World!"
+        const got_encoded = jsonxt.encoders.string(rule_compact, start)
+        const got_decoded = jsonxt.decoders.string(rule_compact, got_encoded)
+        const want = "Hello%2C~World!"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+})
