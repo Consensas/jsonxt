@@ -101,8 +101,12 @@ const _one = _.promise((self, done) => {
         } else if (_.is.Array(o)) {
             return
         } else {
-            self.map[ps] = self.map[ps] || new Set()
-            self.map[ps].add(o)
+            self.map[ps] = self.map[ps] || new Map()
+            if (self.map[ps].has(o)) {
+                self.map[ps].set(o, self.map[ps].get(o) + 1)
+            } else {
+                self.map[ps].set(o, 1)
+            }
         }
     }
 
@@ -144,8 +148,9 @@ _.promise({
 
     .make(sd => {
         const columns = _.pairs(sd.map)
-            .filter(([ key, vs ]) => vs.size !== 1)
-            .map(([ key, vs ]) => {
+            .filter(([ key, vmap ]) => vmap.size !== 1)
+            .map(([ key, vmap ]) => {
+                const vs = vmap.keys()
                 const d = {
                     path: key,
                     encoder: "string",
@@ -193,6 +198,20 @@ _.promise({
                 } else {
                     console.log("#", "can't figure out key:", key)
                     process.exit(1)
+                }
+
+                if (d.encoder === "string") {
+                    const compact = []
+
+                    for (let [key, value] of vmap) {
+                        if (value > 5) {
+                            compact.push(key)
+                        }
+                    }
+
+                    if (compact.length) {
+                        d.compact = compact
+                    }
                 }
 
                 return d
