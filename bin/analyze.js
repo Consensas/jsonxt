@@ -22,8 +22,22 @@
 
 "use strict"
 
-const _ = require("iotdb-helpers")
-const fs = require("iotdb-fs")
+let _
+let fs
+try {
+    _ = require("iotdb-helpers")
+    fs = require("iotdb-fs")
+} catch (x) {
+    console.log(`
+SORRY - additional packages required. Please do
+
+    npm install iotdb-helpers
+    npm install iotdb-fs
+
+And try again
+`)
+    process.exit(1)
+}
 const _util = require("../lib/_util")
 
 const minimist = require("minimist")
@@ -55,10 +69,7 @@ const help = message => {
     console.log(`\
 usage: ${name} [options] <file1> <file2> [<fileN>...]
 
-NOT WORKING!
-
-Analyze the structure of one or more JSON files.
-If no files specified, stdin is read
+Analyze the structure of several JSON files and produce the templates.json
 `)
 
     process.exit(message ? 1 : 0)
