@@ -75,7 +75,8 @@ This will compress the original JSON payload into a URI
 
 Which yields (ignore newline)
 
-    jxt:jsonxt.io:simple:1:Lady~Gaga~Concert/New~Orleans~Arena%2C~New~Orleans%2C~Louisiana%2C~USA/16Q1EM0
+    jxt:jsonxt.io:simple:1:Lady~Gaga~Concert/
+      New~Orleans~Arena%2C~New~Orleans%2C~Louisiana%2C~USA/16Q1EM0
 
 See [test code](https://github.com/Consensas/jsonxt/blob/main/test/pack.js) for a more
 fully worked through example.
