@@ -1,3 +1,5 @@
+<img src="https://consensas-aws.s3.amazonaws.com/icons/jsonxt-logo.png" align="right" />
+
 # jsonxt
 JSON External Templates
 
