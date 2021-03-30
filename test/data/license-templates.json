@@ -14,63 +14,85 @@
         "placeholder": "YYYY-MM-DD"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Juris Vehicle Class", 
         "path": "dca", 
         "placeholder": "2"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Juris Restrictions", 
         "path": "dcb", 
         "placeholder": "Glasses, ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Juris Privileges", 
         "path": "dcd", 
         "placeholder": "1A, 2A, ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Juris Vehicle Class Desc", 
         "path": "dcp", 
         "placeholder": "2"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Juris Endorsement Desc", 
         "path": "dcq", 
         "placeholder": "Glasses, ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Juris Restriction Desc", 
         "path": "dcr", 
         "placeholder": "1A, 2A, ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Fed Commercial Vehicle", 
         "path": "dch"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Std Vehicle Class", 
         "path": "dcm"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Std Endorsement", 
         "path": "dcn"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Std Restriction", 
         "path": "dco"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Compliance Type", 
         "path": "dda", 
         "placeholder": "F, N, ..."
@@ -88,7 +110,9 @@
         "placeholder": "YYYY-MM-DD"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Audit Information", 
         "path": "dcj"
       }, 
@@ -98,7 +122,9 @@
         "path": "dck"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Customer ID", 
         "path": "daq"
       }, 
@@ -108,31 +134,41 @@
         "path": "dcf"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "First Name", 
         "path": "dac", 
         "placeholder": "First Name ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Middle Name", 
         "path": "dad", 
         "placeholder": "Middle Name ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Last Name", 
         "path": "dcs", 
         "placeholder": "Last Name ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Given Name", 
         "path": "dct", 
         "placeholder": "Given Name ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Suffix", 
         "path": "dcu", 
         "placeholder": "Dr. Jr. ..."
@@ -165,24 +201,32 @@
         "path": "ddl"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Place of Birth", 
         "path": "dci"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Last Name Alias", 
         "path": "dbn", 
         "placeholder": "Last Name ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Given Name Alias", 
         "path": "dbg", 
         "placeholder": "Given Name ..."
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Suffix Alias", 
         "path": "dbs", 
         "placeholder": "Dr. Jr. ..."
@@ -230,12 +274,16 @@
         "path": "day"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Hair Color", 
         "path": "daz"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Race", 
         "path": "dcl"
       }, 
@@ -250,35 +298,47 @@
         "path": "dce"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Weight (lbs)", 
         "path": "daw"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Weight (kgs)", 
         "path": "dax"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Address 1", 
         "path": "dag", 
         "placeholder": "3rd St"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Address 2", 
         "path": "dah", 
         "placeholder": "Apt xx"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "City", 
         "path": "dai", 
         "placeholder": "Somerville"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "State", 
         "path": "daj", 
         "placeholder": "MA"
@@ -290,7 +350,9 @@
         "placeholder": "02141"
       }, 
       {
-        "encoder": "string-empty", 
+        "encoder": "string", 
+        "UNDEFINED": "",
+        "BLANK": "~",
         "name": "Country", 
         "path": "dcg", 
         "placeholder": "USA"
