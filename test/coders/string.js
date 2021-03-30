@@ -69,6 +69,21 @@ describe("coders/string", function() {
         assert.strictEqual(got_decoded, start)
     })
 
+    it("works - empty string", function() {
+        const start = ""
+        const got_encoded = jsonxt.encoders.string(rule_simple, start)
+        const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
+        const want = "~"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
     it("works - null", function() {
         const start = null
         const got_encoded = jsonxt.encoders.string(rule_simple, start)
@@ -148,5 +163,32 @@ describe("coders/string", function() {
         assert.strictEqual(got_encoded, want)
         assert.strictEqual(got_decoded, start)
     })
+    it("expected fail - number", function() {
+        const start = 1
 
+        assert.rejects(async () => {
+            const got_encoded = jsonxt.encoders.string(rule_simple, start)
+        })
+    })
+    it("expected fail - simple meaningless escape", function() {
+        const start = "~3783"
+
+        assert.rejects(async () => {
+            const got_encoded = jsonxt.decoders.string(rule_simple, start)
+        })
+    })
+    it("expected fail - bad compact (low)", function() {
+        const start = "~-10"
+
+        assert.rejects(async () => {
+            const got_encoded = jsonxt.decoders.string(rule_compact, start)
+        })
+    })
+    it("expected fail - bad compact (high)", function() {
+        const start = "~10"
+
+        assert.rejects(async () => {
+            const got_encoded = jsonxt.decoders.string(rule_compact, start)
+        })
+    })
 })
