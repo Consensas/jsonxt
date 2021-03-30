@@ -2,7 +2,7 @@
 
 # JSON External Templates
 
-JSONXT compresses JSON documents into short URIs, using eXternal Templates.
+JSON-XT compresses JSON documents into short URIs, using eXternal Templates.
 Depending on the application, these URIs are 25 - 35% of the original
 JSON document size.
 

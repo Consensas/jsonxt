@@ -31,12 +31,14 @@ h3 {
 
         <h1>JSON-XT</h2>
         <p>
-        URL friendly JSON compression using eXternal Templates.
-        For constrained environments, such as QR codes.
+        JSON-XT compresses JSON documents into short URIs, using eXternal Templates.
+        Depending on the application, these URIs are 25 - 35% of the original
+        JSON document size.
         </p>
         <p>
         <i>This Open Source project is sponsored by <a href="https://consensas.com">Consensas</a></i>
         </p>
+
         <h2>Introduction</h2>
         <h3>Basic Idea</h3>
         <p>
@@ -120,14 +122,16 @@ they will be selected by TYPE and VERSION.</p>
 
 <p>This will compress the original JSON payload into a URI</p>
 
-<pre><code>const packed = await jsonxt.pack(original, templates, TYPE, VERSION, &quot;example.com&quot;)
+<pre><code>const packed = await jsonxt.pack(original, templates, TYPE, VERSION, &quot;jsonxt.io&quot;)
 </code></pre>
 
 <p>Which yields (ignore newline)</p>
 
-<pre><code>jxt:example.com:simple:1:Lady%20Gaga%20Concert/
-New%20Orleans%20Arena%2C%20New%20Orleans%2C%20Louisiana%2C%20USA/16Q1EM0
-</code></pre>
+<p>
+<code>jxt:jsonxt.io:simple:1:Lady~Gaga~Concert/New~Orleans~Arena%2C~New~Orleans%2C~Louisiana%2C~USA/16Q1EM0</code>
+</p>
+
+<p>This is a compression of 279 bytes to 101 bytes: 36% of the original size.</p>
 
 <p>See <a href="https://github.com/Consensas/jsonxt/blob/main/test/pack.js">test code</a> for a more
 fully worked through example.</p>
