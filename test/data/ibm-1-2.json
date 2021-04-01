@@ -1,0 +1,33 @@
+{
+  "@context": "https://www.w3.org/2018/credentials/v1", 
+  "credentialSchema": {
+    "id": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac;id=libertyhealthpass;version=0.1", 
+    "type": "JsonSchemaValidator2018"
+  }, 
+  "credentialSubject": {
+    "display": "#999999F", 
+    "passType": "COVID-19 Vaccination", 
+    "subject": {
+      "birthDate": "1982-02-01", 
+      "name": {
+        "family": "Jones", 
+        "given": "Jim"
+      }
+    }, 
+    "type": "Liberty HealthPass"
+  }, 
+  "expirationDate": "2021-04-28T04:00:00Z", 
+  "id": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac#vcl-LONG-UUID-THAT-LOOKS-LIKE-THIS2", 
+  "issuanceDate": "2021-03-28T05:00:00Z", 
+  "issuer": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac", 
+  "proof": {
+    "created": "2021-03-28T05:00:00Z", 
+    "creator": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac#key-1", 
+    "nonce": "SOME-LONG-UUID-THAT-LOOKS-LIKE-THIS2", 
+    "signatureValue": "SOME-SUPER-SECURE-BUT-EXTREMELY-LONG-SIGNATURE-THAT-CONTAINS-AT-LEAST-THIS-MANY-CHARACTERS-IN-IT2", 
+    "type": "EcdsaSecp256r1Signature2019"
+  }, 
+  "type": [
+    "VerifiableCredential"
+  ]
+}

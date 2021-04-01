@@ -53,7 +53,7 @@ const ad = minimist(process.argv.slice(2), {
     alias: {
     },
     default: {
-        "type": "thetype",
+        "type": "type",
         "version": "1",
     },
 });
@@ -75,7 +75,7 @@ Analyze the structure of several JSON files and produce the templates.json
     process.exit(message ? 1 : 0)
 }
 
-if (ad._.length === 0) {
+if (ad._.length < 2) {
     help("at least two file arguments are required")
 }
 

@@ -46,16 +46,19 @@ describe("pack", function() {
         _util.shims_off()
     })
 
-    for (let [ NAME, TYPE, VERSION ] of [ 
-        [ "w3vc-1-1", "w3vc", "1" ],
-        [ "w3vc-1-2", "w3vc", "1" ],
-        [ "w3vc-1qr-1", "w3vc", "1qr" ],
-        [ "c4-1-1", "c4", "1" ],
-        [ "simple-1-1", "simple", "1" ],
+    for (let [ NAME, TYPE, VERSION, TEMPLATES ] of [ 
+        [ "w3vc-1-1", "w3vc", "1", "covid-templates.json", ],
+        [ "w3vc-1-2", "w3vc", "1", "covid-templates.json", ],
+        [ "w3vc-1qr-1", "w3vc", "1qr", "covid-templates.json", ],
+        [ "c4-1-1", "c4", "1", "covid-templates.json", ],
+        [ "simple-1-1", "simple", "1", "covid-templates.json", ],
+        [ "ibm-1-1", "ibm", "1", "ibm-templates.json", ],
     ]) {
         it(`compress: ${NAME}`, async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
+            const templates = await _util.read_json(TEMPLATES)
             const original = await _util.read_json(`${NAME}.json`)
+
+            console.log(templates)
 
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION, RESOLVER_NAME)
             const got = packed
@@ -73,7 +76,7 @@ describe("pack", function() {
             assert.deepEqual(got, want)
         })
         it(`compress (uppercase): ${NAME}`, async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
+            const templates = await _util.read_json(TEMPLATES)
             const original = await _util.read_json(`${NAME}.json`)
 
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION, RESOLVER_NAME, {

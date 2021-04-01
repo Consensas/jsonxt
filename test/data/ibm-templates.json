@@ -1,0 +1,68 @@
+{
+  "ibm:1": {
+    "columns": [
+      {
+        "path": "credentialSubject.display",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.subject.birthDate",
+        "encoder": "isodate-1900-base32"
+      },
+      {
+        "path": "credentialSubject.subject.name.family",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.subject.name.given",
+        "encoder": "string"
+      },
+      {
+        "path": "expirationDate",
+        "encoder": "isodatetime-epoch-base32"
+      },
+      {
+        "path": "id",
+        "encoder": "string"
+      },
+      {
+        "path": "issuanceDate",
+        "encoder": "isodatetime-epoch-base32"
+      },
+      {
+        "path": "proof.created",
+        "encoder": "isodatetime-epoch-base32"
+      },
+      {
+        "path": "proof.nonce",
+        "encoder": "string"
+      },
+      {
+        "path": "proof.signatureValue",
+        "encoder": "string"
+      }
+    ],
+    "template": {
+      "@context": "https://www.w3.org/2018/credentials/v1",
+      "credentialSchema": {
+        "id": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac;id=libertyhealthpass;version=0.1",
+        "type": "JsonSchemaValidator2018"
+      },
+      "credentialSubject": {
+        "passType": "COVID-19 Vaccination",
+        "subject": {
+          "name": {}
+        },
+        "type": "Liberty HealthPass"
+      },
+      "issuer": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac",
+      "proof": {
+        "creator": "did:hpass:b3a918aa1ec2b0f0d58a6ca3e7c8ebb6a631cbb2408ad5e8ecaca9fdb48ee4bf:7210026a6918e3250c1d1094636c0a89cc06468cf302bce2216e20c755d020ac#key-1",
+        "type": "EcdsaSecp256r1Signature2019"
+      },
+      "type": [
+        "VerifiableCredential"
+      ]
+    }
+  }
+}
