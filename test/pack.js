@@ -200,4 +200,35 @@ describe("pack", function() {
             })
         })
     })
+
+    it("edge case - no columns", async function() {
+        const template = {}
+
+        const TYPE = "template"
+        const VERSION = "1"
+        const original = {}
+
+        const got = await jsonxt.pack.payload(original, template, TYPE, VERSION, RESOLVER_NAME)
+        const want = ""
+
+        assert.deepEqual(got, want)
+    })
+    it("expected fail - bad unknown encoder", async function() {
+        const template = {
+            "columns": [
+                {
+                    "path": "a",
+                    "encoder": "does-not-exist",
+                },
+            ],
+        }
+
+        const TYPE = "template"
+        const VERSION = "1"
+        const original = {}
+
+        assert.rejects(async () => {
+            const packed = await jsonxt.pack.payload(original, template, TYPE, VERSION, RESOLVER_NAME)
+        })
+    })
 })
