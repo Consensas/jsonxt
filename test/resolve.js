@@ -64,6 +64,11 @@ describe("resolve", function() {
         const templates$ = await jsonxt.resolve("jsonxt.io", "templates.json")
         assert.ok(templates$)
     })
+    it("works - expected null on weird resolver", async function() {
+        const got = await jsonxt.resolve("does not exist", "templates.json")
+        const want = null
+        assert.deepEqual(got, want)
+    })
     describe("end-to-end", function() {
         for (let [ NAME, TYPE, VERSION ] of [ 
             [ "w3vc-1-1", "w3vc", "1" ],

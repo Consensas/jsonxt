@@ -1,0 +1,45 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1",
+    "https://w3id.org/security/bbs/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:af5vshde943jf831j128fj",
+  "name": "COVID-19 Vaccination Certificate",
+  "description": "COVID-19 Vaccination Certificate",
+  "issuanceDate": "2021-04-03T04:07:09Z",
+  "expirationDate": "2029-11-03T12:19:52Z",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "1283738469",
+    "administeringCentre": "MoX",
+    "healthProfessional": "MoX",
+    "countryOfVaccination": "CA",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOAN",
+      "familyName": "JETTSON",
+      "gender": "Female",
+      "birthDate": "1980-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "COVID-21",
+      "atcCode": "J08BX03",
+      "medicinalProductName": "COVID-19 Some Name Moderna",
+      "marketingAuthorizationHolder": "Moderna Some Name"
+    }
+  },
+  "issuer": "did:key:zUC7DaQ48NzLiecv2dcP9fkom5Tx9EZ3TpJDZsWJqSFPDQt8yRzjoiEzUoJc5cnfEFNPaTMXTVWBiGhUfdXT8WgEM9tyr1oSz8pnQB41khnXqAhtaEd9tHVwaWfALBQpvVYXiqx",
+  "proof": {
+    "type": "BbsBlsSignature2020",
+    "created": "2020-03-03T04:07:09Z",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "h1JPz9yGn/MQPtlZSatInmEl7gnC+6HREZlxQRG/K6xDKe1ahtIGk0mc0RmBwTCJRGCo88k6ECREPnlmMwPQpMfz6adwgSxa8Xt6ZFYsYnoFY5LgYSH34wREUSwUHcf6D3hMueOfUl5ZyOusBUveLw==",
+    "verificationMethod": "did:key:zUC7DaQ48NzLiecv2dcP9fkom5Tx9ez3tPjdzSwjQsfpdqT8YrZJOIeZuOjC5cnfEFNPaTMXTVWBiGhUfdXT8WgEM9tyr1oSz8pnQB41khnXqAhtaEd9tHVwaWfALBQpvVYXiqx#zUC7DaQ48NzLiecv2dcP9fkom5Tx9EZ3TpJDZsWJqSFPDQt8yRzjoiEzUoJc5cnfEFNPaTMXTVWBiGhUfdXT8WgEM9tyr1oSz8pnQB41khnXqAhtaEd9tHVwaWfALBQpvVYXiqx"
+  }
+}

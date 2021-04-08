@@ -79,4 +79,13 @@ describe("resolvers/uri", function() {
 
         assert.strictEqual(got, want)
     })
+    it("works - expected null (bad looking URI)", async function() {
+        const RESOLVER_NAME = "does not exist"
+        const RESOLVER_KEY = "doesnotexist"
+
+        const got = await jsonxt.resolvers.uri(RESOLVER_NAME, RESOLVER_KEY)
+        const want = null
+
+        assert.strictEqual(got, want)
+    })
 })

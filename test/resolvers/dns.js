@@ -111,7 +111,7 @@ describe("resolvers/dns", function() {
 
         assert.strictEqual(got, want)
     })
-    it("expected failure", async function() {
+    it("expected failure (forced through shim)", async function() {
         const RESOLVER_NAME = RESOLVER_NAME_FAIL
         const RESOLVER_KEY = "doesnotexist"
 
