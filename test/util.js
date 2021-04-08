@@ -103,4 +103,82 @@ describe("_util", function() {
         assert.ok(util.isBoolean(true))
         assert.ok(util.isBoolean(false))
     })
+
+    it("_util.delete - shallow", function() {
+        const d = {
+            "a": "b",
+            "c": {
+                "d": [ 1, 2, 3 ],
+            },
+        }
+
+        util.delete(d, "a")
+
+        const got = d
+        const want = {
+            "c": {
+                "d": [ 1, 2, 3 ],
+            },
+        }
+
+        assert.deepEqual(got, want)
+    })
+    it("_util.delete - deep", function() {
+        const d = {
+            "a": "b",
+            "c": {
+                "d": [ 1, 2, 3 ],
+            },
+        }
+
+        util.delete(d, "c.d")
+
+        const got = d
+        const want = {
+            "a": "b",
+            "c": {},
+        }
+
+        assert.deepEqual(got, want)
+    })
+    it("_util.delete - super deep and does not exist", function() {
+        const d = {
+            "a": "b",
+            "c": {
+                "d": [ 1, 2, 3 ],
+                "e": {
+                    "f": {
+                        "g": 234
+                    },
+                },
+            },
+        }
+        const want = _.cloneDeep(d)
+
+        util.delete(d, "c.e.f.g.h")
+
+        const got = d
+
+        assert.deepEqual(got, want)
+    })
+    it("_util.delete - deep and does not exist", function() {
+        const d = {
+            "a": "b",
+            "c": {
+                "d": [ 1, 2, 3 ],
+            },
+        }
+
+        util.delete(d, "a.x")
+
+        const got = d
+        const want = {
+            "a": "b",
+            "c": {
+                "d": [ 1, 2, 3 ],
+            },
+        }
+
+        assert.deepEqual(got, want)
+    })
 })
