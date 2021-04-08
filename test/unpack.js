@@ -83,13 +83,11 @@ describe("unpack", function() {
         }
 
         it("works with all parameters", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = await _util.read_document(`${NAME}-packed.txt`)
             
             const unpacked = await jsonxt.unpack(packed, RESOLVER)
         })
         it("bad value for packed", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = null
             
             assert.rejects(async () => {
@@ -97,7 +95,6 @@ describe("unpack", function() {
             })
         })
         it("bad value for resolver", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = await _util.read_document(`${NAME}-packed.txt`)
             
             assert.rejects(async () => {
@@ -105,19 +102,16 @@ describe("unpack", function() {
             })
         })
         it("sufficient components (works)", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = "jxt:jsonxt.io:w3vc:1:MoH"
             
             const unpacked = await jsonxt.unpack(packed, RESOLVER)
         })
         it("a plethera of components (works)", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = "jxt:jsonxt.io:w3vc:1:MoH:xxx:xxx"
             
             const unpacked = await jsonxt.unpack(packed, RESOLVER)
         })
         it("insufficient components (fails)", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = "jxt:jsonxt.io:w3vc:1"
             
             assert.rejects(async () => {
@@ -125,12 +119,67 @@ describe("unpack", function() {
             })
         })
         it("wrong prefix (fails)", async function() {
-            const templates = await _util.read_json(`covid-templates.json`)
             const packed = "xjt:jsonxt.io:w3vc:1:MoH"
             
             assert.rejects(async () => {
                 const unpacked = await jsonxt.unpack(packed, RESOLVER)
             })
         })
+        it("templates a bad value", async function() {
+            const templates = 0
+            const packed = "jxt:jsonxt.io:w3vc:1:MoH"
+            
+            assert.rejects(async () => {
+                const unpacked = await jsonxt.unpack(packed, () => templates)
+            })
+        })
+        it("template a bad value", async function() {
+            const packed = "jxt:jsonxt.io:w3vc:1:MoH"
+            
+            assert.rejects(async () => {
+                const unpacked = await jsonxt.unpack(packed, () => {
+                    return {
+                        "w3vc:1": 0,
+                    }
+                })
+            })
+        })
     })
+    describe("edge cases", function() {
+        const NAME = "w3vc-1-1"
+        const TYPE = "w3vc"
+        const VERSION ="1"
+        
+        it("no columns", async function() {
+            const packed = "jxt:jsonxt.io:w3vc:1:MoH"
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return {
+                    "w3vc:1": {}
+                }
+            })
+
+            const got = unpacked
+            const want = {}
+
+            assert.deepEqual(got, want)
+        })
+        it("bad decoder - expected fail", async function() {
+            const packed = "jxt:jsonxt.io:w3vc:1:MoH"
+            assert.rejects(async () => {
+                const unpacked = await jsonxt.unpack(packed, () => {
+                    return {
+                        "w3vc:1": {
+                            columns: [
+                                {
+                                    "path": "a",
+                                    "encoder": "does-not-exist",
+                                },
+                            ],
+                        }
+                    }
+                })
+            })
+        })
+    })
+
 })
