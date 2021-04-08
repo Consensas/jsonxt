@@ -66,6 +66,7 @@ And try again
     process.exit(1)
 }
 const _util = require("../lib/_util")
+const jsonxt = require("..")
 
 const minimist = require("minimist")
 const ad = minimist(process.argv.slice(2), {
@@ -73,7 +74,7 @@ const ad = minimist(process.argv.slice(2), {
         "verbose", "trace", "debug",
     ],
     string: [
-        "template",
+        "templates",
         "resolver",
         "type",
         "version",
@@ -84,6 +85,7 @@ const ad = minimist(process.argv.slice(2), {
     default: {
         "version": "1",
         "type": "type",
+        "resolver": "example.com",
     },
 });
 
@@ -103,7 +105,7 @@ using various methods
 
 Options:
 
---template <path>     path to template for JSON-XT encoding
+--templates <path>    path to template for JSON-XT encoding
 --type <type>         encoding type
 --version <version>   encoding version (default "1")
 --resolver <name>     resolver name (default: example.com)
@@ -135,15 +137,23 @@ const zdeflate = data => {
 
 const qencode_size = async data => {
     try {
+        if (_util.isBuffer(data)) {
+            data = [
+                {
+                    data: new Uint8ClampedArray(data, 0, 4),
+                    mode: "byte",
+                },
+            ]
+        }
+
         const result = await qrcode.toString(data, {
-            errorCorrectionLevel: "Q",
-        })
+                errorCorrectionLevel: "Q",
+            })
         const rows = result.split("\n").length
         
-        // console.log(rows)
         return Math.ceil(rows * rows / 8)
     } catch (x) {
-        return NaN
+        return "--fail--: " + _.error.message(x)
     }
 }
 
@@ -159,45 +169,84 @@ const _one = _.promise((self, done) => {
             console.log("file", sd.path)
                 
             const jencoded = JSON.stringify(sd.json)
-            console.log(jencoded)
             const zjencoded = await zdeflate(jencoded)
 
-            console.log("json", jencoded.length)
-            if (qrcode) {
-                console.log("json-qr", await qencode_size(jencoded))
+            const _show = v => {
+                if (!_.is.Number(v)) {
+                    return v
+                }
+                const p = Math.round(v * 1000 / jencoded.length) / 10
+                return `${v} ${p}%`
             }
 
-            console.log("json-zlib", zjencoded.length)
+            console.log("json", _show(jencoded.length))
             if (qrcode) {
-                console.log("json-zlib-qr", await qencode_size(zjencoded))
+                console.log("json-qr", _show(await qencode_size(jencoded)))
             }
 
             if (base32) {
-                console.log("json-zlib-base32", base32.encode(zjencoded).length)
+                console.log("json-base32", _show(base32.encode(jencoded).length))
             }
             if (base32 && qrcode) {
-                console.log("json-zlib-base32-qr", await qencode_size(base32.encode(zjencoded)))
+                console.log("json-base32-qr", _show(await qencode_size(base32.encode(jencoded))))
+            }
+
+            console.log("json-zlib", _show(zjencoded.length))
+            if (qrcode) {
+                console.log("json-zlib-qr", _show(await qencode_size(zjencoded)))
+            }
+
+            if (base32) {
+                console.log("json-zlib-base32", _show(base32.encode(zjencoded).length))
+            }
+            if (base32 && qrcode) {
+                console.log("json-zlib-base32-qr", _show(await qencode_size(base32.encode(zjencoded))))
             }
 
             if (cbor) {
                 const cencoded = cbor.encode(sd.json)
                 const zcencoded = await zdeflate(cencoded)
 
-                console.log("cbor", cencoded.length)
+                console.log("cbor", _show(cencoded.length))
                 if (qrcode) {
-                    console.log("cbor-qr", await qencode_size(cencoded))
-                }
-
-                console.log("cbor-zlib", zcencoded.length)
-                if (qrcode) {
-                    console.log("cbor-qr", await qencode_size(zcencoded))
+                    console.log("cbor-qr", _show(await qencode_size(cencoded)))
                 }
 
                 if (base32) {
-                    console.log("cbor-zlib-base32", base32.encode(zcencoded).length)
+                    console.log("cbor-base32", _show(base32.encode(cencoded).length))
                 }
                 if (base32 && qrcode) {
-                    console.log("cbor-zlib-base32", await qencode_size(base32.encode(zcencoded)))
+                    console.log("cbor-base32-qr", _show(await qencode_size(base32.encode(cencoded))))
+                }
+
+                console.log("cbor-zlib", _show(zcencoded.length))
+                if (qrcode) {
+                    console.log("cbor-zlib-qr", _show(await qencode_size(zcencoded)))
+                }
+
+                if (base32) {
+                    console.log("cbor-zlib-base32", _show(base32.encode(zcencoded).length))
+                }
+                if (base32 && qrcode) {
+                    console.log("cbor-zlib-base32-qr", _show(await qencode_size(base32.encode(zcencoded))))
+                }
+            }
+
+            if (sd.templates) {
+                try {
+                    // console.log("HERE:XXX", sd.json, sd.templates, ad.type, ad.version, ad.resolver)
+                    const packed = await jsonxt.pack(sd.json, sd.templates, ad.type, ad.version, ad.resolver, {
+                        uppercase: true,
+                    })
+                    console.log("packed", packed)
+                    console.log("jsonxt", _show(packed.length))
+
+                    if (qrcode) {
+                        console.log("jsonxt-qr", _show(await qencode_size(packed)))
+                    }
+                } 
+                catch (x) {
+                    console.log(x)
                 }
             }
 
@@ -217,12 +266,15 @@ _one.accepts = {
 _one.produces = {
 }
 
-
 /**
  */
 _.promise({
-    paths: ad._,
+    paths: ad._, 
 })
+    .add("json", null)
+    .conditional(ad.templates, fs.read.json.p(ad.templates))
+    .add("json:templates")
+
     .each({
         method: _one,
         inputs: "paths:path",

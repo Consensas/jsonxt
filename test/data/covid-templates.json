@@ -318,5 +318,108 @@
         "VaccinationCertificate"
       ]
     }
+  },
+  "w3vc:2": {
+    "columns": [
+      {
+        "path": "id",
+        "encoder": "string"
+      },
+      {
+        "path": "issuanceDate",
+        "encoder": "isodatetime-epoch-base32"
+      },
+      {
+        "path": "expirationDate",
+        "encoder": "isodatetime-epoch-base32"
+      },
+      {
+        "path": "credentialSubject.batchNumber",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.administeringCentre",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.healthProfessional",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.countryOfVaccination",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.recipient.givenName",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.recipient.familyName",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.recipient.gender",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.recipient.birthDate",
+        "encoder": "isodate-1900-base32"
+      },
+      {
+        "path": "credentialSubject.vaccine.disease",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.vaccine.atcCode",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.vaccine.medicinalProductName",
+        "encoder": "string"
+      },
+      {
+        "path": "credentialSubject.vaccine.marketingAuthorizationHolder",
+        "encoder": "string"
+      },
+      {
+        "path": "proof.created",
+        "encoder": "isodatetime-epoch-base32"
+      },
+      {
+        "path": "proof.proofValue",
+        "encoder": "string"
+      },
+      {
+        "path": "proof.verificationMethod",
+        "encoder": "string"
+      }
+    ],
+    "template": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://w3id.org/vaccination/v1",
+        "https://w3id.org/security/bbs/v1"
+      ],
+      "type": [
+        "VerifiableCredential",
+        "VaccinationCertificate"
+      ],
+      "name": "COVID-19 Vaccination Certificate",
+      "description": "COVID-19 Vaccination Certificate",
+      "credentialSubject": {
+        "type": "VaccinationEvent",
+        "recipient": {
+          "type": "VaccineRecipient"
+        },
+        "vaccine": {
+          "type": "Vaccine"
+        }
+      },
+      "issuer": "did:key:zUC7DaQ48NzLiecv2dcP9fkom5Tx9EZ3TpJDZsWJqSFPDQt8yRzjoiEzUoJc5cnfEFNPaTMXTVWBiGhUfdXT8WgEM9tyr1oSz8pnQB41khnXqAhtaEd9tHVwaWfALBQpvVYXiqx",
+      "proof": {
+        "type": "BbsBlsSignature2020",
+        "proofPurpose": "assertionMethod"
+      }
+    }
   }
 }
