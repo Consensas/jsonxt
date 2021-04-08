@@ -58,8 +58,6 @@ describe("pack", function() {
             const templates = await _util.read_json(TEMPLATES)
             const original = await _util.read_json(`${NAME}.json`)
 
-            console.log(templates)
-
             const packed = await jsonxt.pack(original, templates, TYPE, VERSION, RESOLVER_NAME)
             const got = packed
 
