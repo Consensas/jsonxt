@@ -3,3 +3,4 @@ yy*
 .*
 coverage
 node_modules
+*.pyc
