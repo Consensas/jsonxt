@@ -56,15 +56,12 @@ def isoyyyymm_2020_base32(rule, value):
     elif value == rule.UNDEFINED:
         return _util.UNDEFINED
 
-    return value
+    i = _util.base32_to_integer(value)
 
-def integer(rule, value):
-    if value == rule.NULL:
-        return None
-    elif value == rule.UNDEFINED:
-        return _util.UNDEFINED
+    yyyy = math.floor(i / 100) % 100 + 2020
+    mm = i % 100 + 1
 
-    return int(value)
+    return "%04d-%02d" % ( yyyy, mm, )
 
 def integer_base32(rule, value):
     if value == rule.NULL:
