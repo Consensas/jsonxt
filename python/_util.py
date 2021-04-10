@@ -1,4 +1,5 @@
 import copy
+import urllib
 
 def isString(v):
     return True
@@ -8,6 +9,15 @@ def isFunction(v):
 
 def isPlainObject(v):
     return True
+
+def decodeExtended(s):
+    s = s.replace("~", "%20")
+    s = urllib.unquote(s)
+
+    return s
+
+def base32_to_integer(value):
+    return int(value, 32)
 
 def decode(v):
     return v
@@ -36,6 +46,7 @@ class Encode:
         self.NULL = "XXX"
         self.UNDEFINED = "XXX"
         self.EMPTY_STRING = "XXX"
+        self.ESCAPE = "~"
 
 ENCODE = Encode()
 

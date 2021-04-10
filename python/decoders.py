@@ -1,47 +1,75 @@
 import _util
+import math
+import time
 
 def string(rule, value):
-    """
-    if (value == rule.NULL) || (value == jsonxt.ENCODE.NULL)) {
-        return null
-    } else if ((value == rule.UNDEFINED) || (value == jsonxt.ENCODE.UNDEFINED)) {
-        return undefined
-    } else if ((value == rule.EMPTY_STRING) || (value == jsonxt.ENCODE.EMPTY_STRING)) {
+    if value == rule.NULL:
+        return None
+    elif value == rule.UNDEFINED:
+        return _util.UNDEFINED
+    elif value == rule.EMPTY_STRING:
         return ""
-    }
 
-    if value.startsWith(jsonxt.ENCODE.ESCAPE):
-        if value[1] == jsonxt.ENCODE.ESCAPE:
-            value = value.substring(2)
+    if value.startswith(_util.ENCODE.ESCAPE):
+        if value[1] == _util.ENCODE.ESCAPE:
+            value = value[2:]
             value = "~" + _util.decodeExtended(value)
         else:
             if rule.compact:
                 index = _util.integer_to_base32(value.substring(1))
-                if ((index >= 0) && (index < rule.compact.length):
+                if index >= 0 and index < len(rule.compact):
                     return rule.compact[index]
 
-            raise Error(`did not understand escape sequence "${value}"`)
+            raise Error("did not understand escape sequence ${value}")
     else:
         value = _util.decodeExtended(value)
 
-    """
     return value
 
-def isodatetime_epoch_base32(rule, v):
-    return v
+def isodatetime_epoch_base32(rule, value):
+    if value == rule.NULL:
+        return None
+    elif value == rule.UNDEFINED:
+        return _util.UNDEFINED
 
-def isodate_1900_base32(rule, v):
-    return v
+    seconds = _util.base32_to_integer(value)
 
-def isoyyyymm_2020_base32(rule, v):
-    return v
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(seconds))
 
-def isodate_1900_base32(rule, v):
-    return v
+def isodate_1900_base32(rule, value):
+    if value == rule.NULL:
+        return None
+    elif value == rule.UNDEFINED:
+        return _util.UNDEFINED
 
-def integer(rule, v):
-    return v
+    i = _util.base32_to_integer(value)
 
-def isodatetime_epoch_base32(rule, v):
-    return v
+    yyyy = math.floor(i / 1000) % 1000 + 1900
+    mm = math.floor((i % 1000) / 50) % 50 + 1
+    dd = (i % 50)
 
+    return "%04d-%02d-%02d" % ( yyyy, mm, dd )
+
+def isoyyyymm_2020_base32(rule, value):
+    if value == rule.NULL:
+        return None
+    elif value == rule.UNDEFINED:
+        return _util.UNDEFINED
+
+    return value
+
+def integer(rule, value):
+    if value == rule.NULL:
+        return None
+    elif value == rule.UNDEFINED:
+        return _util.UNDEFINED
+
+    return int(value)
+
+def integer_base32(rule, value):
+    if value == rule.NULL:
+        return None
+    elif value == rule.UNDEFINED:
+        return _util.UNDEFINED
+
+    return _util.base32_to_integer(value)
