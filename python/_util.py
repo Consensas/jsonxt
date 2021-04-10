@@ -33,7 +33,7 @@ def isPlainObject(v):
     return True
 
 def decodeExtended(s):
-    s = s.replace("~", "%20")
+    s = s.replace("~", u"%20")
     s = urllib.unquote(s)
 
     return s
@@ -65,10 +65,10 @@ UNDEFINED = Undefined()
 
 class Encode:
     def __init__(self):
-        self.NULL = "XXX"
-        self.UNDEFINED = "XXX"
-        self.EMPTY_STRING = "XXX"
-        self.ESCAPE = "~"
+        self.NULL = u"~."
+        self.UNDEFINED = u""
+        self.EMPTY_STRING = u"~"
+        self.ESCAPE = u"~"
 
 ENCODE = Encode()
 

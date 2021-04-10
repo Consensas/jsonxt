@@ -26,7 +26,7 @@ import re
 
 def dns_resolve(resolver_name, resolver_key):
     resolver_key = re.sub("[.].*$", "", resolver_key)
-    host = "%s._jsonxt.%s" % ( resolver_key, resolver_name )
+    host = u"%s._jsonxt.%s" % ( resolver_key, resolver_name )
 
     try:
         resultss = dns.resolver.query(host, "TXT")

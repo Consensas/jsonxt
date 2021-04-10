@@ -20,12 +20,12 @@
 #   limitations under the License.
 #  
 
+from __future__ import unicode_literals
+
 import sys
 import os
 import json
 import pprint
-import copy
-import collections
 import _util
 import decoders
 
@@ -48,6 +48,8 @@ def unpack_payload(payload, template):
 
         decoder = getattr(decoders, decoder_name)
         unpacked_value = decoder(rule, packed_value)
+        if unpacked_value == _util.UNDEFINED:
+            continue
         
         _util.set(unpacked, rule.path, unpacked_value)
 

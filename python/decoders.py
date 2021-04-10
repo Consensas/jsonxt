@@ -56,7 +56,7 @@ def isodatetime_epoch_base32(rule, value):
 
     seconds = _util.base32_to_integer(value)
 
-    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(seconds))
+    return unicode(time.strftime(u"%Y-%m-%dT%H:%M:%SZ", time.gmtime(seconds)))
 
 def isodate_1900_base32(rule, value):
     if value == rule.NULL:
@@ -70,7 +70,7 @@ def isodate_1900_base32(rule, value):
     mm = math.floor((i % 1000) / 50) % 50 + 1
     dd = (i % 50)
 
-    return "%04d-%02d-%02d" % ( yyyy, mm, dd )
+    return u"%04d-%02d-%02d" % ( yyyy, mm, dd )
 
 def isoyyyymm_2020_base32(rule, value):
     if value == rule.NULL:
@@ -83,7 +83,7 @@ def isoyyyymm_2020_base32(rule, value):
     yyyy = math.floor(i / 100) % 100 + 2020
     mm = i % 100 + 1
 
-    return "%04d-%02d" % ( yyyy, mm, )
+    return u"%04d-%02d" % ( yyyy, mm, )
 
 def integer_base32(rule, value):
     if value == rule.NULL:

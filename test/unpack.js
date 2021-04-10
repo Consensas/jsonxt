@@ -52,7 +52,7 @@ describe("unpack", function() {
         [ "w3vc-1-2", "w3vc", "1" ],
         [ "c4-1-1", "c4", "1" ],
     ]) {
-        it(`compress: ${NAME}`, async function() {
+        it(`unpack: ${NAME}`, async function() {
             const templates = await _util.read_json(`covid-templates.json`)
             const original = await _util.read_json(`${NAME}.json`)
             const packed = await _util.read_document(`${NAME}-packed.txt`)
