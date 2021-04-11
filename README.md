@@ -12,11 +12,17 @@ See [jsonxt.io](https://jsonxt.io) for more.
 
 ## Installation
 
+### Node.JS
+
     npm install jsonxt
+
+#### Python
+
+    pip install jsonxt
 
 ## Use
 
-### Setup
+### Setup (Javascript)
 
     const jsonxt = require("jsonxt")
 
@@ -73,6 +79,8 @@ they will be selected by TYPE and VERSION.
 
 This will compress the original JSON payload into a URI
 
+Javascript:
+
     const packed = await jsonxt.pack(original, templates, TYPE, VERSION, "example.com")
 
 Which yields (ignore newline)
@@ -89,10 +97,13 @@ fully worked through example.
 
 This will decompress the packed URI into the original URI.
 
+Javascript:
+
     const unpacked = await jsonxt.unpack(packed, jsonxt.resolve)
 
-See [test code](https://github.com/Consensas/jsonxt/blob/main/test/resolve.js) for a more
-fully worked through example.
+Python (package details being worked out):
+
+    unpacked = jsonxt.unpack(packed, jsonxt.resolve)
 
 ### Resolving
 
