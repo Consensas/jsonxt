@@ -39,7 +39,7 @@
       }, 
       {
         "path": "vc:credentialSubject.schema:doseSequence", 
-        "encoder": "integer"
+        "encoder": "integer-base32"
       }, 
       {
         "path": "vc:credentialSubject.schema:lotNumber", 

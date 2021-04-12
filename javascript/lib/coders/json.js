@@ -1,5 +1,5 @@
 /*
- *  lib/encoders/integer.js
+ *  lib/encoders/json.js
  *
  *  David Janes
  *  Consenas
@@ -23,7 +23,7 @@
 "use strict"
 
 const _util = require("../_util")
-const NAME = "integer"
+const NAME = "json"
 
 /**
  */
@@ -35,10 +35,10 @@ exports.encode = (rule, value) => {
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
     } else if (!_util.isInteger(value)) {
-        throw new Error(`${NAME}: expected value to be integer (got "${value}")`)
+        throw new Error(`${NAME}: expected value to be json (got "${value}")`)
     }
 
-    return `${value}`
+    return _util.encode(JSON.stringify(value))
 }
 
 /**
@@ -52,5 +52,5 @@ exports.decode = (rule, value) => {
         return undefined
     }
 
-    return parseInt(value)
+    return JSON.parse(_util.decode(value))
 }

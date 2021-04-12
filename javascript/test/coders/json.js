@@ -1,5 +1,5 @@
 /*
- *  test/coders/integer.js
+ *  test/coders/json.js
  *
  *  David Janes
  *  Consenas.com
@@ -34,7 +34,7 @@ const _util = require("./../_util")
 const WRITE = process.env.WRITE === "1"
 const DUMP = process.env.DUMP === "1"
 
-describe("coders/integer", function() {
+describe("coders/json", function() {
     before(function() {
         _util.shims_on()
     })
@@ -48,8 +48,8 @@ describe("coders/integer", function() {
 
     it("works - zero", function() {
         const start = 0
-        const got_encoded = jsonxt.encoders["integer"](rule, start)
-        const got_decoded = jsonxt.decoders["integer"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders["json"](rule, start)
+        const got_decoded = jsonxt.decoders["json"](rule, got_encoded)
         const want = "0"
 
         if (DUMP) {
@@ -62,10 +62,10 @@ describe("coders/integer", function() {
         assert.strictEqual(got_decoded, start)
     })
 
-    it("works - positive integer", function() {
+    it("works - positive json", function() {
         const start = 654
-        const got_encoded = jsonxt.encoders["integer"](rule, start)
-        const got_decoded = jsonxt.decoders["integer"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders["json"](rule, start)
+        const got_decoded = jsonxt.decoders["json"](rule, got_encoded)
         const want = "654"
 
         if (DUMP) {
@@ -78,10 +78,10 @@ describe("coders/integer", function() {
         assert.strictEqual(got_decoded, start)
     })
 
-    it("works - negative integer", function() {
+    it("works - negative json", function() {
         const start = -13
-        const got_encoded = jsonxt.encoders["integer"](rule, start)
-        const got_decoded = jsonxt.decoders["integer"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders["json"](rule, start)
+        const got_decoded = jsonxt.decoders["json"](rule, got_encoded)
         const want = "-13"
 
         if (DUMP) {
@@ -96,8 +96,8 @@ describe("coders/integer", function() {
 
     it("works - null", function() {
         const start = null
-        const got_encoded = jsonxt.encoders["integer"](rule, start)
-        const got_decoded = jsonxt.decoders["integer"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders["json"](rule, start)
+        const got_decoded = jsonxt.decoders["json"](rule, got_encoded)
         const want = "~."
 
         if (DUMP) {
@@ -112,8 +112,8 @@ describe("coders/integer", function() {
 
     it("works - undefined", function() {
         const start = undefined
-        const got_encoded = jsonxt.encoders["integer"](rule, start)
-        const got_decoded = jsonxt.decoders["integer"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders["json"](rule, start)
+        const got_decoded = jsonxt.decoders["json"](rule, got_encoded)
         const want = ""
 
         if (DUMP) {
@@ -130,28 +130,28 @@ describe("coders/integer", function() {
         const start = "hello"
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["integer"](rule, start)
+            const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
     it("expected fail - string", function() {
         const start = "hello"
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["integer"](rule, start)
+            const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
     it("expected fail - number", function() {
         const start = 3.14
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["integer"](rule, start)
+            const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
     it("expected fail - boolean", function() {
         const start = true
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["integer"](rule, start)
+            const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
 })

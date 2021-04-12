@@ -65,8 +65,8 @@ And try again
 `)
     process.exit(1)
 }
-const _util = require("../lib/_util")
-const jsonxt = require("..")
+const _util = require("../javascript/lib/_util")
+const jsonxt = require("../javascript")
 
 const minimist = require("minimist")
 const ad = minimist(process.argv.slice(2), {

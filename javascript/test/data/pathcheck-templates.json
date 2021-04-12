@@ -3,11 +3,11 @@
     "columns": [
       {
         "path": "vc:credentialSubject.schema:patient.pathcheck:couponNumber", 
-        "encoder": "integer"
+        "encoder": "json"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.pathcheck:couponTotal", 
-        "encoder": "integer"
+        "encoder": "json"
       }, 
       {
         "path": "vc:credentialSubject.schema:patient.schema:address", 
