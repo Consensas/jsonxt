@@ -1,0 +1,74 @@
+{
+  "@context": [
+    {
+      "schema": "http://schema.org/",
+      "vc": "https://www.w3.org/2018/credentials/v1/"
+    },
+    "https://w3id.org/security/v2"
+  ],
+  "@type": "vc:VerifiableCredential",
+  "vc:issuer": "https://passport.consensas.com",
+  "vc:issuanceDate": "2021-03-29T11:47:06Z",
+  "vc:credentialSubject": {
+    "@type": "schema:ImmunizationRecord",
+    "schema:patient": {
+      "@type": "schema:Patient",
+      "schema:birthDate": "2010-04-18",
+      "schema:familyName": "Wilson",
+      "schema:givenName": "Corey",
+      "schema:healthCard": {
+        "@type": "schema:HealthCard",
+        "schema:identifier": 4176777724163723,
+        "schema:issuedBy": "CA-SK",
+        "schema:validUntil": "2023-04"
+      }
+    },
+    "schema:primaryPrevention": {
+      "@type": "schema:ImmunizationRecommendation",
+      "schema:drug": {
+        "@type": "schema:Drug",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "207",
+          "schema:codingSystem": "CVX"
+        },
+        "schema:manufacturer": {
+          "@type": "schema:Organization",
+          "schema:identifier": "MOD",
+          "schema:name": "Moderna US, Inc."
+        },
+        "schema:name": "Moderna COVID-19 Vaccine"
+      },
+      "schema:healthCondition": {
+        "@type": "schema:MedicalCondition",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "U07",
+          "schema:codingSystem": "ICD-10"
+        },
+        "schema:name": "COVID-19"
+      },
+      "schema:name": "Moderna COVID-19 Vaccine"
+    },
+    "schema:immunizationDate": "2021-03-20",
+    "schema:doseSequence": 2,
+    "schema:location": {
+      "@type": "schema:Hospital",
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:addressCountry": "CA",
+        "schema:addressRegion": "MB",
+        "schema:addressLocality": "Lake Brenda"
+      },
+      "schema:name": "Dr. Elric Clinc"
+    },
+    "vc:id": "did:example:5NU2NBADC3"
+  },
+  "proof": {
+    "type": "RsaSignature2018",
+    "created": "2021-03-29T11:47:17Z",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..VH7Myn83MIrQNX-Uu03mGrakbLkr6pNluC_eH6n1saK06RF_P7ZZxmVr6ePuJFEILBg-s9cHmvzLdMQeqkiQP-XxP1eq-sItOlLQK1NB5S-04e-jsLzaEXP67ANFiN05w16bFnt-YMj_ONXduJsNth6cv_gppDqJCHuU9locoX2svc0eCZR_TTvLV_mrLm2mGqSuqxu0_QKqIwCW8ZuthKqKWdPT7dNUetsmAxuO6Afh6VBwdq7D4Oj8Wo9E2y6y5pVXL2_enBeY6WOJv505QkHJw6U5QFA0FNbh34nkP2omR62-NEiaAZ2Xd1csuzPLqjh-fNTitBrHZoLQIdaNgg",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+  }
+}

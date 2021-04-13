@@ -1,0 +1,74 @@
+{
+  "@context": [
+    {
+      "schema": "http://schema.org/",
+      "vc": "https://www.w3.org/2018/credentials/v1/"
+    },
+    "https://w3id.org/security/v2"
+  ],
+  "@type": "vc:VerifiableCredential",
+  "vc:issuer": "https://passport.consensas.com",
+  "vc:issuanceDate": "2021-03-29T11:47:05Z",
+  "vc:credentialSubject": {
+    "@type": "schema:ImmunizationRecord",
+    "schema:patient": {
+      "@type": "schema:Patient",
+      "schema:birthDate": "1969-09-28",
+      "schema:familyName": "Monroe",
+      "schema:givenName": "Zachary",
+      "schema:healthCard": {
+        "@type": "schema:HealthCard",
+        "schema:identifier": 213132748316423,
+        "schema:issuedBy": "CA-SK",
+        "schema:validUntil": "2024-11"
+      }
+    },
+    "schema:primaryPrevention": {
+      "@type": "schema:ImmunizationRecommendation",
+      "schema:drug": {
+        "@type": "schema:Drug",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "207",
+          "schema:codingSystem": "CVX"
+        },
+        "schema:manufacturer": {
+          "@type": "schema:Organization",
+          "schema:identifier": "MOD",
+          "schema:name": "Moderna US, Inc."
+        },
+        "schema:name": "Moderna COVID-19 Vaccine"
+      },
+      "schema:healthCondition": {
+        "@type": "schema:MedicalCondition",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "U07",
+          "schema:codingSystem": "ICD-10"
+        },
+        "schema:name": "COVID-19"
+      },
+      "schema:name": "Moderna COVID-19 Vaccine"
+    },
+    "schema:immunizationDate": "2021-01-03",
+    "schema:doseSequence": 1,
+    "schema:location": {
+      "@type": "schema:Hospital",
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:addressCountry": "CA",
+        "schema:addressRegion": "BC",
+        "schema:addressLocality": "Melindastad"
+      },
+      "schema:name": "General Hosptial"
+    },
+    "vc:id": "did:example:5VNOKJT6P4"
+  },
+  "proof": {
+    "type": "RsaSignature2018",
+    "created": "2021-03-29T11:47:16Z",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..1zGvLYZFsWJ2vxcMwYsPihj-cvxKbXjiG7fw_xgEHVS7o2T04AaUM7UmeQRwXzWoWLEBqcyHpptVKqA02yn6iecZWuAjtUzLAOqMjAkPRykGoEnapVtnd9KM0KT7MgAQZiXTMB60e0h4_-jUEirhVgeYmJ1FKRnVV0paK0WX4DIdO1oAQsVR1sdyP_u8YP3_7FflMowe3ns76jnP_jrFlzYV-xyDAPJG4spIPpEK7k3dYqU8FAOquwqpPs_j8QuwVV524OVszLJ8ua72JGtRvqOWGEjNh9fwBbWqfHjl5oGFUhnw6j-Pd7-ceHaG8iIhoTaRekFSsUovzxLCCqSPwQ",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+  }
+}

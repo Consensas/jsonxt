@@ -1,0 +1,74 @@
+{
+  "@context": [
+    {
+      "schema": "http://schema.org/",
+      "vc": "https://www.w3.org/2018/credentials/v1/"
+    },
+    "https://w3id.org/security/v2"
+  ],
+  "@type": "vc:VerifiableCredential",
+  "vc:issuer": "https://passport.consensas.com",
+  "vc:issuanceDate": "2021-03-29T11:46:59Z",
+  "vc:credentialSubject": {
+    "@type": "schema:ImmunizationRecord",
+    "schema:patient": {
+      "@type": "schema:Patient",
+      "schema:birthDate": "1968-08-08",
+      "schema:familyName": "Peters",
+      "schema:givenName": "Marcus",
+      "schema:healthCard": {
+        "@type": "schema:HealthCard",
+        "schema:identifier": 576592821416,
+        "schema:issuedBy": "CA-BC",
+        "schema:validUntil": "2023-11"
+      }
+    },
+    "schema:primaryPrevention": {
+      "@type": "schema:ImmunizationRecommendation",
+      "schema:drug": {
+        "@type": "schema:Drug",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "207",
+          "schema:codingSystem": "CVX"
+        },
+        "schema:manufacturer": {
+          "@type": "schema:Organization",
+          "schema:identifier": "MOD",
+          "schema:name": "Moderna US, Inc."
+        },
+        "schema:name": "Moderna COVID-19 Vaccine"
+      },
+      "schema:healthCondition": {
+        "@type": "schema:MedicalCondition",
+        "schema:code": {
+          "@type": "schema:MedicalCode",
+          "schema:codeValue": "U07",
+          "schema:codingSystem": "ICD-10"
+        },
+        "schema:name": "COVID-19"
+      },
+      "schema:name": "Moderna COVID-19 Vaccine"
+    },
+    "schema:immunizationDate": "2021-03-11",
+    "schema:doseSequence": 2,
+    "schema:location": {
+      "@type": "schema:Hospital",
+      "schema:address": {
+        "@type": "schema:PostalAddress",
+        "schema:addressCountry": "CA",
+        "schema:addressRegion": "SK",
+        "schema:addressLocality": "East Johnhaven"
+      },
+      "schema:name": "Shopper's"
+    },
+    "vc:id": "did:example:5K2PKSRRGM"
+  },
+  "proof": {
+    "type": "RsaSignature2018",
+    "created": "2021-03-29T11:47:13Z",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..h2fvNznvcJktygqCf_La2LL9JfOX4ZevqsAIorQoneThTtYuob53gcRkDv4SfY__uWfYHMEcPQqoFqQ7g27t4x142tM1EuLAhXAC5UtswpPMdYB981btnSK3cLc6d5BUQZXgVIddthqOaN3KPM_flfy5Z_xzNECIdufGv3vseL7CUjM7lQpcSBhTm6LRpxXAQYC5AyEgwfX3Dlri5A6_X5w1eI32-tJbiLfGn8BSJ6bTsxNYkwBziYfhXzqGSpT0kNT6dKnz6MmQiwZSk3g_2kNB8WoKZHh8jro3vUAoNbGBjV-QG7afOlH9szLzjEHJw45F3S_xyFyJRCadwsg9eQ",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "https://gist.githubusercontent.com/dpjanes/74063bde4c668a7d9fc1ecd66268c069/raw/a633cfdc58311c4ff81aa40f0ef0026c7b183c4d/public.combined.pem"
+  }
+}
