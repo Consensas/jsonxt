@@ -33,14 +33,18 @@ echo "=================="
         --exclude "node_modules" \
         --exclude "xx*" \
         --exclude "yy*" \
-        README.md LICENSE \
         package.json \
         index.js \
         lib/*.js \
         lib/resolvers/*.js \
-        lib/encoders/*.js \
+        lib/coders/*.js \
         |
-    ( cd "${NPM_DST}" && tar xvf - && npm publish ) || exit 1
+    ( 
+        cp ../README.md ../LICENSE "${NPM_DST}" || exit 1
+        cd "${NPM_DST}" || exit 1
+        tar xvf - || exit 
+        npm publish || exit 1
+    ) || exit 1
     git commit -m "new release" package.json || exit 1
     git push || exit 1
 
