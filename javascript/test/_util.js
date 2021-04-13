@@ -42,7 +42,7 @@ const shims_off = () => {
  */
 const write_json = async (json, filename) => {
     await fs.promises.writeFile(
-        path.join(__dirname, "data", filename), 
+        path.join(__dirname, "..", "..", "data", filename), 
         JSON.stringify(json, null, 2)
     )
 }
@@ -51,7 +51,7 @@ const write_json = async (json, filename) => {
  */
 const read_json = async (filename) => {
     return JSON.parse(await fs.promises.readFile(
-        path.join(__dirname, "data", filename), 
+        path.join(__dirname, "..", "..", "data", filename), 
         "utf8"
     ))
 }
@@ -60,7 +60,7 @@ const read_json = async (filename) => {
  */
 const write_yaml = async (json, filename) => {
     await fs.promises.writeFile(
-        path.join(__dirname, "data", filename), 
+        path.join(__dirname, "..", "..", "data", filename), 
         yaml.dump(json, {
             sortKeys: false,
             noRefs: true,
@@ -72,7 +72,7 @@ const write_yaml = async (json, filename) => {
  */
 const read_yaml = async (filename) => {
     return yaml.load(await fs.promises.readFile(
-        path.join(__dirname, "data", filename), 
+        path.join(__dirname, "..", "..", "data", filename), 
         "utf8"
     ))
 }
@@ -81,7 +81,7 @@ const read_yaml = async (filename) => {
  */
 const write_document = async (document, filename) => {
     await fs.promises.writeFile(
-        path.join(__dirname, "data", filename), 
+        path.join(__dirname, "..", "..", "data", filename), 
         document
     )
 }
@@ -90,7 +90,7 @@ const write_document = async (document, filename) => {
  */
 const read_document = async (filename) => {
     return await fs.promises.readFile(
-        path.join(__dirname, "data", filename), 
+        path.join(__dirname, "..", "..", "data", filename), 
         "utf8"
     )
 }
