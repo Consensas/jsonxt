@@ -28,7 +28,7 @@ import os
 import json
 
 __dirname__ = os.path.dirname(os.path.abspath(__file__))
-TESTS = os.path.join(__dirname__, "..", "..", "test", "data")
+TESTS = os.path.join(__dirname__, "..", "..", "data")
 
 class Unpack(unittest.TestCase):
     def setUp(self):
