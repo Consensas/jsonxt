@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:Yzk2YWEzZDItNDlmNS00ZmU3LWIyMmQtZGZmYmY0NWM4OTA3",
+  "name": "Polio  - Orimune",
+  "description": "Polio  - Orimune",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "843",
+    "administeringCentre": "U.S. Public Health Authority",
+    "healthProfessional": "U.S. Public Health Authority",
+    "countryOfVaccination": "United States of America",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOHN",
+      "familyName": "SMITH",
+      "gender": "Male",
+      "birthDate": "1958-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "Polio  - Orimune",
+      "atcCode": "XM4KG4"
+    }
+  }
+}

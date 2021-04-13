@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:MGRhODcyMWMtYTczYS00NTk2LWFhMWMtOTY3YThlMDU3YjU5",
+  "name": "Meningitis - Meningococcal conjugate (Strain C) vaccine",
+  "description": "Meningitis - Meningococcal conjugate (Strain C) vaccine",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "129",
+    "administeringCentre": "U.S. Public Health Authority",
+    "healthProfessional": "U.S. Public Health Authority",
+    "countryOfVaccination": "United States of America",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOHN",
+      "familyName": "SMITH",
+      "gender": "Male",
+      "birthDate": "1958-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "Meningitis - Meningococcal conjugate (Strain C) vaccine",
+      "atcCode": "XM18Y8"
+    }
+  }
+}

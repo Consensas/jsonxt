@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:ZTAyOTI3MzQtOGEyMi00YjJhLTg4ZDYtOTcyMDVjZDk4YzIz",
+  "name": "Yellow fever",
+  "description": "Yellow fever",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "628",
+    "administeringCentre": "U.S. Public Health Authority",
+    "healthProfessional": "U.S. Public Health Authority",
+    "countryOfVaccination": "United States of America",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOHN",
+      "familyName": "SMITH",
+      "gender": "Male",
+      "birthDate": "1958-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "Yellow fever",
+      "atcCode": "XM0N24"
+    }
+  }
+}

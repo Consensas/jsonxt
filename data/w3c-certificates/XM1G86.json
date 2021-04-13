@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:MGUwNWM0MDktYWExMy00MGYzLWIxZjctMmJiOTdkOTAyN2Ni",
+  "name": "Tetanus - tetanus toxoid, combinations with diphtheria toxoid",
+  "description": "Tetanus - tetanus toxoid, combinations with diphtheria toxoid",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "932",
+    "administeringCentre": "U.S. Public Health Authority",
+    "healthProfessional": "U.S. Public Health Authority",
+    "countryOfVaccination": "United States of America",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOHN",
+      "familyName": "SMITH",
+      "gender": "Male",
+      "birthDate": "1958-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "Tetanus - tetanus toxoid, combinations with diphtheria toxoid",
+      "atcCode": "XM1G86"
+    }
+  }
+}

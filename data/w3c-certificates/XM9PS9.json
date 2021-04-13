@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:ZjczMzg2MzgtNmVkYS00MWUyLTgwZTQtZGJhZjc3MGY4Nzg4",
+  "name": "Rubella - Meruvax",
+  "description": "Rubella - Meruvax",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "156",
+    "administeringCentre": "U.S. Public Health Authority",
+    "healthProfessional": "U.S. Public Health Authority",
+    "countryOfVaccination": "United States of America",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOHN",
+      "familyName": "SMITH",
+      "gender": "Male",
+      "birthDate": "1958-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "Rubella - Meruvax",
+      "atcCode": "XM9PS9"
+    }
+  }
+}

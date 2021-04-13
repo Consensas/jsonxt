@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vaccination/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "VaccinationCertificate"
+  ],
+  "id": "urn:uvci:N2Q4M2UxYWMtOTdlYy00OGUwLWIyNzctNDE0ZmI4NDc4MDhm",
+  "name": "Measles - Measles, live attenuated",
+  "description": "Measles - Measles, live attenuated",
+  "credentialSubject": {
+    "type": "VaccinationEvent",
+    "batchNumber": "555",
+    "administeringCentre": "U.S. Public Health Authority",
+    "healthProfessional": "U.S. Public Health Authority",
+    "countryOfVaccination": "United States of America",
+    "recipient": {
+      "type": "VaccineRecipient",
+      "givenName": "JOHN",
+      "familyName": "SMITH",
+      "gender": "Male",
+      "birthDate": "1958-07-17"
+    },
+    "vaccine": {
+      "type": "Vaccine",
+      "disease": "Measles - Measles, live attenuated",
+      "atcCode": "XM8L15"
+    }
+  }
+}
