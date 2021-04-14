@@ -114,6 +114,9 @@ Options:
     process.exit(message ? 1 : 0)
 }
 
+if (ad.help) {
+    help()
+}
 if (ad._.length === 0) {
     help("at least one file argument is required")
 }
