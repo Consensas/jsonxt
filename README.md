@@ -69,8 +69,8 @@ See [jsonxt.io](https://jsonxt.io) for more.
     const TYPE = "simple"
     const VERSION = "1"
 
-* An example `original` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json)
-* An example `templates` is [here](https://github.com/Consensas/jsonxt/blob/main/test/data/covid-templates.json)
+* An example `original` is [here](https://github.com/Consensas/jsonxt/blob/main/data/w3vc-1-1.json)
+* An example `templates` is [here](https://github.com/Consensas/jsonxt/blob/main/data/covid-templates.json)
 
 The `templates` can have multiple compression formats encoded,
 they will be selected by TYPE and VERSION.
@@ -90,7 +90,7 @@ Which yields (ignore newline)
 
 This is a compression of 279 bytes to 101 bytes: 36% of the original size.
 
-See [test code](https://github.com/Consensas/jsonxt/blob/main/test/pack.js) for a more
+See [test code](https://github.com/Consensas/jsonxt/blob/main/javascript/test/pack.js) for a more
 fully worked through example.
 
 ### Decoding
