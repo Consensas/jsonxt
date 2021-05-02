@@ -42,9 +42,9 @@ exports.encode = (rule, value) => {
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
     } else if (value.startsWith(HTTPS)) {
-        return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.substring(HTTPS.length, "/"))
+        return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSlash(value.substring(HTTPS.length, "/"))
     } else {
-        return _util.encodeExtendedSpace(value, "/")
+        return _util.encodeExtendedSlash(value, "/")
     }
 }
 
@@ -62,9 +62,9 @@ exports.decode = (rule, value) => {
     }
 
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        value = HTTPS + value.substring(jsonxt.ENCODE.ESCAPE.length)
+        value = HTTPS + _util.decodeExtendedSlash(value.substring(jsonxt.ENCODE.ESCAPE.length))
     } else {
-        value = _util.decodeExtendedSpace(value)
+        value = _util.decodeExtendedSlash(value)
     }
 
     return value

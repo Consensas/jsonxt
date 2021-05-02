@@ -120,6 +120,22 @@ const decodeExtendedSpace = s => {
     return s
 }
 
+const encodeExtendedSlash = s => {
+    s = encodeURIComponent(s)
+    s = s.replace(/~/g, "%7E")
+    s = s.replace(/%2F/g, "~")
+
+    return s
+}
+
+const decodeExtendedSlash = s => {
+    s = s.replace(/~/g, "%2F")
+    s = decodeURIComponent(s)
+
+    return s
+}
+
+
 /**
  */
 const integer_to_base32 = n => new Number(n).toString(32).toUpperCase()
@@ -170,6 +186,8 @@ exports.encode = encode
 exports.decode = decode
 exports.encodeExtendedSpace = encodeExtendedSpace
 exports.decodeExtendedSpace = decodeExtendedSpace
+exports.encodeExtendedSlash = encodeExtendedSlash
+exports.decodeExtendedSlash = decodeExtendedSlash
 exports.isPlainObject = isPlainObject
 exports.isBuffer = isBuffer
 exports.isString = isString
@@ -183,9 +201,6 @@ exports.isFunction = isFunction
 exports.isEqual = isEqual
 exports.fetch = fetch
 
-// exports.keys = keys
-// exports.mapValues = mapValues
-
 exports.base32_to_integer = base32_to_integer
 exports.integer_to_base32 = integer_to_base32
-// exports.string_to_base32 = string_to_base32
+
