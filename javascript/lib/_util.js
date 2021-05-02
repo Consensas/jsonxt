@@ -105,7 +105,7 @@ const set = (d, key, value) => {
 const encode = s => encodeURIComponent(s) 
 const decode = s => decodeURIComponent(s)
 
-const encodeExtended = s => {
+const encodeExtendedSpace = s => {
     s = encodeURIComponent(s)
     s = s.replace(/~/g, "%7E")
     s = s.replace(/%20/g, "~")
@@ -113,7 +113,7 @@ const encodeExtended = s => {
     return s
 }
 
-const decodeExtended = s => {
+const decodeExtendedSpace = s => {
     s = s.replace(/~/g, "%20")
     s = decodeURIComponent(s)
 
@@ -168,8 +168,8 @@ exports.set = set
 exports.delete = delete_
 exports.encode = encode
 exports.decode = decode
-exports.encodeExtended = encodeExtended
-exports.decodeExtended = decodeExtended
+exports.encodeExtendedSpace = encodeExtendedSpace
+exports.decodeExtendedSpace = decodeExtendedSpace
 exports.isPlainObject = isPlainObject
 exports.isBuffer = isBuffer
 exports.isString = isString

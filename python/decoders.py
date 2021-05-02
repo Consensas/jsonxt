@@ -35,7 +35,7 @@ def string(rule, value):
     if value.startswith(_util.ENCODE.ESCAPE):
         if value[1] == _util.ENCODE.ESCAPE:
             value = value[2:]
-            value = "~" + _util.decodeExtended(value)
+            value = "~" + _util.decodeExtendedSpace(value)
         else:
             if rule.compact:
                 index = _util.integer_to_base32(value.substring(1))
@@ -44,7 +44,7 @@ def string(rule, value):
 
             raise Error("did not understand escape sequence ${value}")
     else:
-        value = _util.decodeExtended(value)
+        value = _util.decodeExtendedSpace(value)
 
     return value
 

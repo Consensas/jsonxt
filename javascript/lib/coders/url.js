@@ -1,9 +1,9 @@
 /*
- *  lib/encoders/string.js
+ *  lib/encoders/url.js
  *
  *  David Janes
  *  Consenas
- *  2021-03-16
+ *  2021-05-02
  *
  *  Copyright (2013-2021) Consensas
  *
@@ -23,7 +23,8 @@
 "use strict"
 
 const _util = require("../_util")
-const NAME = "string"
+const NAME = "url"
+const HTTPS = "https://"
 
 /**
  */
@@ -38,16 +39,12 @@ exports.encode = (rule, value) => {
         throw new Error(`${NAME}: expected value to be string (got "${value}")`)
     }
 
-    if (rule.compact && (rule.compact.indexOf(value) > -1)) {
-        return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(rule.compact.indexOf(value))
-    }
-
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
-    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.substring(1))
+    } else if (value.startsWith(HTTPS)) {
+        return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.substring(HTTPS.length, "/"))
     } else {
-        return _util.encodeExtendedSpace(value)
+        return _util.encodeExtendedSpace(value, "/")
     }
 }
 
@@ -65,19 +62,7 @@ exports.decode = (rule, value) => {
     }
 
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        if (value[1] === jsonxt.ENCODE.ESCAPE) {
-            value = value.substring(2)
-            value = "~" + _util.decodeExtendedSpace(value)
-        } else {
-            if (rule.compact) {
-                const index = _util.integer_to_base32(value.substring(1))
-                if ((index >= 0) && (index < rule.compact.length)) {
-                    return rule.compact[index]
-                }
-            }
-            
-            throw new Error(`did not understand escape sequence "${value}"`)
-        }
+        value = HTTPS + value.substring(jsonxt.ENCODE.ESCAPE.length)
     } else {
         value = _util.decodeExtendedSpace(value)
     }
