@@ -4,5 +4,6 @@ yy*
 coverage
 node_modules
 *.pyc
+package-lock.json
 
 vaccination-certificate-test-suite
