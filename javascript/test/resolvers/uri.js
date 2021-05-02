@@ -79,6 +79,7 @@ describe("resolvers/uri", function() {
 
         assert.strictEqual(got, want)
     })
+    /* undefined
     it("works - expected null (bad looking URI)", async function() {
         const RESOLVER_NAME = "does not exist"
         const RESOLVER_KEY = "doesnotexist"
@@ -88,4 +89,5 @@ describe("resolvers/uri", function() {
 
         assert.strictEqual(got, want)
     })
+    */
 })
