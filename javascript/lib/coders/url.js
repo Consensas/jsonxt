@@ -22,6 +22,8 @@
 
 "use strict"
 
+const URL = require("url").URL
+
 const _util = require("../_util")
 const NAME = "url"
 const HTTPS = "https://"
@@ -41,7 +43,12 @@ exports.encode = (rule, value) => {
 
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
-    } else if (value.startsWith(HTTPS)) {
+    }
+
+    // this will throw an error for invalid URLs
+    new URL(value)
+
+    if (value.startsWith(HTTPS)) {
         return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSlash(value.substring(HTTPS.length))
     } else {
         return _util.encodeExtendedSlash(value, "/")

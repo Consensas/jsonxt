@@ -54,7 +54,6 @@ describe("coders/url", function() {
         [ "weird:case idea/something", "weird%3Acase%20idea~something", ],
         [ "did:example:value", "did%3Aexample%3Avalue"],
         [ "", "~"],
-        [ "~", "%7E"],
         [ null, "~." ],
         [ undefined, "" ],
     ]) {
@@ -76,6 +75,20 @@ describe("coders/url", function() {
 
     it("expected fail - number", function() {
         const start = 1
+
+        assert.throws(() => {
+            const got_encoded = jsonxt.encoders.url(rule_simple, start)
+        })
+    })
+    it("expected fail - just a non-URL string", function() {
+        const start = "hello"
+
+        assert.throws(() => {
+            const got_encoded = jsonxt.encoders.url(rule_simple, start)
+        })
+    })
+    it("expected fail - https://", function() {
+        const start = "https://"
 
         assert.throws(() => {
             const got_encoded = jsonxt.encoders.url(rule_simple, start)
