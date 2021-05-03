@@ -42,7 +42,7 @@ exports.encode = (rule, value) => {
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
     } else if (value.startsWith(HTTPS)) {
-        return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSlash(value.substring(HTTPS.length, "/"))
+        return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSlash(value.substring(HTTPS.length))
     } else {
         return _util.encodeExtendedSlash(value, "/")
     }
