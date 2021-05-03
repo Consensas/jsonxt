@@ -22,6 +22,8 @@
 
 "use strict"
 
+const URL = require("url").URL
+
 let _
 let fs
 try {
@@ -156,11 +158,27 @@ _.promise({
                     encoder: "string",
                 }
 
+                let urls = 0
                 let string = 0
                 let nonstring = 0
                 let nulls = 0
                 const encoders = new Set()
                 for (const v of vs) {
+                    let url
+                    try {
+                        url = new URL(v)
+                        switch (url.protocol) {
+                        case "ftp:":
+                        case "http:":
+                        case "https:":
+                            break;
+
+                        default:
+                            url = null
+                        }
+                    } catch (x) {
+                    }
+
                     if (_.is.Boolean(v)) {
                         nonstring++
                         encoders.add("boolean")
@@ -181,18 +199,23 @@ _.promise({
                     } else if (v.match(/^\d\d\d\d-\d\d$/)) {
                         string++
                         encoders.add("isoyyyymm-2020-base32")
+                    } else if (url) {
+                        urls++
+                        encoders.add("url")
                     } else {
                         string++
                         encoders.add("string")
                     }
                 }
 
-                if (string && nonstring) {
+                if ((string || urls) && nonstring) {
                     d.encoder = "json"
                 } else if (encoders.size === 1) {
                     d.encoder = Array.from(encoders)[0]
                 } else if (string) {
                     d.encoder = "string"
+                } else if (urls) {
+                    d.encoder = "url"
                 } else if (nonstring) {
                     d.encoder = "number"
                 } else {
