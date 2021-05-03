@@ -102,42 +102,42 @@ describe("coders/isodatetime-epoch-base32", function() {
     it("expected fail - empty string", function() {
         const start = "hello"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["isodatetime-epoch-base32"](rule, start)
         })
     })
     it("expected fail - wrong date format (YYYY-MM-DD)", function() {
         const start = "2001-01-01"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["isodatetime-epoch-base32"](rule, start)
         })
     })
     it("expected fail - wrong date format (timestamp with milliseconds)", function() {
         const start = "2021-04-01T11:45:05.467Z"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["isodatetime-epoch-base32"](rule, start)
         })
     })
     it("expected fail - string", function() {
         const start = "hello"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["isodatetime-epoch-base32"](rule, start)
         })
     })
     it("expected fail - number", function() {
         const start = 3.14
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["isodatetime-epoch-base32"](rule, start)
         })
     })
     it("expected fail - boolean", function() {
         const start = true
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["isodatetime-epoch-base32"](rule, start)
         })
     })

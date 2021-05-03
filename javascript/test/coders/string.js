@@ -166,28 +166,28 @@ describe("coders/string", function() {
     it("expected fail - number", function() {
         const start = 1
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders.string(rule_simple, start)
         })
     })
     it("expected fail - simple meaningless escape", function() {
         const start = "~3783"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.decoders.string(rule_simple, start)
         })
     })
     it("expected fail - bad compact (low)", function() {
         const start = "~-10"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.decoders.string(rule_compact, start)
         })
     })
     it("expected fail - bad compact (high)", function() {
         const start = "~10"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.decoders.string(rule_compact, start)
         })
     })

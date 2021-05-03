@@ -129,28 +129,28 @@ describe("coders/json", function() {
     it("expected fail - empty string", function() {
         const start = "hello"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
     it("expected fail - string", function() {
         const start = "hello"
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
     it("expected fail - number", function() {
         const start = 3.14
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })
     it("expected fail - boolean", function() {
         const start = true
 
-        assert.rejects(async () => {
+        assert.throws(() => {
             const got_encoded = jsonxt.encoders["json"](rule, start)
         })
     })

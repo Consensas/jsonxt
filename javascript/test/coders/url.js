@@ -74,13 +74,6 @@ describe("coders/url", function() {
         })
     }
 
-    it("expected fail - number", async function() {
-        const start = 1
-
-        await assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders.url(rule_simple, start)
-        })
-    })
     it("expected fail - number", function() {
         const start = 1
 
