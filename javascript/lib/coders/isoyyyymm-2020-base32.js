@@ -73,3 +73,8 @@ exports.decode = (rule, value) => {
         `${mm}`.padStart(2, "0"),
     ].join("-")
 }
+
+exports.schema = {
+    type: "string",
+    format: "yyyy-mm",
+}

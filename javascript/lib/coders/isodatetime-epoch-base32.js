@@ -65,3 +65,8 @@ exports.decode = (rule, value) => {
 
     return date.toISOString().replace(/....Z$/, "Z")
 }
+
+exports.schema = {
+    type: "string",
+    format: "date-time",
+}

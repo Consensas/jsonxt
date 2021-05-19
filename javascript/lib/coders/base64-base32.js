@@ -79,3 +79,7 @@ exports.decode = (rule, value) => {
 
     return value
 }
+
+exports.schema = {
+    type: "string",
+}
