@@ -31,7 +31,7 @@ const unpack_payload = async (payload, template) => {
     const jsonxt = require("..")
 
     const minors = payload.split("/")
-    const unpacked = Object.assign({}, template.template || {})
+    const unpacked = JSON.parse(JSON.stringify(Object.assign({}, template.template || {})))
 
     if (template && template.columns) {
         for (let li = 0; li < template.columns.length && li < minors.length; li++) {
