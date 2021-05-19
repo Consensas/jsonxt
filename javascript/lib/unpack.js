@@ -33,21 +33,23 @@ const unpack_payload = async (payload, template) => {
     const minors = payload.split("/")
     const unpacked = Object.assign({}, template.template || {})
 
-    for (let li = 0; li < (template.columns ?? []).length && li < minors.length; li++) {
-        const packed_value = minors[li]
-        const rule = template.columns[li]
+    if (template && template.columns) {
+        for (let li = 0; li < template.columns.length && li < minors.length; li++) {
+            const packed_value = minors[li]
+            const rule = template.columns[li]
 
-        const decoder = jsonxt.decoders[rule.encoder]
-        if (!decoder) {
-            throw new Error(`unknown decoding: ${rule.encoder}`)
+            const decoder = jsonxt.decoders[rule.encoder]
+            if (!decoder) {
+                throw new Error(`unknown decoding: ${rule.encoder}`)
+            }
+
+            const unpacked_value = decoder(rule, packed_value)
+            if (_util.isUndefined(unpacked_value)) {
+                continue
+            }
+
+            _util.set(unpacked, rule.path, unpacked_value)
         }
-
-        const unpacked_value = decoder(rule, packed_value)
-        if (_util.isUndefined(unpacked_value)) {
-            continue
-        }
-
-        _util.set(unpacked, rule.path, unpacked_value)
     }
 
     return unpacked
