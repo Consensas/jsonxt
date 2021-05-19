@@ -32,17 +32,19 @@ const pack_payload = async (original, template) => {
 
     const payload = []
 
-    for (let rule of template.columns ?? []) {
-        const original_value = _util.get(original, rule.path)
+    if (template && template.columns) {
+        for (let rule of template.columns) {
+            const original_value = _util.get(original, rule.path)
 
-        const encoder = jsonxt.encoders[rule.encoder]
-        if (!encoder) {
-            throw new Error(`unknown encoding: ${rule.encoder}`)
+            const encoder = jsonxt.encoders[rule.encoder]
+            if (!encoder) {
+                throw new Error(`unknown encoding: ${rule.encoder}`)
+            }
+
+            const encoded_value = encoder(rule, original_value)
+
+            payload.push(encoded_value)
         }
-
-        const encoded_value = encoder(rule, original_value)
-
-        payload.push(encoded_value)
     }
 
     return payload.join("/").replace(/[/]*$/, "")
@@ -76,7 +78,7 @@ const pack = async (original, templates, type, version, resolver_name, paramd) =
     }
 
     let upme = s => s
-    if (paramd?.uppercase) {
+    if (paramd && paramd.uppercase) {
         upme = s => s.toUpperCase()
     }
 
