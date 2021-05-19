@@ -31,6 +31,7 @@ module.exports = Object.assign(
         resolvers: require("./resolvers"),
         encoders: {},
         decoders: {},
+        schemas: {},
     }
 )
 
@@ -45,6 +46,9 @@ const files = fs.readdirSync(path.join(__dirname, "coders"))
         if (coder.encode && coder.decode) {
             module.exports.encoders[name] = coder.encode
             module.exports.decoders[name] = coder.decode
+        }
+        if (coder.schema) {
+            module.exports.schemas[name] = coder.schema
         }
     })
 
