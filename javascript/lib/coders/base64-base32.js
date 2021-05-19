@@ -24,7 +24,7 @@
 
 const _util = require("../_util")
 const base64 = require('base64-js')
-const base32 = require("hi-base32")
+const base32 = require("base32url")
 const NAME = "base64-base32"
 
 /**
@@ -68,13 +68,13 @@ exports.decode = (rule, value) => {
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
             value = value.substring(2)
-            value = "~" + base64.fromByteArray(base32.decode.asBytes(`${value}`))
+            value = "~" + base64.fromByteArray(base32.decode(`${value}`))
         } else {
             value = value.substring(1)
-            value = "~" + base64.fromByteArray(base32.decode.asBytes(`${value}`))
+            value = "~" + base64.fromByteArray(base32.decode(`${value}`))
         }
     } else {
-        value = base64.fromByteArray(base32.decode.asBytes(`${value}`))
+        value = base64.fromByteArray(base32.decode(`${value}`))
     }
 
     return value
