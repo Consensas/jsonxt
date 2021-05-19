@@ -15,6 +15,7 @@
     "scripts": {
         "cover": "nyc --reporter=html mocha --recursive",
         "test": "mocha --recursive --bail",
+        "webpack": "webpack --config webpack.config.js"
     },
     "version": "0.0.11",
     "dependencies": {
@@ -23,4 +24,8 @@
         "js-yaml": "^4.1.0",
         "lodash": "^4.17.21"
     },
+    "devDependencies": {
+        "webpack": "^4.44.1",
+        "webpack-cli": "^4.6.0"
+    }
 }
