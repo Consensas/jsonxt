@@ -40,11 +40,6 @@ const resolve = async (resolver_name, resolver_key) => {
         return result
     }
 
-    result = await jsonxt.resolvers.dns(resolver_name, resolver_key)
-    if (result) {
-        return result
-    }
-
     return null
 }
 
