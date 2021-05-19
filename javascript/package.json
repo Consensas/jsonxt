@@ -18,6 +18,7 @@
     },
     "version": "0.0.11",
     "dependencies": {
+        "base64-js": "^1.5.1",
         "hi-base32": "^0.5.1",
         "js-yaml": "^4.1.0",
         "lodash": "^4.17.21"

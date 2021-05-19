@@ -37,6 +37,7 @@ module.exports = Object.assign(
             json: require(`./coders/json`).encode,
             'md5-base32': require(`./coders/md5-base32`).encode,
             'string-base32': require(`./coders/string-base32`).encode,
+            'base64-base32': require(`./coders/base64-base32`).encode,
             string: require(`./coders/string`).encode
         },
         decoders: {
@@ -47,6 +48,7 @@ module.exports = Object.assign(
             json: require(`./coders/json`).decode,
             'md5-base32': require(`./coders/md5-base32`).decode,
             'string-base32': require(`./coders/string-base32`).decode,
+            'base64-base32': require(`./coders/base64-base32`).decode,
             string: require(`./coders/string`).decode
         },
     }
