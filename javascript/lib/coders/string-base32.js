@@ -37,7 +37,7 @@ exports.encode = (rule, value) => {
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
     }
-    return require("hi-base32").encode(`${value}`).replace(/=*$/, "")
+    return require("base32url").encode(`${value}`)
 }
 
 /**

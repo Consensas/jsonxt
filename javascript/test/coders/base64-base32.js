@@ -66,7 +66,7 @@ describe("coders/base64-base32", function() {
         const start = "VGhlIHF1aWNrIGJyb3duIGZveCBqdW1wcyBvdmVyIHRoZSBsYXp5IGRvZy4="
         const got_encoded = jsonxt.encoders["base64-base32"](rule, start)
         const got_decoded = jsonxt.decoders["base64-base32"](rule, got_encoded)
-        const want = "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWOLQ="
+        const want = "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWOLQ"
 
         if (DUMP) {
             console.log("")
@@ -82,7 +82,7 @@ describe("coders/base64-base32", function() {
         const start = "tXPYwy6d/TkXsRjPl7DIFnj5XN2QIwb4f9MFZdnCiUxx4aw8GzhXwjyulJzneTgHGbqow8TlmtmDEYZQvU0iin5d8F2vkmVryXx1ui6vAflRcF+FnR+aatEoOSgvm/5S5PilmQFTWQ1utMsdS3XdMQ=="
         const got_encoded = jsonxt.encoders["base64-base32"](rule, start)
         const got_decoded = jsonxt.decoders["base64-base32"](rule, got_encoded)
-        const want = "WVZ5RQZOTX6TSF5RDDHZPMGICZ4PSXG5SARQN6D72MCWLWOCRFGHDYNMHQNTQV6CHSXJJHHHPE4AOGN2VDB4JZM23GBRDBSQXVGSFCT6LXYF3L4SMVV4S7DVXIXK6APZKFYF7BM5D6NGVUJIHEUC7G76KLSPRJMZAFJVSDLOWTFR2S3V3UYQ===="
+        const want = "WVZ5RQZOTX6TSF5RDDHZPMGICZ4PSXG5SARQN6D72MCWLWOCRFGHDYNMHQNTQV6CHSXJJHHHPE4AOGN2VDB4JZM23GBRDBSQXVGSFCT6LXYF3L4SMVV4S7DVXIXK6APZKFYF7BM5D6NGVUJIHEUC7G76KLSPRJMZAFJVSDLOWTFR2S3V3UYQ"
 
         if (DUMP) {
             console.log("")
