@@ -54,3 +54,7 @@ exports.decode = (rule, value) => {
 
     throw new Error(`${NAME}: not implemented`)
 }
+
+exports.schema = {
+    type: "string",
+}

@@ -111,8 +111,8 @@ const VERSION = &quot;1&quot;
 </code></pre>
 
 <ul>
-<li>An example <code>original</code> is <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json">here</a></li>
-<li>An example <code>templates</code> is <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/covid-templates.json">here</a></li>
+<li>An example <code>original</code> is <a href="https://github.com/Consensas/jsonxt/blob/main/data/w3vc-1-1.json">here</a></li>
+<li>An example <code>templates</code> is <a href="https://github.com/Consensas/jsonxt/blob/main/data/covid-templates.json">here</a></li>
 </ul>
 
 <p>The <code>templates</code> can have multiple compression formats encoded,
@@ -133,7 +133,7 @@ they will be selected by TYPE and VERSION.</p>
 
 <p>This is a compression of 279 bytes to 101 bytes: 36% of the original size.</p>
 
-<p>See <a href="https://github.com/Consensas/jsonxt/blob/main/test/pack.js">test code</a> for a more
+<p>See <a href="https://github.com/Consensas/jsonxt/blob/main/javascript/test/pack.js">test code</a> for a more
 fully worked through example.</p>
 
 <h3 id="toc_5">Decoding</h3>
@@ -143,7 +143,7 @@ fully worked through example.</p>
 <pre><code>const unpacked = await jsonxt.unpack(packed, jsonxt.resolve)
 </code></pre>
 
-<p>See <a href="https://github.com/Consensas/jsonxt/blob/main/test/resolve.js">test code</a> for a more
+<p>See <a href="https://github.com/Consensas/jsonxt/blob/main/javascript/test/resolve.js">test code</a> for a more
 fully worked through example.</p>
 
 <h3 id="toc_6">Resolving</h3>
@@ -180,8 +180,8 @@ Generally you can just use <code>jsonxt.resolve</code>.
         </p>
         <ul>
             <li>
-                <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/c4-1-1.json">Original</a> - 2254 bytes
-                (<a href="https://github.com/Consensas/jsonxt/blob/main/test/data/template.json">template</a>)
+                <a href="https://github.com/Consensas/jsonxt/blob/main/data/c4-1-1.json">Original</a> - 2254 bytes
+                (<a href="https://github.com/Consensas/jsonxt/blob/main/data/covid-templates.json">template</a>)
             </li>
             <li>
                 Packed - 522 bytes
@@ -199,8 +199,8 @@ Generally you can just use <code>jsonxt.resolve</code>.
         </p>
         <ul>
             <li>
-                <a href="https://github.com/Consensas/jsonxt/blob/main/test/data/w3vc-1-1.json">Original</a> - 1021 bytes
-                (<a href="https://github.com/Consensas/jsonxt/blob/main/test/data/template.json">template</a>)
+                <a href="https://github.com/Consensas/jsonxt/blob/main/data/w3vc-1-1.json">Original</a> - 1021 bytes
+                (<a href="https://github.com/Consensas/jsonxt/blob/main/data/covid-templates.json">template</a>)
             </li>
             <li>
                 Packed - 270 bytes

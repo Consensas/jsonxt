@@ -76,3 +76,8 @@ exports.decode = (rule, value) => {
         `${dd}`.padStart(2, "0"),
     ].join("-")
 }
+
+exports.schema = {
+    type: "string",
+    format: "date",
+}

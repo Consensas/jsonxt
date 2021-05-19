@@ -54,3 +54,7 @@ exports.decode = (rule, value) => {
 
     return _util.base32_to_integer(value)
 }
+
+exports.schema = {
+    type: "integer",
+}

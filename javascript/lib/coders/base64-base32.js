@@ -1,5 +1,5 @@
 /*
- *  lib/encoders/isodatetime-epoch-base32.js
+ *  lib/encoders/string-base32.js
  *
  *  David Janes
  *  Consenas
@@ -23,12 +23,14 @@
 "use strict"
 
 const _util = require("../_util")
-const NAME = "isodatetime-epoch-base32"
+const base64 = require('base64-js')
+const base32 = require("hi-base32")
+const NAME = "base64-base32"
 
 /**
- *  Encode full dates (to seconds, not milliseconds) relative 
- *  to the UNIX Epoch as a Base32 Integer
+ *  TESTING ONLY (for now, anyway)
  */
+/* istanbul ignore next */
 exports.encode = (rule, value) => {
     const jsonxt = require("..")
 
@@ -37,20 +39,21 @@ exports.encode = (rule, value) => {
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
     } else if (!_util.isString(value)) {
-        throw new Error(`${NAME}: expected value to be string`)
+        throw new Error(`${NAME}: expected value to be string (got "${value}")`)
     }
 
-    if (!value.match(/^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ$/)) {
-        throw new Error(`${NAME}: unexpected value="${value}"`)
+    if (value === "") {
+        return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
+    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
+        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + base32.encode(base64.toByteArray(`${value}`))
+    } else {
+        return base32.encode(base64.toByteArray(`${value}`))
     }
-
-    const date = new Date(value)
-
-    return _util.integer_to_base32(Math.round(date.getTime() / 1000))
 }
 
 /**
  */
+/* istanbul ignore next */
 exports.decode = (rule, value) => {
     const jsonxt = require("..")
 
@@ -58,15 +61,25 @@ exports.decode = (rule, value) => {
         return null
     } else if ((value === rule.UNDEFINED) || (value === jsonxt.ENCODE.UNDEFINED)) {
         return undefined
+    } else if ((value === rule.EMPTY_STRING) || (value === jsonxt.ENCODE.EMPTY_STRING)) {
+        return ""
     }
 
-    const seconds = _util.base32_to_integer(value)
-    const date = new Date(seconds * 1000)
+    if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
+        if (value[1] === jsonxt.ENCODE.ESCAPE) {
+            value = value.substring(2)
+            value = "~" + base64.fromByteArray(base32.decode.asBytes(`${value}`))
+        } else {
+            value = value.substring(1)
+            value = "~" + base64.fromByteArray(base32.decode.asBytes(`${value}`))
+        }
+    } else {
+        value = base64.fromByteArray(base32.decode.asBytes(`${value}`))
+    }
 
-    return date.toISOString().replace(/....Z$/, "Z")
+    return value
 }
 
 exports.schema = {
     type: "string",
-    format: "date-time",
 }
