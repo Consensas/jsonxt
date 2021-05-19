@@ -44,10 +44,6 @@ describe("resolve", function() {
         _util.shims_off()
     })
 
-    it("works - (sample-dns @ jsonxt.io - DNS)", async function() {
-        const templates$ = await jsonxt.resolve("jsonxt.io", "sample-dns")
-        assert.ok(templates$)
-    })
     it("works - (sample-wk @ jsonxt.io - well-known)", async function() {
         const templates$ = await jsonxt.resolve("jsonxt.io", "sample-wk.txt")
         assert.ok(templates$)
