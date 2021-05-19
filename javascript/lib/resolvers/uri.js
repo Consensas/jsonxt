@@ -33,7 +33,12 @@ const resolve = async (resolver_name, resolver_key) => {
         url = `${resolver_name}/${resolver_key}`
     }
 
-    return await _util.fetch(url)
+    try {
+        const page = await _util.fetch(url);
+        return page;
+    } catch {
+        return null;
+    }
 }
 
 /**

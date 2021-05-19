@@ -29,7 +29,12 @@ const _util = require("../_util")
 const resolve = async (resolver_name, resolver_key) => {
     const url = `https://${resolver_name}/.well-known/${resolver_key}`
 
-    return await _util.fetch(url)
+    try {
+        const page = await _util.fetch(url);
+        return page;
+    } catch {
+        return null;
+    }
 }
 
 /**
