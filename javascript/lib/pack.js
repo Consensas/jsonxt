@@ -92,7 +92,15 @@ const pack = async (original, templates, type, version, resolver_name, paramd) =
 }
 
 /**
+ */
+const resolvePack = async (original, type, version, resolver_name, resolver_resolver, paramd) => {
+    let templates = await resolver_resolver(resolver_name, "templates.json")
+    return await pack(original, JSON.parse(templates), type, version, resolver_name, paramd);
+}
+
+/**
  *  API
  */
 exports.pack = pack
+exports.resolvePack = resolvePack
 exports.pack.payload = pack_payload
