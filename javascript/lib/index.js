@@ -36,6 +36,9 @@ module.exports = Object.assign(
             "isodatetime-epoch-base32": require("./coders/isodatetime-epoch-base32").encode,
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").encode,
             "json": require("./coders/json").encode,
+            "did": require("./coders/did").encode,
+            "did:web": require("./coders/did.web").encode,
+            "urn:uvci": require("./coders/urn.uvci").encode,
             "string-base32": require("./coders/string-base32").encode,
             "base64-base32": require("./coders/base64-base32").encode,
             "string": require("./coders/string").encode
@@ -46,6 +49,9 @@ module.exports = Object.assign(
             "isodatetime-epoch-base32": require("./coders/isodatetime-epoch-base32").decode,
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").decode,
             "json": require("./coders/json").decode,
+            "did": require("./coders/did").decode,
+            "did:web": require("./coders/did.web").decode,
+            "urn:uvci": require("./coders/urn.uvci").decode,
             "string-base32": require("./coders/string-base32").decode,
             "base64-base32": require("./coders/base64-base32").decode,
             "string": require("./coders/string").decode
