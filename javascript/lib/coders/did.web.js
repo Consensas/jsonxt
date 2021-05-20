@@ -1,5 +1,5 @@
 /*
- *  lib/encoders/did.js
+ *  lib/encoders/did.web.js
  *
  *  Vitor Pamplona
  *  PathCheck Foundation
@@ -23,9 +23,9 @@
 "use strict"
 
 const _prefixRemover = require("./_prefix-remover")
-const NAME = "did"
+const NAME = "did:web:"
 
-const prefix = "did:";
+const prefix = "did:web:";
 
 /**
  */

@@ -1,5 +1,5 @@
 /*
- *  lib/encoders/did.js
+ *  lib/encoders/did.uvci.js
  *
  *  Vitor Pamplona
  *  PathCheck Foundation
@@ -22,7 +22,7 @@
 
 "use strict"
 
-const _util = require("../_util")
+const _prefixRemover = require("./_prefix-remover")
 const NAME = "urn:uvci"
 
 const prefix = "urn:uvci:";
@@ -30,51 +30,13 @@ const prefix = "urn:uvci:";
 /**
  */
 exports.encode = (rule, value) => {
-    const jsonxt = require("..")
-
-    if (_util.isNull(value)) {
-        return rule.NULL || jsonxt.ENCODE.NULL
-    } else if (_util.isUndefined(value)) {
-        return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
-    } else if (!value.startsWith(prefix)) {
-        throw new Error(`${NAME}: expected value to be a ${prefix} (got "${value}")`)
-    }
-
-    if (value === "") {
-        return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
-    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtended(value.slice(prefix.length+1))
-    } else {
-        return _util.encodeExtended(value.slice(prefix.length))
-    }
+    return _prefixRemover.encode(rule, value, prefix);
 }
 
 /**
  */
 exports.decode = (rule, value) => {
-    const jsonxt = require("..")
-
-    if ((value === rule.NULL) || (value === jsonxt.ENCODE.NULL)) {
-        return null
-    } else if ((value === rule.UNDEFINED) || (value === jsonxt.ENCODE.UNDEFINED)) {
-        return undefined
-    } else if ((value === rule.EMPTY_STRING) || (value === jsonxt.ENCODE.EMPTY_STRING)) {
-        return ""
-    }
-
-    if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        if (value[1] === jsonxt.ENCODE.ESCAPE) {
-            value = value.substring(2)
-            value = "~" + prefix+_util.decodeExtended(value)
-        } else {
-            value = value.substring(1)
-            value = "~" + prefix+_util.decodeExtended(value)
-        }
-    } else {
-        value = prefix+_util.decodeExtended(value)
-    }
-
-    return value
+    return _prefixRemover.decode(rule, value, prefix);
 }
 
 exports.schema = {
