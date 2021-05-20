@@ -24,6 +24,18 @@
 
 const _util = require("./_util")
 
+var simpleCache = new Map();;
+
+function addCache(resolver_name, resolver_key, result) {
+    if (simpleCache.size > 100) 
+        simpleCache.clear();
+    simpleCache.set(resolver_name + resolver_key, result);
+}
+
+function getCache(resolver_name, resolver_key) {
+    return simpleCache.get(resolver_name + resolver_key);
+}
+
 /**
  */
 const resolve = async (resolver_name, resolver_key) => {
@@ -45,4 +57,26 @@ const resolve = async (resolver_name, resolver_key) => {
 
 /**
  */
+const resolveCache = async (resolver_name, resolver_key) => {
+    const cached = getCache(resolver_name, resolver_key);
+    if (cached) {
+        //console.log("Returning cached versiono for ", resolver_name, resolver_key)
+        return cached;
+    } else {
+        //console.log("Not Cached yet ", resolver_name, resolver_key);
+    }
+
+    let result = await resolve(resolver_name, resolver_key);
+
+    if (result) {
+        addCache(resolver_name, resolver_key, result);
+        return result;
+    }
+
+    return null
+}
+
+/**
+ */
 exports.resolve = resolve
+exports.resolveCache = resolveCache
