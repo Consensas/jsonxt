@@ -1,31 +1,31 @@
 {
-    "author": "",
+    "author": "", 
     "bugs": {
         "url": "https://github.com/dpjanes/jsonxt/issues"
-    },
-    "description": "JSON External Templates",
-    "homepage": "https://jsonxt.io",
-    "license": "Apache-2.0",
-    "main": "index.js",
-    "name": "jsonxt",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dpjanes/jsonxt"
-    },
-    "scripts": {
-        "cover": "nyc --reporter=html mocha --recursive",
-        "test": "mocha --recursive --bail",
-        "webpack": "webpack --config webpack.config.js"
-    },
-    "version": "0.0.11",
+    }, 
     "dependencies": {
-        "base32url": "^0.0.3",
-        "base64-js": "^1.5.1",
-        "js-yaml": "^4.1.0",
-        "lodash": "^4.17.21"
-    },
+        "base32url": "~0.0.4", 
+        "base64-js": "~1.5.1"
+    }, 
+    "description": "JSON External Templates", 
     "devDependencies": {
-        "webpack": "^4.44.1",
-        "webpack-cli": "^4.6.0"
-    }
+        "js-yaml": "~4.1.0", 
+        "lodash": "~4.17.21", 
+        "webpack": "^4.44.1", 
+        "webpack-cli": "~4.7.0"
+    }, 
+    "homepage": "https://jsonxt.io", 
+    "license": "Apache-2.0", 
+    "main": "index.js", 
+    "name": "jsonxt", 
+    "repository": {
+        "type": "git", 
+        "url": "https://github.com/dpjanes/jsonxt"
+    }, 
+    "scripts": {
+        "cover": "nyc --reporter=html mocha --recursive", 
+        "test": "mocha --recursive --bail", 
+        "webpack": "webpack --config webpack.config.js"
+    }, 
+    "version": "0.0.12"
 }
