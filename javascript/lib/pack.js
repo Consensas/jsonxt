@@ -32,11 +32,11 @@ const pack_array = async (array, template, templates) => {
         return null;
     }
 
-    let array = [array.length];
+    let packedArray = [array.length];
     for (let index = 0; index < array.length; index++) {
-        Array.prototype.push.apply(array, await pack_template(array[index], template, templates));
+        Array.prototype.push.apply(packedArray, await pack_template(array[index], template, templates));
     }
-    return array;
+    return packedArray;
 } 
 
 /**
