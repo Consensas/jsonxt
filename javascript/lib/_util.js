@@ -105,36 +105,29 @@ const set = (d, key, value) => {
 const encode = s => encodeURIComponent(s) 
 const decode = s => decodeURIComponent(s)
 
-const encodeExtendedSpace = s => {
+const encodeExtended = (s, hex) => {
     s = encodeURIComponent(s)
     s = s.replace(/~/g, "%7E")
-    s = s.replace(/%20/g, "~")
+    s = s.replace(new RegExp(hex, "g"), "~")
 
     return s
 }
 
-const decodeExtendedSpace = s => {
-    s = s.replace(/~/g, "%20")
+const decodeExtended = (s, hex) => {
+    s = s.replace(/~/g, hex)
     s = decodeURIComponent(s)
 
     return s
 }
 
-const encodeExtendedSlash = s => {
-    s = encodeURIComponent(s)
-    s = s.replace(/~/g, "%7E")
-    s = s.replace(/%2F/g, "~")
+const encodeExtendedSpace = s => encodeExtended(s, "%20") 
+const encodeExtendedSlash = s => encodeExtended(s, "%2F") 
 
-    return s
-}
+const decodeExtendedSpace = s => decodeExtended(s, "%20") 
+const decodeExtendedSlash = s => decodeExtended(s, "%2F") 
 
-const decodeExtendedSlash = s => {
-    s = s.replace(/~/g, "%2F")
-    s = decodeURIComponent(s)
-
-    return s
-}
-
+const encodeExtendedColon = s => encodeExtended(s, "%3A") 
+const decodeExtendedColon = s => decodeExtended(s, "%3A") 
 
 /**
  */
@@ -234,10 +227,6 @@ exports.set = set
 exports.delete = delete_
 exports.encode = encode
 exports.decode = decode
-exports.encodeExtendedSpace = encodeExtendedSpace
-exports.decodeExtendedSpace = decodeExtendedSpace
-exports.encodeExtendedSlash = encodeExtendedSlash
-exports.decodeExtendedSlash = decodeExtendedSlash
 exports.isPlainObject = isPlainObject
 exports.isBuffer = isBuffer
 exports.isString = isString
@@ -250,6 +239,13 @@ exports.isBoolean = isBoolean
 exports.isFunction = isFunction
 exports.isEqual = isEqual
 exports.fetch = fetch
+
+exports.encodeExtendedSpace = encodeExtendedSpace
+exports.decodeExtendedSpace = decodeExtendedSpace
+exports.encodeExtendedSlash = encodeExtendedSlash
+exports.decodeExtendedSlash = decodeExtendedSlash
+exports.encodeExtendedColon = encodeExtendedColon
+exports.decodeExtendedColon = decodeExtendedColon
 
 exports.prefixRemoverEncode = prefixRemoverEncode
 exports.prefixRemoverDecode = prefixRemoverDecode
