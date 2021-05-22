@@ -25,28 +25,61 @@
 const _util = require("./_util")
 
 /**
- *  
+ *  Packs an $array of objects using the type $template
  */
-const pack_payload = async (original, template) => {
+const pack_array = async (array, template, templates) => {
+    if (array == null || array == undefined) {
+        return null;
+    }
+
+    let packedArray = [array.length];
+    for (let index = 0; index < array.length; index++) {
+        Array.prototype.push.apply(packedArray, await pack_template(array[index], template, templates));
+    }
+    return packedArray;
+} 
+
+/**
+ *  Packs an array with $original's fields following the $template 
+ */
+const pack_template = async (original, template, templates) => {
     const jsonxt = require("..")
 
     const payload = []
 
     if (template && template.columns) {
         for (let rule of template.columns) {
-            const original_value = _util.get(original, rule.path)
+            const original_value = _util.get(original, rule.path);
 
-            const encoder = jsonxt.encoders[rule.encoder]
-            if (!encoder) {
-                throw new Error(`unknown encoding: ${rule.encoder}`)
+            if (rule.encoder === "array") {
+                const encodedArray = await pack_array(original_value, templates[rule.encoder_param], templates);
+
+                if (encodedArray) {
+                    Array.prototype.push.apply(payload, encodedArray);
+                } else {
+                    payload.push(rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED);
+                }
+            } else {
+                const encoder = jsonxt.encoders[rule.encoder]
+                if (!encoder) {
+                    throw new Error(`unknown encoding: ${rule.encoder}`)
+                }
+
+                const encoded_value = encoder(rule, original_value)
+
+                payload.push(encoded_value)
             }
-
-            const encoded_value = encoder(rule, original_value)
-
-            payload.push(encoded_value)
         }
     }
 
+    return payload;
+}
+
+/**
+ *  Recursively creates an array payload fields and turns it into a string
+ */
+const pack_payload = async (original, template, templates) => {
+    const payload = await pack_template(original, template, templates);
     return payload.join("/").replace(/[/]*$/, "")
 }
 
@@ -87,7 +120,7 @@ const pack = async (original, templates, type, version, resolver_name, paramd) =
         upme(_util.encode(resolver_name)),
         upme(_util.encode(type)),
         upme(_util.encode(version)),
-        await pack_payload(original, template),
+        await pack_payload(original, template, templates),
     ].join(":")
 }
 

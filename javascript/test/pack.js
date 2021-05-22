@@ -201,6 +201,228 @@ describe("pack", function() {
         })
     })
 
+    describe("arrays", function() {
+        const ARRAY_TEMPLATES = {
+            "data:1": {
+                "columns": [
+                    {"path": "people", "encoder": "array", "encoder_param": "person:1"},
+                ],
+                "template": {}
+            },
+            "person:1": {
+                "columns": [
+                {"path": "given", "encoder": "string"},
+                {"path": "family", "encoder": "string"},
+                {"path": "ids", "encoder": "array", "encoder_param": "identification:1"},
+                ],
+                "template": {
+                    "type": "Person"
+                }
+            },
+            "identification:1": {
+                "columns": [
+                {"path": "name", "encoder": "string"},
+                {"path": "number", "encoder": "string"}
+                ],
+                "template": {
+                    "type": "IdentificationDocument"
+                }
+            }
+        };
+
+        it("should pack multiple arrays", async function() {
+            const json = {
+                "people": [{
+                    "type": "Person",
+                    "given": "Jane",
+                    "family": "Doe",
+                    "ids": [{
+                        "type": "IdentificationDocument",
+                        "name": "MDL",
+                        "number": "23EFG3D5CC"
+                    }, {
+                        "type": "IdentificationDocument",
+                        "name": "Passport",
+                        "number": "YNW32ND"
+                    }]
+                }, {
+                    "type": "Person",
+                    "given": "John",
+                    "family": "Doe", 
+                    "ids": [{
+                        "type": "IdentificationDocument",
+                        "name": "MDL",
+                        "number": "94568DDS1"
+                    }, {
+                        "type": "IdentificationDocument",
+                        "name": "Passport",
+                        "number": "2SC6223"
+                    }]
+                }]
+            };
+            
+            const unpacked = await jsonxt.pack(json, ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+
+            const got = unpacked
+            const want = "jxt:jsonxt.io:data:1:2/Jane/Doe/2/MDL/23EFG3D5CC/Passport/YNW32ND/John/Doe/2/MDL/94568DDS1/Passport/2SC6223";
+
+            assert.deepEqual(got, want)
+        });
+
+        it("should pack empty arrays", async function() {
+            const json = {
+                "people": []
+            };
+            
+            const unpacked = await jsonxt.pack(json, ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+
+            const got = unpacked
+            const want = "jxt:jsonxt.io:data:1:0";
+
+            assert.deepEqual(got, want)
+        })
+
+        it("should pack null arrays", async function() {
+            const json = {
+                
+            };
+            
+            const unpacked = await jsonxt.pack(json, ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+
+            const got = unpacked
+            const want = "jxt:jsonxt.io:data:1:";
+
+            assert.deepEqual(got, want)
+        })
+    })
+
+    describe("mixed arrays", function() {
+        const MIXED_ARRAY_TEMPLATES = {
+            "data:1": {
+                "columns": [
+                    {"path": "id", "encoder": "string"},
+                    {"path": "people", "encoder": "array", "encoder_param": "person:1"},
+                    {"path": "type", "encoder": "string"},
+                ],
+                "template": {}
+            },
+            "person:1": {
+                "columns": [
+                    {"path": "given", "encoder": "string"},
+                    {"path": "family", "encoder": "string"},
+                ],
+                "template": {
+                    "type": "Person"
+                }
+            },
+        };
+
+        it("should pack and unpack arrays between other fields", async function() {
+            const json = {
+                "id": "identification",
+                "people": [{
+                    "type": "Person",
+                    "given": "Jane",
+                    "family": "Doe",
+                }, {
+                    "type": "Person",
+                    "given": "John",
+                    "family": "Doe", 
+                }], 
+                "type": "myType"
+            };
+            
+            const packed = await jsonxt.pack(json, MIXED_ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return MIXED_ARRAY_TEMPLATES;
+            });
+
+            assert.deepEqual(json, unpacked);
+        });
+
+        it("should pack and unpack arrays between other fields, with first being null", async function() {
+            const json = {
+                "people": [{
+                    "type": "Person",
+                    "given": "Jane",
+                    "family": "Doe",
+                }, {
+                    "type": "Person",
+                    "given": "John",
+                    "family": "Doe", 
+                }], 
+                "type": "myType"
+            };
+            
+            const packed = await jsonxt.pack(json, MIXED_ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return MIXED_ARRAY_TEMPLATES;
+            });
+
+            assert.deepEqual(json, unpacked);
+        });
+
+
+        it("should pack and unpack arrays between other fields, with last being null", async function() {
+            const json = {
+                "id": "identification",
+                "people": [{
+                    "type": "Person",
+                    "given": "Jane",
+                    "family": "Doe",
+                }, {
+                    "type": "Person",
+                    "given": "John",
+                    "family": "Doe", 
+                }]
+            };
+            
+            const packed = await jsonxt.pack(json, MIXED_ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return MIXED_ARRAY_TEMPLATES;
+            });
+
+            assert.deepEqual(json, unpacked);
+        });
+
+        it("should pack and unpack arrays between other fields, with array being null", async function() {
+            const json = {
+                "id": "identification",
+                "type": "myType"
+            };
+            
+            const packed = await jsonxt.pack(json, MIXED_ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+            console.log(packed);
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return MIXED_ARRAY_TEMPLATES;
+            });
+
+            assert.deepEqual(json, unpacked);
+        });
+
+        it("should pack empty arrays", async function() {
+            const json = {
+                "people": []
+            };
+            
+            const packed = await jsonxt.pack(json, MIXED_ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+            const unpacked = await jsonxt.unpack(packed, () => { return MIXED_ARRAY_TEMPLATES; });
+
+            assert.deepEqual(json, unpacked);
+        })
+
+        it("should pack null arrays", async function() {
+            const json = {
+                
+            };
+            
+            const packed = await jsonxt.pack(json, MIXED_ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
+            const unpacked = await jsonxt.unpack(packed, () => { return MIXED_ARRAY_TEMPLATES; });
+
+            assert.deepEqual(json, unpacked);
+        })
+    })
+
     it("edge case - no columns", async function() {
         const template = {}
 
