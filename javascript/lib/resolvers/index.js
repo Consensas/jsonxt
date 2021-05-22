@@ -24,7 +24,6 @@
 
 module.exports = Object.assign(
     {},
-    require("./dns"),
     require("./uri"),
     require("./well-known"),
 )

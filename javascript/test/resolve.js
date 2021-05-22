@@ -44,10 +44,6 @@ describe("resolve", function() {
         _util.shims_off()
     })
 
-    it("works - (sample-dns @ jsonxt.io - DNS)", async function() {
-        const templates$ = await jsonxt.resolve("jsonxt.io", "sample-dns")
-        assert.ok(templates$)
-    })
     it("works - (sample-wk @ jsonxt.io - well-known)", async function() {
         const templates$ = await jsonxt.resolve("jsonxt.io", "sample-wk.txt")
         assert.ok(templates$)
@@ -95,5 +91,51 @@ describe("resolve", function() {
                 assert.deepEqual(got, want)
             })
         }
+    })
+})
+
+describe("resolveCache", function() {
+    before(function() {
+        _util.shims_on()
+    })
+
+    after(function() {
+        _util.shims_off()
+    })
+
+    it("works - (sample-wk @ jsonxt.io - well-known)", async function() {
+        const templates1 = await jsonxt.resolveCache("jsonxt.io", "sample-wk.txt");
+        const templates2 = await jsonxt.resolveCache("jsonxt.io", "sample-wk.txt");
+        assert.ok(templates1)
+        assert.ok(templates2)
+        assert.ok(templates1 == templates2); // must be exactly the same object if it was cached. 
+    })
+    it("works - (sample-wk @ jsonxt.io - partial uri)", async function() {
+        const templates1 = await jsonxt.resolveCache("jsonxt.io/.well-known/", "sample-wk.txt")
+        const templates2 = await jsonxt.resolveCache("jsonxt.io/.well-known/", "sample-wk.txt")
+        assert.ok(templates1)
+        assert.ok(templates2)
+        assert.ok(templates1 == templates2); // must be exactly the same object if it was cached. 
+    })
+    it("works - (sample-wk @ jsonxt.io - full uri)", async function() {
+        const templates1 = await jsonxt.resolveCache("https://jsonxt.io/.well-known/", "sample-wk.txt")
+        const templates2 = await jsonxt.resolveCache("https://jsonxt.io/.well-known/", "sample-wk.txt")
+        assert.ok(templates1)
+        assert.ok(templates2)
+        assert.ok(templates1 == templates2); // must be exactly the same object if it was cached. 
+    })
+    it("works - (templates.json @ jsonxt.io - well-known)", async function() {
+        const templates1 = await jsonxt.resolveCache("jsonxt.io", "templates.json")
+        const templates2 = await jsonxt.resolveCache("jsonxt.io", "templates.json")
+        assert.ok(templates1)
+        assert.ok(templates2)
+        assert.ok(templates1 == templates2); // must be exactly the same object if it was cached. 
+    })
+    it("works - expected null on weird resolver", async function() {
+        const got1 = await jsonxt.resolveCache("does not exist", "templates.json")
+        const got2 = await jsonxt.resolveCache("does not exist", "templates.json")
+        const want = null
+        assert.deepEqual(got1, want)
+        assert.deepEqual(got2, want)
     })
 })

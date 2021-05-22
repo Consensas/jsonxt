@@ -54,3 +54,7 @@ exports.decode = (rule, value) => {
 
     return JSON.parse(_util.decode(value))
 }
+
+exports.schema = {
+    type: "json",
+}

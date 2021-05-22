@@ -1,8 +1,8 @@
 /*
- *  lib/encoders/string-base32.js
+ *  lib/encoders/did.uvci.js
  *
- *  David Janes
- *  Consenas
+ *  Vitor Pamplona
+ *  PathCheck Foundation
  *  2021-03-16
  *
  *  Copyright (2013-2021) Consensas
@@ -22,37 +22,21 @@
 
 "use strict"
 
-const _util = require("../_util")
-const NAME = "string-base32"
+const _prefixRemover = require("./_prefix-remover")
+const NAME = "urn:uvci"
+
+const prefix = "urn:uvci:";
 
 /**
- *  TESTING ONLY (for now, anyway)
  */
-/* istanbul ignore next */
 exports.encode = (rule, value) => {
-    const jsonxt = require("..")
-
-    if (_util.isNull(value)) {
-        return rule.NULL || jsonxt.ENCODE.NULL
-    } else if (_util.isUndefined(value)) {
-        return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
-    }
-    return require("base32url").encode(`${value}`)
+    return _prefixRemover.encode(rule, value, prefix);
 }
 
 /**
  */
-/* istanbul ignore next */
 exports.decode = (rule, value) => {
-    const jsonxt = require("..")
-
-    if ((value === rule.NULL) || (value === jsonxt.ENCODE.NULL)) {
-        return null
-    } else if ((value === rule.UNDEFINED) || (value === jsonxt.ENCODE.UNDEFINED)) {
-        return undefined
-    }
-
-    throw new Error(`${NAME}: not implemented`)
+    return _prefixRemover.decode(rule, value, prefix);
 }
 
 exports.schema = {

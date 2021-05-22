@@ -1,8 +1,8 @@
 /*
- *  lib/encoders/string.js
+ *  lib/encoders/_prefix-remover.js
  *
- *  David Janes
- *  Consenas
+ *  Vitor Pamplona
+ *  PathCheck Foundation
  *  2021-03-16
  *
  *  Copyright (2013-2021) Consensas
@@ -23,37 +23,31 @@
 "use strict"
 
 const _util = require("../_util")
-const NAME = "string"
 
-/**
- */
-exports.encode = (rule, value) => {
+//** Utility class for many encoders based on removing and readding a previx */
+
+exports.encode = (rule, value, prefix) => {
     const jsonxt = require("..")
 
     if (_util.isNull(value)) {
         return rule.NULL || jsonxt.ENCODE.NULL
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
-    } else if (!_util.isString(value)) {
-        throw new Error(`${NAME}: expected value to be string (got "${value}")`)
-    }
-
-    if (rule.compact && (rule.compact.indexOf(value) > -1)) {
-        return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(rule.compact.indexOf(value))
+    } else if (!value.startsWith(prefix)) {
+        throw new Error(`Expected value to be prefixed with ${prefix} (got "${value}")`)
     }
 
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
     } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.substring(1))
+        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtended(value.slice(prefix.length+1))
     } else {
-        return _util.encodeExtendedSpace(value)
+        return _util.encodeExtended(value.slice(prefix.length))
     }
 }
 
-/**
- */
-exports.decode = (rule, value) => {
+
+exports.decode = (rule, value, prefix) => {
     const jsonxt = require("..")
 
     if ((value === rule.NULL) || (value === jsonxt.ENCODE.NULL)) {
@@ -67,24 +61,14 @@ exports.decode = (rule, value) => {
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
             value = value.substring(2)
-            value = "~" + _util.decodeExtendedSpace(value)
+            value = "~" + prefix+_util.decodeExtended(value)
         } else {
-            if (rule.compact) {
-                const index = _util.integer_to_base32(value.substring(1))
-                if ((index >= 0) && (index < rule.compact.length)) {
-                    return rule.compact[index]
-                }
-            }
-            
-            throw new Error(`did not understand escape sequence "${value}"`)
+            value = value.substring(1)
+            value = "~" + prefix+_util.decodeExtended(value)
         }
     } else {
-        value = _util.decodeExtendedSpace(value)
+        value = prefix+_util.decodeExtended(value)
     }
 
     return value
-}
-
-exports.schema = {
-    type: "string",
 }
