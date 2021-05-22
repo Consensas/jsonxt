@@ -145,6 +145,107 @@ describe("unpack", function() {
             })
         })
     })
+
+    describe("arrays", function() {
+        const ARRAY_TEMPLATES = {
+            "data:1": {
+                "columns": [
+                    {"path": "people", "encoder": "array", "encoder_param": "person:1"},
+                ],
+                "template": {}
+            },
+            "person:1": {
+                "columns": [
+                {"path": "given", "encoder": "string"},
+                {"path": "family", "encoder": "string"},
+                {"path": "ids", "encoder": "array", "encoder_param": "identification:1"},
+                ],
+                "template": {
+                    "type": "Person"
+                }
+            },
+            "identification:1": {
+                "columns": [
+                {"path": "name", "encoder": "string"},
+                {"path": "number", "encoder": "string"}
+                ],
+                "template": {
+                    "type": "IdentificationDocument"
+                }
+            }
+        };
+
+        it("should unpack multiple arrays", async function() {
+            const packed = "JXT::data:1:2/Jane/Doe/2/MDL/23EFG3D5CC/Passport/YNW32ND/John/Doe/2/MDL/94568DDS1/Passport/2SC6223"
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return ARRAY_TEMPLATES;
+            });
+
+            const got = unpacked
+            const want = {
+                "people": [{
+                    "type": "Person",
+                    "given": "Jane",
+                    "family": "Doe",
+                    "ids": [{
+                        "type": "IdentificationDocument",
+                        "name": "MDL",
+                        "number": "23EFG3D5CC"
+                    }, {
+                        "type": "IdentificationDocument",
+                        "name": "Passport",
+                        "number": "YNW32ND"
+                    }]
+                }, {
+                    "type": "Person",
+                    "given": "John",
+                    "family": "Doe", 
+                    "ids": [{
+                        "type": "IdentificationDocument",
+                        "name": "MDL",
+                        "number": "94568DDS1"
+                    }, {
+                        "type": "IdentificationDocument",
+                        "name": "Passport",
+                        "number": "2SC6223"
+                    }]
+                }]
+            };
+
+            assert.deepEqual(got, want)
+        })
+
+        it("should unpack empty arrays", async function() {
+            const packed = "JXT::data:1:0"
+            const want = {
+                "people": []
+            };
+            
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return ARRAY_TEMPLATES;
+            });
+
+            const got = unpacked
+
+            assert.deepEqual(got, want)
+        })
+
+        it("should unpack null arrays", async function() {
+            const packed = "JXT::data:1:"
+            const want = {
+                
+            };
+            
+            const unpacked = await jsonxt.unpack(packed, () => {
+                return ARRAY_TEMPLATES;
+            });
+            
+            const got = unpacked
+
+            assert.deepEqual(got, want)
+        })
+    })
+
     describe("edge cases", function() {
         const NAME = "w3vc-1-1"
         const TYPE = "w3vc"

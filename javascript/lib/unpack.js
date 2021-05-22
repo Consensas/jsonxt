@@ -24,35 +24,70 @@
 
 const _util = require("./_util")
 
-/**
- *  
- */
-const unpack_payload = async (payload, template) => {
-    const jsonxt = require("..")
 
-    const minors = payload.split("/")
+/**
+ *  Unpacks from $payloadStack an array of $arraySize elements of the type $template 
+ */
+const unpack_array = async (payloadStack, arraySize, template, templates) => {
+    if (arraySize == null ||  arraySize == undefined  ||  arraySize === "") {
+        return null;
+    }
+
+    let array = [];
+    for (let index = 0; index < parseInt(arraySize); index++) {
+        array.push(await unpack_template(payloadStack, template, templates));
+    }
+    return array;
+} 
+
+/**
+ *  Unpacks from $payloadStack all fields of the type $template 
+ */
+const unpack_template = async (payloadStack, template, templates) => {
+    const jsonxt = require("..")
     const unpacked = JSON.parse(JSON.stringify(template.template || {}))
 
     if (template && template.columns) {
-        for (let li = 0; li < template.columns.length && li < minors.length; li++) {
-            const packed_value = minors[li]
+        for (let li = 0; li < template.columns.length && payloadStack.length > 0; li++) {
+            let payloadElement = payloadStack.shift();
             const rule = template.columns[li]
 
-            const decoder = jsonxt.decoders[rule.encoder]
-            if (!decoder) {
-                throw new Error(`unknown decoding: ${rule.encoder}`)
-            }
+            if (rule.encoder === "array") {
+                const arraySize = payloadElement;
+                const nestedTemplate = templates[rule.encoder_param];
+                if (!_util.isPlainObject(nestedTemplate)) {
+                    throw new Error(`jsonxt.unpack: 'templates["${type}:${version}"]' not String`)
+                }
 
-            const unpacked_value = decoder(rule, packed_value)
-            if (_util.isUndefined(unpacked_value)) {
-                continue
-            }
+                const unpackedArray = await unpack_array(payloadStack, arraySize, nestedTemplate, templates);
+                if (unpackedArray) {
+                    _util.set(unpacked, rule.path, unpackedArray);
+                }
+            } else {
+                const decoder = jsonxt.decoders[rule.encoder]
+                if (!decoder) {
+                    throw new Error(`unknown decoding: ${rule.encoder}`)
+                }
 
-            _util.set(unpacked, rule.path, unpacked_value)
+                const unpacked_value = decoder(rule, payloadElement)
+                if (_util.isUndefined(unpacked_value)) {
+                    continue
+                }
+
+                _util.set(unpacked, rule.path, unpacked_value)
+            }
         }
     }
 
     return unpacked
+}
+
+/**
+ *  Creates a stack of payload fields to unpack and starts the recursion 
+ */
+const unpack_payload = async (payload, template, templates) => {
+    const payloadStack = payload.split("/");
+    return await unpack_template(payloadStack, template, templates)
 }
 
 /**
@@ -97,7 +132,7 @@ const unpack = async (packed, resolver_resolver) => {
         throw new Error(`jsonxt.unpack: 'templates["${type}:${version}"]' not String`)
     }
 
-    return await unpack_payload(majors[4], template)
+    return await unpack_payload(majors[4], template, templates)
 }
 
 /**
