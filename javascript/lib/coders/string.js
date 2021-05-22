@@ -45,9 +45,9 @@ exports.encode = (rule, value) => {
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
     } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtended(value.substring(1))
+        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.substring(1))
     } else {
-        return _util.encodeExtended(value)
+        return _util.encodeExtendedSpace(value)
     }
 }
 
@@ -67,7 +67,7 @@ exports.decode = (rule, value) => {
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
             value = value.substring(2)
-            value = "~" + _util.decodeExtended(value)
+            value = "~" + _util.decodeExtendedSpace(value)
         } else {
             if (rule.compact) {
                 const index = _util.integer_to_base32(value.substring(1))
@@ -79,7 +79,7 @@ exports.decode = (rule, value) => {
             throw new Error(`did not understand escape sequence "${value}"`)
         }
     } else {
-        value = _util.decodeExtended(value)
+        value = _util.decodeExtendedSpace(value)
     }
 
     return value

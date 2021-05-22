@@ -181,4 +181,31 @@ describe("_util", function() {
 
         assert.deepEqual(got, want)
     })
+
+    for (let [ uri, encoded ] of [
+            [ "https://google.ca", "https%3A~~google.ca", ],
+            [ "HTTPS://google.ca", "HTTPS%3A~~google.ca", ],
+            [ "weird:case idea/something", "weird%3Acase%20idea~something", ],
+        ]) {
+            it("_util.encodeExtendedSlash: " + uri, function() {
+                const got = util.encodeExtendedSlash(uri);
+                const want = encoded
+                if (DUMP) {
+                    console.log("GOT", got)
+                    console.log("WANT", want)                    
+                }
+                assert.strictEqual(got, want)
+        })
+        it("_util.decodeExtendedSlash: " + uri, function() {
+            const got = util.decodeExtendedSlash(encoded);
+            const want = uri
+            if (DUMP) {
+                console.log("GOT", got)
+                console.log("WANT", want)                    
+            }
+            assert.strictEqual(got, want)
+    })
+
+    }
+
 })

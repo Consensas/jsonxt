@@ -22,7 +22,7 @@
 
 "use strict"
 
-const _prefixRemover = require("./_prefix-remover")
+const _util = require("../_util")
 const NAME = "did"
 
 const prefix = "did:";
@@ -30,13 +30,13 @@ const prefix = "did:";
 /**
  */
 exports.encode = (rule, value) => {
-    return _prefixRemover.encode(rule, value, prefix);
+    return _util.prefixRemoverEncode(rule, value, prefix);
 }
 
 /**
  */
 exports.decode = (rule, value) => {
-    return _prefixRemover.decode(rule, value, prefix);
+    return _util.prefixRemoverDecode(rule, value, prefix);
 }
 
 exports.schema = {

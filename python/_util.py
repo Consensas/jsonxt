@@ -32,7 +32,7 @@ def isFunction(v):
 def isPlainObject(v):
     return True
 
-def decodeExtended(s):
+def decodeExtendedSpace(s):
     s = s.replace("~", u"%20")
     s = urllib.unquote(s)
 

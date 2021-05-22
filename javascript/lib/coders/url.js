@@ -1,9 +1,9 @@
 /*
- *  lib/encoders/_prefix-remover.js
+ *  lib/encoders/url.js
  *
- *  Vitor Pamplona
- *  PathCheck Foundation
- *  2021-03-16
+ *  David Janes
+ *  Consenas
+ *  2021-05-02
  *
  *  Copyright (2013-2021) Consensas
  *
@@ -22,32 +22,42 @@
 
 "use strict"
 
+const URL = require("url").URL
+
 const _util = require("../_util")
+const NAME = "url"
+const HTTPS = "https://"
 
-//** Utility class for many encoders based on removing and readding a previx */
-
-exports.encode = (rule, value, prefix) => {
+/**
+ */
+exports.encode = (rule, value) => {
     const jsonxt = require("..")
 
     if (_util.isNull(value)) {
         return rule.NULL || jsonxt.ENCODE.NULL
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
-    } else if (!value.startsWith(prefix)) {
-        throw new Error(`Expected value to be prefixed with ${prefix} (got "${value}")`)
+    } else if (!_util.isString(value)) {
+        throw new Error(`${NAME}: expected value to be string (got "${value}")`)
     }
 
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
-    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtended(value.slice(prefix.length+1))
+    }
+
+    // this will throw an error for invalid URLs
+    new URL(value)
+
+    if (value.startsWith(HTTPS)) {
+        return jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSlash(value.substring(HTTPS.length))
     } else {
-        return _util.encodeExtended(value.slice(prefix.length))
+        return _util.encodeExtendedSlash(value, "/")
     }
 }
 
-
-exports.decode = (rule, value, prefix) => {
+/**
+ */
+exports.decode = (rule, value) => {
     const jsonxt = require("..")
 
     if ((value === rule.NULL) || (value === jsonxt.ENCODE.NULL)) {
@@ -59,15 +69,9 @@ exports.decode = (rule, value, prefix) => {
     }
 
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        if (value[1] === jsonxt.ENCODE.ESCAPE) {
-            value = value.substring(2)
-            value = "~" + prefix+_util.decodeExtended(value)
-        } else {
-            value = value.substring(1)
-            value = "~" + prefix+_util.decodeExtended(value)
-        }
+        value = HTTPS + _util.decodeExtendedSlash(value.substring(jsonxt.ENCODE.ESCAPE.length))
     } else {
-        value = prefix+_util.decodeExtended(value)
+        value = _util.decodeExtendedSlash(value)
     }
 
     return value

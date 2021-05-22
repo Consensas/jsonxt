@@ -41,7 +41,8 @@ module.exports = Object.assign(
             "urn:uvci": require("./coders/urn.uvci").encode,
             "string-base32": require("./coders/string-base32").encode,
             "base64-base32": require("./coders/base64-base32").encode,
-            "string": require("./coders/string").encode
+            "string": require("./coders/string").encode,
+            "url": require("./coders/url").encode,
         },
         decoders: {
             "integer-base32": require("./coders/integer-base32").decode,
@@ -54,7 +55,8 @@ module.exports = Object.assign(
             "urn:uvci": require("./coders/urn.uvci").decode,
             "string-base32": require("./coders/string-base32").decode,
             "base64-base32": require("./coders/base64-base32").decode,
-            "string": require("./coders/string").decode
+            "string": require("./coders/string").decode,
+            "url": require("./coders/url").decode,
         },
     }
 )
