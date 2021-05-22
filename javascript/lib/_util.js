@@ -175,6 +175,56 @@ const fetch = async url => {
     })
 }
 
+//** Vitor Pamplona - Utility class for many encoders based on removing and readding a previx */
+const prefixRemoverEncode = (rule, value, prefix) => {
+    const jsonxt = require("..")
+    const _util = module.exports
+
+    if (_util.isNull(value)) {
+        return rule.NULL || jsonxt.ENCODE.NULL
+    } else if (_util.isUndefined(value)) {
+        return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
+    } else if (!value.startsWith(prefix)) {
+        throw new Error(`Expected value to be prefixed with ${prefix} (got "${value}")`)
+    }
+
+    if (value === "") {
+        return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
+    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
+        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.slice(prefix.length+1))
+    } else {
+        return _util.encodeExtendedSpace(value.slice(prefix.length))
+    }
+}
+
+
+const prefixRemoverDecode = (rule, value, prefix) => {
+    const jsonxt = require("..")
+    const _util = module.exports
+
+    if ((value === rule.NULL) || (value === jsonxt.ENCODE.NULL)) {
+        return null
+    } else if ((value === rule.UNDEFINED) || (value === jsonxt.ENCODE.UNDEFINED)) {
+        return undefined
+    } else if ((value === rule.EMPTY_STRING) || (value === jsonxt.ENCODE.EMPTY_STRING)) {
+        return ""
+    }
+
+    if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
+        if (value[1] === jsonxt.ENCODE.ESCAPE) {
+            value = value.substring(2)
+            value = "~" + prefix+_util.decodeExtendedSpace(value)
+        } else {
+            value = value.substring(1)
+            value = "~" + prefix+_util.decodeExtendedSpace(value)
+        }
+    } else {
+        value = prefix+_util.decodeExtendedSpace(value)
+    }
+
+    return value
+}
+
 /**
  *  API
  */
@@ -200,6 +250,9 @@ exports.isBoolean = isBoolean
 exports.isFunction = isFunction
 exports.isEqual = isEqual
 exports.fetch = fetch
+
+exports.prefixRemoverEncode = prefixRemoverEncode
+exports.prefixRemoverDecode = prefixRemoverDecode
 
 exports.base32_to_integer = base32_to_integer
 exports.integer_to_base32 = integer_to_base32
