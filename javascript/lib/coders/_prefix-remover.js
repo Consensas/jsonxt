@@ -40,9 +40,9 @@ exports.encode = (rule, value, prefix) => {
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
     } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtended(value.slice(prefix.length+1))
+        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _util.encodeExtendedSpace(value.slice(prefix.length+1))
     } else {
-        return _util.encodeExtended(value.slice(prefix.length))
+        return _util.encodeExtendedSpace(value.slice(prefix.length))
     }
 }
 
@@ -61,13 +61,13 @@ exports.decode = (rule, value, prefix) => {
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
             value = value.substring(2)
-            value = "~" + prefix+_util.decodeExtended(value)
+            value = "~" + prefix+_util.decodeExtendedSpace(value)
         } else {
             value = value.substring(1)
-            value = "~" + prefix+_util.decodeExtended(value)
+            value = "~" + prefix+_util.decodeExtendedSpace(value)
         }
     } else {
-        value = prefix+_util.decodeExtended(value)
+        value = prefix+_util.decodeExtendedSpace(value)
     }
 
     return value
