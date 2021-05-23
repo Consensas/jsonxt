@@ -138,14 +138,14 @@ const decodeExtended = (s, hex) => {
     return s
 }
 
-const encodeExtendedSpace = s => encodeExtended(s, "%20") 
-const encodeExtendedSlash = s => encodeExtended(s, "%2F") 
+const encodeExtendedSpace = s => encodeExtended(s, percentEncode(" "))
+const decodeExtendedSpace = s => decodeExtended(s, percentEncode(" "))
 
-const decodeExtendedSpace = s => decodeExtended(s, "%20") 
-const decodeExtendedSlash = s => decodeExtended(s, "%2F") 
+const encodeExtendedSlash = s => encodeExtended(s, percentEncode("/"))
+const decodeExtendedSlash = s => decodeExtended(s, percentEncode("/"))
 
-const encodeExtendedColon = s => encodeExtended(s, "%3A") 
-const decodeExtendedColon = s => decodeExtended(s, "%3A") 
+const encodeExtendedColon = s => encodeExtended(s, percentEncode(":"))
+const decodeExtendedColon = s => decodeExtended(s, percentEncode(":"))
 
 /**
  */
