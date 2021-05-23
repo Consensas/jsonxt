@@ -105,6 +105,24 @@ const set = (d, key, value) => {
 const encode = s => encodeURIComponent(s) 
 const decode = s => decodeURIComponent(s)
 
+const _percentEncoded = {}
+const percentEncode = s => {
+    if (_percentEncoded[s]) {
+        return _percentEncoded[s]
+    }
+
+    if (s.length !== 1) {
+        throw new Error("percentEncode: expected exactly one character")
+    }
+
+    const ivalue = s.charCodeAt(0)
+    if ((ivalue < 32) || (ivalue > 127)) {
+        throw new Error("percentEncode: character out of visible ASCII range")
+    }
+
+    return _percentEncoded[s] = "%" + ivalue.toString(16).toUpperCase()
+}
+
 const encodeExtended = (s, hex) => {
     s = encodeURIComponent(s)
     s = s.replace(/~/g, "%7E")
@@ -239,6 +257,8 @@ exports.isBoolean = isBoolean
 exports.isFunction = isFunction
 exports.isEqual = isEqual
 exports.fetch = fetch
+
+exports.percentEncode = percentEncode
 
 exports.encodeExtendedSpace = encodeExtendedSpace
 exports.decodeExtendedSpace = decodeExtendedSpace
