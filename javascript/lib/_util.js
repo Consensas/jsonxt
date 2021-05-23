@@ -260,6 +260,8 @@ exports.fetch = fetch
 
 exports.percentEncode = percentEncode
 
+exports.encodeExtended = encodeExtended
+exports.decodeExtended = decodeExtended
 exports.encodeExtendedSpace = encodeExtendedSpace
 exports.decodeExtendedSpace = decodeExtendedSpace
 exports.encodeExtendedSlash = encodeExtendedSlash
