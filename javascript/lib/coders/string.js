@@ -55,6 +55,8 @@ exports.encode = (rule, value) => {
         throw new Error(`${NAME}: expected value to be string (got "${value}")`)
     }
 
+    const _encoder = s => _util.encodeExtended(s, _util.percentEncode(rule.escape || " "))
+
     if (rule.compact && (rule.compact.indexOf(value) > -1)) {
         return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(rule.compact.indexOf(value))
     }
@@ -69,8 +71,6 @@ exports.encode = (rule, value) => {
             return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(pi) + _encoder(value.substring(prefix.length))
         }
     }
-
-    const _encoder = s => _util.encodeExtended(s, _util.percentEncode(rule.escape || " "))
 
     if (value === "") {
         return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
@@ -109,7 +109,7 @@ exports.decode = (rule, value) => {
             } else if (rule.prefix) {
                 const index = _util.integer_to_base32(value.substring(1, 2))
                 if ((index >= 0) && (index < rule.prefix.length)) {
-                    return rule.prefix[index] + _decoder(value)
+                    return rule.prefix[index] + _decoder(value.substring(2))
                 }
             }
             

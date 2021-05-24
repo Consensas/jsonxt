@@ -52,6 +52,22 @@ describe("coders/string", function() {
             "Hello, World",
         ],
     }
+    const rule_prefix_slash = {
+        escape: "/",
+        prefix: [
+            "http://",
+            "https://",
+            "ftp://",
+        ],
+    }
+    const rule_prefix_colon = {
+        escape: ":",
+        prefix: [
+            "urn:uvci:",
+            "did:",
+            "did:web:",
+        ],
+    }
 
     it("works - simple string", function() {
         const start = "Hello World"
@@ -163,6 +179,55 @@ describe("coders/string", function() {
         assert.strictEqual(got_encoded, want)
         assert.strictEqual(got_decoded, start)
     })
+
+    // prefix
+    it("works - prefix with slash encoding", function() {
+        const start = "https://google.ca/hello/world"
+        const got_encoded = jsonxt.encoders.string(rule_prefix_slash, start)
+        const got_decoded = jsonxt.decoders.string(rule_prefix_slash, got_encoded)
+        const want = "~1google.ca~hello~world"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+    it("works - prefix with colon encoding", function() {
+        const start = "urn:uvci:example:test#web"
+        const got_encoded = jsonxt.encoders.string(rule_prefix_colon, start)
+        const got_decoded = jsonxt.decoders.string(rule_prefix_colon, got_encoded)
+        const want = "~0example~test%23web"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+    it("works - prefix with colon encoding", function() {
+        const start = "did:web:example:test#web"
+        const got_encoded = jsonxt.encoders.string(rule_prefix_colon, start)
+        const got_decoded = jsonxt.decoders.string(rule_prefix_colon, got_encoded)
+        const want = "~1web~example~test%23web"
+
+        if (DUMP) {
+            console.log("")
+            console.log("start:", start)
+            console.log("encoded:", got_encoded)
+        }
+
+        assert.strictEqual(got_encoded, want)
+        assert.strictEqual(got_decoded, start)
+    })
+
+    // -- fails -- 
     it("expected fail - number", function() {
         const start = 1
 
