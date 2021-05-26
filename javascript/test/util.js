@@ -204,8 +204,21 @@ describe("_util", function() {
                 console.log("WANT", want)                    
             }
             assert.strictEqual(got, want)
-    })
-
+        })
     }
 
+    it("_util.percentEncode: works where expected", function() {
+        assert.strictEqual(util.percentEncode(" "), "%20")
+        assert.strictEqual(util.percentEncode("/"), "%2F")
+        assert.strictEqual(util.percentEncode(":"), "%3A")
+        assert.strictEqual(util.percentEncode("~"), "%7E")
+        assert.strictEqual(util.percentEncode("a"), "%61")
+    })
+
+    it("_util.percentEncode: fails where expected", function() {
+        assert.throws(() => { util.percentEncode("\t") })
+        assert.throws(() => { util.percentEncode("444") })
+        assert.throws(() => { util.percentEncode("") })
+        assert.throws(() => { util.percentEncode("🥳") })
+    })
 })

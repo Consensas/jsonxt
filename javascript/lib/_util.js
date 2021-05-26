@@ -105,6 +105,24 @@ const set = (d, key, value) => {
 const encode = s => encodeURIComponent(s) 
 const decode = s => decodeURIComponent(s)
 
+const _percentEncoded = {}
+const percentEncode = s => {
+    if (_percentEncoded[s]) {
+        return _percentEncoded[s]
+    }
+
+    if (s.length !== 1) {
+        throw new Error("percentEncode: expected exactly one character")
+    }
+
+    const ivalue = s.charCodeAt(0)
+    if ((ivalue < 32) || (ivalue > 127)) {
+        throw new Error("percentEncode: character out of visible ASCII range")
+    }
+
+    return _percentEncoded[s] = "%" + ivalue.toString(16).toUpperCase()
+}
+
 const encodeExtended = (s, hex) => {
     s = encodeURIComponent(s)
     s = s.replace(/~/g, "%7E")
@@ -120,14 +138,14 @@ const decodeExtended = (s, hex) => {
     return s
 }
 
-const encodeExtendedSpace = s => encodeExtended(s, "%20") 
-const encodeExtendedSlash = s => encodeExtended(s, "%2F") 
+const encodeExtendedSpace = s => encodeExtended(s, percentEncode(" "))
+const decodeExtendedSpace = s => decodeExtended(s, percentEncode(" "))
 
-const decodeExtendedSpace = s => decodeExtended(s, "%20") 
-const decodeExtendedSlash = s => decodeExtended(s, "%2F") 
+const encodeExtendedSlash = s => encodeExtended(s, percentEncode("/"))
+const decodeExtendedSlash = s => decodeExtended(s, percentEncode("/"))
 
-const encodeExtendedColon = s => encodeExtended(s, "%3A") 
-const decodeExtendedColon = s => decodeExtended(s, "%3A") 
+const encodeExtendedColon = s => encodeExtended(s, percentEncode(":"))
+const decodeExtendedColon = s => decodeExtended(s, percentEncode(":"))
 
 /**
  */
@@ -240,6 +258,10 @@ exports.isFunction = isFunction
 exports.isEqual = isEqual
 exports.fetch = fetch
 
+exports.percentEncode = percentEncode
+
+exports.encodeExtended = encodeExtended
+exports.decodeExtended = decodeExtended
 exports.encodeExtendedSpace = encodeExtendedSpace
 exports.decodeExtendedSpace = decodeExtendedSpace
 exports.encodeExtendedSlash = encodeExtendedSlash
