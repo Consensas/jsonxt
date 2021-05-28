@@ -8,7 +8,9 @@ JSON document size.
 
 Great for constrained environments, such as encoding data in QR codes.
 
-See [jsonxt.io](https://jsonxt.io) for more.
+See [jsonxt.io](https://jsonxt.io) for more, as well as
+[this paper](https://docs.google.com/document/d/1VNwdpAjxrfwIMGhbLTdhTDOJujG9tmrqoBJRWcHALxA)
+for a lot more explanation.
 
 ## Installation
 
@@ -114,7 +116,6 @@ The following rules are used:
 
 * if it has a slash or a colon, it's treated a a URL (`https://` is assumed if no scheme)
 * otherwise we check `https://resolver/.well-known/name`
-* otherwise we check DNS `name._jsonxt.resolver` for a TXT record, with any extension stripped from `name`
 
 Generally you can just use `jsonxt.resolve`.
 
