@@ -38,6 +38,12 @@ h3 {
         <p>
         <i>This Open Source project is sponsored by <a href="https://consensas.com">Consensas</a></i>
         </p>
+        <p>
+See <a href="https://jsonxt.io">jsonxt.io</a> for more, as well as
+<a href="https://docs.google.com/document/d/1VNwdpAjxrfwIMGhbLTdhTDOJujG9tmrqoBJRWcHALxA">this paper</a>
+for a lot more explanation.
+        </p>
+
 
         <h2>Introduction</h2>
         <h3>Basic Idea</h3>
@@ -156,7 +162,6 @@ and a file name and retrieves a document.</p>
 <ul>
 <li>if it has a slash or a colon, it&#39;s treated a a URL (<code>https://</code> is assumed if no scheme)</li>
 <li>otherwise we check <code>https://resolver/.well-known/name</code></li>
-<li>otherwise we check DNS <code>name._jsonxt.resolver</code> for a TXT record, with any extension stripped from <code>name</code></li>
 </ul>
 
 <p>
