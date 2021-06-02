@@ -52,7 +52,7 @@ exports.decode = (rule, value) => {
         return undefined
     }
 
-    throw new Error(`${NAME}: not implemented`)
+    return require("base32url").decode(`${value}`)
 }
 
 exports.schema = {
