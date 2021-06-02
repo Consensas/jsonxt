@@ -67,7 +67,12 @@ const get = (d, key) => {
         d = d[parts.shift()]
     }
 
-    return d
+    // When arrays are present, the while loop finishes earlier and should return undefined. 
+    if (parts.length > 0) {
+        return undefined;
+    } else {
+        return d
+    }
 }
 
 /**
