@@ -52,7 +52,7 @@ exports.encode = (rule, value) => {
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
     } else if (!_util.isString(value)) {
-        throw new Error(`${NAME}: expected value to be string (got "${value}")`)
+        throw new Error(`${NAME}: expected value to be string for ${rule.path} (got "${value}")`)
     }
 
     const _encoder = s => _util.encodeExtended(s, _util.percentEncode(rule.escape || " "))
