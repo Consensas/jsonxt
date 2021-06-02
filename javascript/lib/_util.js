@@ -45,6 +45,7 @@ const isArray = v => Array.isArray(v)
 const isUndefined = v => v === void 0
 const isNumber = o => typeof o === "number" && !Number.isNaN(o) && Number.isFinite(o)
 const isInteger = o => isNumber(o) && (Math.floor(o) === o)
+const isFloat = o => isNumber(o)
 const isBoolean = o => typeof o === "boolean"
 const isNull = o => o === null
 const isFunction = o => typeof o === "function"
@@ -157,6 +158,9 @@ const decodeExtendedColon = s => decodeExtended(s, percentEncode(":"))
 const integer_to_base32 = n => new Number(n).toString(32).toUpperCase()
 const base32_to_integer = s => parseInt(s.toLowerCase(), 32)
 
+const float_to_string = n => new Number(n).toString()
+const string_to_float = s => parseFloat(s)
+
 /**
  */
 const fetch = async url => {
@@ -258,6 +262,7 @@ exports.isUndefined = isUndefined
 exports.isNull = isNull
 exports.isNumber = isNumber
 exports.isInteger = isInteger
+exports.isFloat = isFloat
 exports.isBoolean = isBoolean
 exports.isFunction = isFunction
 exports.isEqual = isEqual
@@ -279,4 +284,7 @@ exports.prefixRemoverDecode = prefixRemoverDecode
 
 exports.base32_to_integer = base32_to_integer
 exports.integer_to_base32 = integer_to_base32
+
+exports.string_to_float = string_to_float
+exports.float_to_string = float_to_string
 
