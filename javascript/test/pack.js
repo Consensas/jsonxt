@@ -475,10 +475,8 @@ describe("pack", function() {
         const SUPER_LARGE_PAYLOAD = await _util.read_json('fhirData.json');
 
         const packed = await jsonxt.pack(SUPER_LARGE_PAYLOAD, FHIR_TEMPLATES, "shc", "1", RESOLVER_NAME, {
-                uppercase: true,
-            });
-
-        console.log(packed);
+            uppercase: true,
+        });
 
         const unpacked = await jsonxt.unpack(packed, () => { return FHIR_TEMPLATES; });
         
