@@ -468,4 +468,22 @@ describe("pack", function() {
         assert.deepEqual(CombinedDGC, unpacked)
         assert.deepEqual(got, want);
     })
+
+    it("should pack the SHC's FHIR monstrosity", async function() {
+        const RESOLVER_NAME = "jsonxt.io"
+        const FHIR_TEMPLATES = await _util.read_json('fhirTemplates.json');
+        const SUPER_LARGE_PAYLOAD = await _util.read_json('fhirData.json');
+
+        const packed = await jsonxt.pack(SUPER_LARGE_PAYLOAD, FHIR_TEMPLATES, "shc", "1", RESOLVER_NAME, {
+                uppercase: true,
+            });
+
+        console.log(packed);
+
+        const unpacked = await jsonxt.unpack(packed, () => { return FHIR_TEMPLATES; });
+        
+        assert.deepEqual(SUPER_LARGE_PAYLOAD, unpacked)
+    })
 })
+
+
