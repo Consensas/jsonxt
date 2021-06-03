@@ -102,18 +102,18 @@ exports.decode = (rule, value) => {
             value = jsonxt.ENCODE.ESCAPE + _decoder(value)
         } else {
             if (rule.compact) {
-                const index = _util.integer_to_base32(value.substring(1))
+                const index = _util.base32_to_integer(value.substring(1))
                 if ((index >= 0) && (index < rule.compact.length)) {
                     return rule.compact[index]
                 }
             } else if (rule.prefix) {
-                const index = _util.integer_to_base32(value.substring(1, 2))
+                const index = _util.base32_to_integer(value.substring(1, 2))
                 if ((index >= 0) && (index < rule.prefix.length)) {
                     return rule.prefix[index] + _decoder(value.substring(2))
                 }
             }
             
-            throw new Error(`did not understand escape sequence "${value}"`)
+            throw new Error(`did not understand escape sequence for "${rule.path}" "${value}"`)
         }
     } else {
         value = _decoder(value)
