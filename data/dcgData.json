@@ -42,7 +42,6 @@
                 "dateOfVaccination": "2021-05-05",
                 "dose": 1,
                 "totalDoses": 2,
-                "code": "1119349007",
                 "marketingAuthHolder": "ORG-100030215",
                 "medicinalProductName": "EU/1/20/1528"
             }
@@ -60,7 +59,6 @@
                 "dateOfVaccination": "2021-05-25",
                 "dose": 2,
                 "totalDoses": 2,
-                "code": "1119349007",
                 "marketingAuthHolder": "ORG-100030215",
                 "medicinalProductName": "EU/1/20/1528"
             }
@@ -79,7 +77,6 @@
                 "testManufacturer": "1232",
                 "testType": "LP217198-3",
                 "sampleCollectionDateTime": "2021-02-13T14:20:00Z",
-                "testResultDate": "2021-02-13T14:40:01Z",
                 "testResult": "260415000",
                 "testCenter": "GGD Fryslân, L-Heliconweg"
             }
@@ -97,7 +94,6 @@
                 "testManufacturer": "1343",
                 "testType": "LP6464-4",
                 "sampleCollectionDateTime": "2021-04-13T14:20:00Z",
-                "testResultDate": "2021-04-13T14:40:01Z",
                 "testResult": "260373001",
                 "testCenter": "GGD Fryslân, L-Heliconweg"
             }
