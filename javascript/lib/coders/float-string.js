@@ -1,9 +1,9 @@
 /*
- *  lib/encoders/integer-base32.js
+ *  lib/encoders/float-base32.js
  *
- *  David Janes
- *  Consenas
- *  2021-03-16
+ *  Vitor Pamplona
+ *  PathCheck Foundation
+ *  2021-06-01
  *
  *  Copyright (2013-2021) Consensas
  *
