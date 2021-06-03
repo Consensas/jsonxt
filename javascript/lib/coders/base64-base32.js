@@ -68,10 +68,10 @@ exports.decode = (rule, value) => {
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
             value = value.substring(2)
-            value = "~" + base64.fromByteArray(base32.decode(`${value}`))
+            value = "$" + base64.fromByteArray(base32.decode(`${value}`))
         } else {
             value = value.substring(1)
-            value = "~" + base64.fromByteArray(base32.decode(`${value}`))
+            value = "$" + base64.fromByteArray(base32.decode(`${value}`))
         }
     } else {
         value = base64.fromByteArray(base32.decode(`${value}`))

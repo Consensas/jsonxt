@@ -131,14 +131,14 @@ const percentEncode = s => {
 
 const encodeExtended = (s, hex) => {
     s = encodeURIComponent(s)
-    s = s.replace(/~/g, "%7E")
-    s = s.replace(new RegExp(hex, "g"), "~")
+    s = s.replace(/\$/g, "%7E")
+    s = s.replace(new RegExp(hex, "g"), "$")
 
     return s
 }
 
 const decodeExtended = (s, hex) => {
-    s = s.replace(/~/g, hex)
+    s = s.replace(/\$/g, hex)
     s = decodeURIComponent(s)
 
     return s
@@ -233,10 +233,10 @@ const prefixRemoverDecode = (rule, value, prefix) => {
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
             value = value.substring(2)
-            value = "~" + prefix+_util.decodeExtendedSpace(value)
+            value = "$" + prefix+_util.decodeExtendedSpace(value)
         } else {
             value = value.substring(1)
-            value = "~" + prefix+_util.decodeExtendedSpace(value)
+            value = "$" + prefix+_util.decodeExtendedSpace(value)
         }
     } else {
         value = prefix+_util.decodeExtendedSpace(value)

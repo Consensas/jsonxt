@@ -183,9 +183,9 @@ describe("_util", function() {
     })
 
     for (let [ uri, encoded ] of [
-            [ "https://google.ca", "https%3A~~google.ca", ],
-            [ "HTTPS://google.ca", "HTTPS%3A~~google.ca", ],
-            [ "weird:case idea/something", "weird%3Acase%20idea~something", ],
+            [ "https://google.ca", "https%3A$$google.ca", ],
+            [ "HTTPS://google.ca", "HTTPS%3A$$google.ca", ],
+            [ "weird:case idea/something", "weird%3Acase%20idea$something", ],
         ]) {
             it("_util.encodeExtendedSlash: " + uri, function() {
                 const got = util.encodeExtendedSlash(uri);
@@ -211,7 +211,7 @@ describe("_util", function() {
         assert.strictEqual(util.percentEncode(" "), "%20")
         assert.strictEqual(util.percentEncode("/"), "%2F")
         assert.strictEqual(util.percentEncode(":"), "%3A")
-        assert.strictEqual(util.percentEncode("~"), "%7E")
+        assert.strictEqual(util.percentEncode("$"), "%24")
         assert.strictEqual(util.percentEncode("a"), "%61")
     })
 

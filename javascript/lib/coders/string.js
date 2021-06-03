@@ -32,12 +32,12 @@ const NAME = "string"
 
     // optional
     UNDEFINED: ""       -- how to encode "undefined"
-    EMPTY_STRING: "~"   -- how to encode the empty string
-    NULL: "~."          -- how to encode "null"
+    EMPTY_STRING: "$"   -- how to encode the empty string
+    NULL: "$."          -- how to encode "null"
 
-    escape: " "         -- the character to encode as "~"
-    compact: []         -- essential, an enumeration, these will be encode as "~BASE32_INDEX"
-    prefix: []          -- an enumeration of prefixes, these will be encoded as "~BASE32_INDEX" 
+    escape: " "         -- the character to encode as "$"
+    compact: []         -- essential, an enumeration, these will be encode as "$BASE32_INDEX"
+    prefix: []          -- an enumeration of prefixes, these will be encoded as "$BASE32_INDEX" 
                            but maximum 32 prefixes; cannot be mixed with compact
   },
 */

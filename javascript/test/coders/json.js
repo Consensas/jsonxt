@@ -98,7 +98,7 @@ describe("coders/json", function() {
         const start = null
         const got_encoded = jsonxt.encoders["json"](rule, start)
         const got_decoded = jsonxt.decoders["json"](rule, got_encoded)
-        const want = "~."
+        const want = "$."
 
         if (DUMP) {
             console.log("")

@@ -58,8 +58,8 @@ module.exports = Object.assign(
 )
 
 module.exports.ENCODE = {
-    ESCAPE: "~",
+    ESCAPE: "$",
     UNDEFINED: "",
-    EMPTY_STRING: "~",
-    NULL: "~.",
+    EMPTY_STRING: "$",
+    NULL: "$.",
 }
