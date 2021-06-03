@@ -71,7 +71,7 @@ describe("coders/isoyyyymm-2020-base32", function() {
         const start = null
         const got_encoded = jsonxt.encoders["isoyyyymm-2020-base32"](rule, start)
         const got_decoded = jsonxt.decoders["isoyyyymm-2020-base32"](rule, got_encoded)
-        const want = "~."
+        const want = "$."
 
         if (DUMP) {
             console.log("")

@@ -56,7 +56,7 @@ const unpack_template = async (payloadStack, template, templates) => {
                 const arraySize = payloadElement;
                 const nestedTemplate = templates[rule.encoder_param];
                 if (!_util.isPlainObject(nestedTemplate)) {
-                    throw new Error(`jsonxt.unpack: 'templates["${type}:${version}"]' not String`)
+                    throw new Error(`jsonxt.unpack: 'templates["${rule.encoder_param}"]' not String`)
                 }
 
                 const unpackedArray = await unpack_array(payloadStack, arraySize, nestedTemplate, templates);

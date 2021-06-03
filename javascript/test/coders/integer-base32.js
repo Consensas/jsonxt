@@ -98,7 +98,7 @@ describe("coders/integer-base32", function() {
         const start = null
         const got_encoded = jsonxt.encoders["integer-base32"](rule, start)
         const got_decoded = jsonxt.decoders["integer-base32"](rule, got_encoded)
-        const want = "~."
+        const want = "$."
 
         if (DUMP) {
             console.log("")

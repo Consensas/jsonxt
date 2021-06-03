@@ -73,7 +73,7 @@ describe("coders/string", function() {
         const start = "Hello World"
         const got_encoded = jsonxt.encoders.string(rule_simple, start)
         const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
-        const want = "Hello~World"
+        const want = "Hello$World"
 
         if (DUMP) {
             console.log("")
@@ -89,7 +89,7 @@ describe("coders/string", function() {
         const start = ""
         const got_encoded = jsonxt.encoders.string(rule_simple, start)
         const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
-        const want = "~"
+        const want = "$"
 
         if (DUMP) {
             console.log("")
@@ -104,7 +104,7 @@ describe("coders/string", function() {
         const start = null
         const got_encoded = jsonxt.encoders.string(rule_simple, start)
         const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
-        const want = "~."
+        const want = "$."
 
         if (DUMP) {
             console.log("")
@@ -132,11 +132,11 @@ describe("coders/string", function() {
         assert.strictEqual(got_decoded, start)
     })
 
-    it("works - starts with ~", function() {
-        const start = "~hello"
+    it("works - starts with $", function() {
+        const start = "$hello"
         const got_encoded = jsonxt.encoders.string(rule_simple, start)
         const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
-        const want = "~~hello"
+        const want = "$$hello"
 
         if (DUMP) {
             console.log("")
@@ -152,7 +152,7 @@ describe("coders/string", function() {
         const start = "Hello, World"
         const got_encoded = jsonxt.encoders.string(rule_compact, start)
         const got_decoded = jsonxt.decoders.string(rule_compact, got_encoded)
-        const want = "~2"
+        const want = "$2"
 
         if (DUMP) {
             console.log("")
@@ -168,7 +168,7 @@ describe("coders/string", function() {
         const start = "Hello, World!"
         const got_encoded = jsonxt.encoders.string(rule_compact, start)
         const got_decoded = jsonxt.decoders.string(rule_compact, got_encoded)
-        const want = "Hello%2C~World!"
+        const want = "Hello%2C$World!"
 
         if (DUMP) {
             console.log("")
@@ -185,7 +185,7 @@ describe("coders/string", function() {
         const start = "https://google.ca/hello/world"
         const got_encoded = jsonxt.encoders.string(rule_prefix_slash, start)
         const got_decoded = jsonxt.decoders.string(rule_prefix_slash, got_encoded)
-        const want = "~1google.ca~hello~world"
+        const want = "$1google.ca$hello$world"
 
         if (DUMP) {
             console.log("")
@@ -200,7 +200,7 @@ describe("coders/string", function() {
         const start = "urn:uvci:example:test#web"
         const got_encoded = jsonxt.encoders.string(rule_prefix_colon, start)
         const got_decoded = jsonxt.decoders.string(rule_prefix_colon, got_encoded)
-        const want = "~0example~test%23web"
+        const want = "$0example$test%23web"
 
         if (DUMP) {
             console.log("")
@@ -215,7 +215,7 @@ describe("coders/string", function() {
         const start = "did:web:example:test#web"
         const got_encoded = jsonxt.encoders.string(rule_prefix_colon, start)
         const got_decoded = jsonxt.decoders.string(rule_prefix_colon, got_encoded)
-        const want = "~1web~example~test%23web"
+        const want = "$1web$example$test%23web"
 
         if (DUMP) {
             console.log("")
@@ -236,21 +236,21 @@ describe("coders/string", function() {
         })
     })
     it("expected fail - simple meaningless escape", function() {
-        const start = "~3783"
+        const start = "$3783"
 
         assert.throws(() => {
             const got_encoded = jsonxt.decoders.string(rule_simple, start)
         })
     })
     it("expected fail - bad compact (low)", function() {
-        const start = "~-10"
+        const start = "$-10"
 
         assert.throws(() => {
             const got_encoded = jsonxt.decoders.string(rule_compact, start)
         })
     })
     it("expected fail - bad compact (high)", function() {
-        const start = "~10"
+        const start = "$10"
 
         assert.throws(() => {
             const got_encoded = jsonxt.decoders.string(rule_compact, start)

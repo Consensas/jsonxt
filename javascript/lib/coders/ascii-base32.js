@@ -1,9 +1,9 @@
 /*
- *  lib/encoders/string-base32.js
+ *  lib/encoders/ascii-base32.js
  *
- *  David Janes
- *  Consenas
- *  2021-03-16
+ *  Vitor Pamplona
+ *  PathCheck Foundation
+ *  2021-06-01
  *
  *  Copyright (2013-2021) Consensas
  *
@@ -23,9 +23,7 @@
 "use strict"
 
 const _util = require("../_util")
-const base64 = require('base64-js')
-const base32 = require("base32url")
-const NAME = "base64-base32"
+const NAME = "ascii-base32"
 
 /**
  *  TESTING ONLY (for now, anyway)
@@ -38,17 +36,8 @@ exports.encode = (rule, value) => {
         return rule.NULL || jsonxt.ENCODE.NULL
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
-    } else if (!_util.isString(value)) {
-        throw new Error(`${NAME}: expected value to be string (got "${value}")`)
     }
-
-    if (value === "") {
-        return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
-    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + base32.encode(base64.toByteArray(`${value}`))
-    } else {
-        return base32.encode(base64.toByteArray(`${value}`))
-    }
+    return require("base32url").encode(`${value}`, true)
 }
 
 /**
@@ -61,25 +50,11 @@ exports.decode = (rule, value) => {
         return null
     } else if ((value === rule.UNDEFINED) || (value === jsonxt.ENCODE.UNDEFINED)) {
         return undefined
-    } else if ((value === rule.EMPTY_STRING) || (value === jsonxt.ENCODE.EMPTY_STRING)) {
-        return ""
     }
 
-    if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
-        if (value[1] === jsonxt.ENCODE.ESCAPE) {
-            value = value.substring(2)
-            value = "$" + base64.fromByteArray(base32.decode(`${value}`))
-        } else {
-            value = value.substring(1)
-            value = "$" + base64.fromByteArray(base32.decode(`${value}`))
-        }
-    } else {
-        value = base64.fromByteArray(base32.decode(`${value}`))
-    }
-
-    return value
+    return require("base32url").decodeAsString(`${value}`, true)
 }
 
 exports.schema = {
-    type: "string",
+    type: "ascii",
 }

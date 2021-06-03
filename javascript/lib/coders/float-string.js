@@ -1,9 +1,9 @@
 /*
- *  lib/encoders/string-base32.js
+ *  lib/encoders/float-base32.js
  *
- *  David Janes
- *  Consenas
- *  2021-03-16
+ *  Vitor Pamplona
+ *  PathCheck Foundation
+ *  2021-06-01
  *
  *  Copyright (2013-2021) Consensas
  *
@@ -23,12 +23,10 @@
 "use strict"
 
 const _util = require("../_util")
-const NAME = "string-base32"
+const NAME = "float"
 
 /**
- *  TESTING ONLY (for now, anyway)
  */
-/* istanbul ignore next */
 exports.encode = (rule, value) => {
     const jsonxt = require("..")
 
@@ -36,13 +34,15 @@ exports.encode = (rule, value) => {
         return rule.NULL || jsonxt.ENCODE.NULL
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
+    } else if (!_util.isFloat(value)) {
+        throw new Error(`${NAME}: expected value to be float (got "${value}")`)
     }
-    return require("base32url").encode(`${value}`)
+
+    return _util.float_to_string(value)
 }
 
 /**
  */
-/* istanbul ignore next */
 exports.decode = (rule, value) => {
     const jsonxt = require("..")
 
@@ -52,9 +52,9 @@ exports.decode = (rule, value) => {
         return undefined
     }
 
-    return require("base32url").decode(`${value}`)
+    return _util.string_to_float(value)
 }
 
 exports.schema = {
-    type: "string",
+    type: "float",
 }

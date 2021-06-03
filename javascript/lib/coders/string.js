@@ -32,12 +32,12 @@ const NAME = "string"
 
     // optional
     UNDEFINED: ""       -- how to encode "undefined"
-    EMPTY_STRING: "~"   -- how to encode the empty string
-    NULL: "~."          -- how to encode "null"
+    EMPTY_STRING: "$"   -- how to encode the empty string
+    NULL: "$."          -- how to encode "null"
 
-    escape: " "         -- the character to encode as "~"
-    compact: []         -- essential, an enumeration, these will be encode as "~BASE32_INDEX"
-    prefix: []          -- an enumeration of prefixes, these will be encoded as "~BASE32_INDEX" 
+    escape: " "         -- the character to encode as "$"
+    compact: []         -- essential, an enumeration, these will be encode as "$BASE32_INDEX"
+    prefix: []          -- an enumeration of prefixes, these will be encoded as "$BASE32_INDEX" 
                            but maximum 32 prefixes; cannot be mixed with compact
   },
 */
@@ -52,7 +52,7 @@ exports.encode = (rule, value) => {
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
     } else if (!_util.isString(value)) {
-        throw new Error(`${NAME}: expected value to be string (got "${value}")`)
+        throw new Error(`${NAME}: expected value to be string for ${rule.path} (got "${value}")`)
     }
 
     const _encoder = s => _util.encodeExtended(s, _util.percentEncode(rule.escape || " "))
@@ -102,18 +102,18 @@ exports.decode = (rule, value) => {
             value = jsonxt.ENCODE.ESCAPE + _decoder(value)
         } else {
             if (rule.compact) {
-                const index = _util.integer_to_base32(value.substring(1))
+                const index = _util.base32_to_integer(value.substring(1))
                 if ((index >= 0) && (index < rule.compact.length)) {
                     return rule.compact[index]
                 }
             } else if (rule.prefix) {
-                const index = _util.integer_to_base32(value.substring(1, 2))
+                const index = _util.base32_to_integer(value.substring(1, 2))
                 if ((index >= 0) && (index < rule.prefix.length)) {
                     return rule.prefix[index] + _decoder(value.substring(2))
                 }
             }
             
-            throw new Error(`did not understand escape sequence "${value}"`)
+            throw new Error(`did not understand escape sequence for "${rule.path}" "${value}"`)
         }
     } else {
         value = _decoder(value)

@@ -32,21 +32,25 @@ module.exports = Object.assign(
         schemas: {},
         encoders: {
             "integer-base32": require("./coders/integer-base32").encode,
+            "float-string": require("./coders/float-string").encode,
             "isodate-1900-base32": require("./coders/isodate-1900-base32").encode,
             "isodatetime-epoch-base32": require("./coders/isodatetime-epoch-base32").encode,
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").encode,
             "json": require("./coders/json").encode,
             "string-base32": require("./coders/string-base32").encode,
+            "ascii-base32": require("./coders/ascii-base32").encode,
             "base64-base32": require("./coders/base64-base32").encode,
             "string": require("./coders/string").encode,
         },
         decoders: {
             "integer-base32": require("./coders/integer-base32").decode,
+            "float-string": require("./coders/float-string").decode,
             "isodate-1900-base32": require("./coders/isodate-1900-base32").decode,
             "isodatetime-epoch-base32": require("./coders/isodatetime-epoch-base32").decode,
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").decode,
             "json": require("./coders/json").decode,
             "string-base32": require("./coders/string-base32").decode,
+            "ascii-base32": require("./coders/ascii-base32").decode,
             "base64-base32": require("./coders/base64-base32").decode,
             "string": require("./coders/string").decode,
         },
@@ -54,8 +58,8 @@ module.exports = Object.assign(
 )
 
 module.exports.ENCODE = {
-    ESCAPE: "~",
+    ESCAPE: "$",
     UNDEFINED: "",
-    EMPTY_STRING: "~",
-    NULL: "~.",
+    EMPTY_STRING: "$",
+    NULL: "$.",
 }

@@ -71,7 +71,7 @@ describe("coders/isodate-1900-base32", function() {
         const start = null
         const got_encoded = jsonxt.encoders["isodate-1900-base32"](rule, start)
         const got_decoded = jsonxt.decoders["isodate-1900-base32"](rule, got_encoded)
-        const want = "~."
+        const want = "$."
 
         if (DUMP) {
             console.log("")

@@ -422,7 +422,7 @@ describe("pack", function() {
             assert.deepEqual(json, unpacked);
         })
     })
-
+    
     it("edge case - no columns", async function() {
         const template = {}
 
@@ -435,6 +435,7 @@ describe("pack", function() {
 
         assert.deepEqual(got, want)
     })
+
     it("expected fail - bad unknown encoder", async function() {
         const template = {
             "columns": [
@@ -453,4 +454,34 @@ describe("pack", function() {
             const packed = await jsonxt.pack.payload(original, template, TYPE, VERSION, RESOLVER_NAME)
         })
     })
+
+    it("should pack the EU's DGC monstrosity", async function() {
+        const DGC_TEMPLATES = await _util.read_json('dcgTemplates.json');
+        const CombinedDGC = await _util.read_json('dcgData.json');
+        
+        const got = await jsonxt.pack(CombinedDGC, DGC_TEMPLATES, "dgc", "1", RESOLVER_NAME);
+
+        const want = "jxt:jsonxt.io:dgc:1:d'Ars%C3%B8ns$-$van$Halen/Fran%C3%A7ois-Joan/DARSONS%3CVAN%3CHALEN/FRANCOIS%3CJOAN/3AGM//2/$0%3A01%3ANL%3APlA8UWS60Z4RZXVALl6GAZ/Ministry$of$VWS/NL/840539006/1119349007/3MBL/1/2/ORG-100030215/EU%2F1%2F20%2F1528/$0%3A01%3ANL%3AATS342XDYS358FDFH3GTK5/Ministry$of$VWS/NL/840539006/1119349007/3MC9/2/2/ORG-100030215/EU%2F1%2F20%2F1528/2/$0%3A01%3ANL%3AGGD%2F81AAH16AZ/Ministry$of$VWS/NL/LP217198-3/260415000/GGD$Frysl%C3%A2n%2C$L-Heliconweg/840539006/COVID$PCR/1232/1G2FO0G/$0%3A01%3ANL%3AGGD%2F23BBS36BC/Ministry$of$VWS/NL/LP6464-4/260373001/GGD$Frysl%C3%A2n%2C$L-Heliconweg/840539006/NAAT$TEST/1343/1G7BA4G/1/$0%3A01%3ANL%3ALSP%2FREC%2F1289821/Ministry$of$VWS/NL/840539006/3MAJ/3MBH/3MJV";
+
+        const unpacked = await jsonxt.unpack(got, () => { return DGC_TEMPLATES; });
+
+        assert.deepEqual(CombinedDGC, unpacked)
+        assert.deepEqual(got, want);
+    })
+
+    it("should pack the SHC's FHIR monstrosity", async function() {
+        const RESOLVER_NAME = "jsonxt.io"
+        const FHIR_TEMPLATES = await _util.read_json('fhirTemplates.json');
+        const SUPER_LARGE_PAYLOAD = await _util.read_json('fhirData.json');
+
+        const packed = await jsonxt.pack(SUPER_LARGE_PAYLOAD, FHIR_TEMPLATES, "shc", "1", RESOLVER_NAME, {
+            uppercase: true,
+        });
+
+        const unpacked = await jsonxt.unpack(packed, () => { return FHIR_TEMPLATES; });
+        
+        assert.deepEqual(SUPER_LARGE_PAYLOAD, unpacked)
+    })
 })
+
+

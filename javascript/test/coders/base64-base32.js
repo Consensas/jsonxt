@@ -50,7 +50,7 @@ describe("coders/base64-base32", function() {
         const start = ''
         const got_encoded = jsonxt.encoders["base64-base32"](rule, start)
         const got_decoded = jsonxt.decoders["base64-base32"](rule, got_encoded)
-        const want = "~"
+        const want = "$"
 
         if (DUMP) {
             console.log("")
@@ -100,7 +100,7 @@ describe("coders/base64-base32", function() {
         const start = null
         const got_encoded = jsonxt.encoders["base64-base32"](rule, start)
         const got_decoded = jsonxt.decoders["base64-base32"](rule, got_encoded)
-        const want = "~."
+        const want = "$."
 
         if (DUMP) {
             console.log("")
