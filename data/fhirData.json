@@ -10,8 +10,8 @@
       "fhirBundle": {
         "resourceType": "Bundle",
         "type": "collection",
-        
-        "diagnosticReports": [{
+        "entries": [
+          {
             "fullUrl": "resource:0",
             "resource": {
               "resourceType": "DiagnosticReport",
@@ -70,129 +70,124 @@
                 }
               ]
             }
-        }],
-
-        "specimens": [
-            {
-                "fullUrl": "resource:1",
-                "resource": {
-                  "resourceType": "Specimen",
-                  "accessionIdentifier": {
-                    "system": "https://acme.com/labs/accession-ids",
-                    "value": "20150816-00124"
-                  },
-                  "type": {
-                    "coding": [
-                      {
-                        "system": "https://snomed.info/sct",
-                        "code": "119364003"
-                      }
-                    ]
-                  },
-                  "subject": {
-                    "reference": "resource:0"
-                  },
-                  "collection": {
-                    "collector": {
-                      "reference": "Practitioner/f202"
-                    },
-                    "collectedDateTime": "2015-08-16T06:40:17Z"
-                  },
-                  "container": [
-                    {
-                      "type": {
-                        "coding": [
-                          {
-                            "system": "https://acme.com/labs",
-                            "code": "SST"
-                          }
-                        ]
-                      }
-                    }
-                  ]
+        },
+        {
+          "fullUrl": "resource:1",
+          "resource": {
+            "resourceType": "Specimen",
+            "accessionIdentifier": {
+              "system": "https://acme.com/labs/accession-ids",
+              "value": "20150816-00124"
+            },
+            "type": {
+              "coding": [
+                {
+                  "system": "https://snomed.info/sct",
+                  "code": "119364003"
                 }
+              ]
+            },
+            "subject": {
+              "reference": "resource:0"
+            },
+            "collection": {
+              "collector": {
+                "reference": "Practitioner/f202"
               },
+              "collectedDateTime": "2015-08-16T06:40:17Z"
+            },
+            "container": [
               {
-                "fullUrl": "resource:2",
-                "resource": {
-                  "resourceType": "Specimen",
-                  "accessionIdentifier": {
-                    "system": "https://acme.com/labs/accession-ids",
-                    "value": "20150816-00124"
-                  },
-                  "type": {
-                    "coding": [
-                      {
-                        "system": "https://snomed.info/sct",
-                        "code": "445295009"
-                      }
-                    ]
-                  },
-                  "subject": {
-                    "reference": "resource:0"
-                  },
-                  "collection": {
-                    "collector": {
-                      "reference": "Practitioner/f202"
-                    },
-                    "collectedDateTime": "2015-08-16T06:40:17Z"
-                  },
-                  "container": [
+                "type": {
+                  "coding": [
                     {
-                      "type": {
-                        "coding": [
-                          {
-                            "system": "https://acme.com/labs",
-                            "code": "LTT"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "fullUrl": "resource:3",
-                "resource": {
-                  "resourceType": "Specimen",
-                  "accessionIdentifier": {
-                    "system": "https://acme.com/labs/accession-ids",
-                    "value": "20150816-00124"
-                  },
-                  "type": {
-                    "coding": [
-                      {
-                        "system": "https://snomed.info/sct",
-                        "code": "122575003"
-                      }
-                    ]
-                  },
-                  "subject": {
-                    "reference": "resource:0"
-                  },
-                  "collection": {
-                    "collector": {
-                      "reference": "Practitioner/f202"
-                    },
-                    "collectedDateTime": "2015-08-16T06:40:17Z"
-                  },
-                  "container": [
-                    {
-                      "type": {
-                        "coding": [
-                          {
-                            "system": "https://acme.com/labs",
-                            "code": "UCUP"
-                          }
-                        ]
-                      }
+                      "system": "https://acme.com/labs",
+                      "code": "SST"
                     }
                   ]
                 }
               }
-        ],
-        
-        "observations": [
+            ]
+          }
+        },
+        {
+          "fullUrl": "resource:2",
+          "resource": {
+            "resourceType": "Specimen",
+            "accessionIdentifier": {
+              "system": "https://acme.com/labs/accession-ids",
+              "value": "20150816-00124"
+            },
+            "type": {
+              "coding": [
+                {
+                  "system": "https://snomed.info/sct",
+                  "code": "445295009"
+                }
+              ]
+            },
+            "subject": {
+              "reference": "resource:0"
+            },
+            "collection": {
+              "collector": {
+                "reference": "Practitioner/f202"
+              },
+              "collectedDateTime": "2015-08-16T06:40:17Z"
+            },
+            "container": [
+              {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "https://acme.com/labs",
+                      "code": "LTT"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "fullUrl": "resource:3",
+          "resource": {
+            "resourceType": "Specimen",
+            "accessionIdentifier": {
+              "system": "https://acme.com/labs/accession-ids",
+              "value": "20150816-00124"
+            },
+            "type": {
+              "coding": [
+                {
+                  "system": "https://snomed.info/sct",
+                  "code": "122575003"
+                }
+              ]
+            },
+            "subject": {
+              "reference": "resource:0"
+            },
+            "collection": {
+              "collector": {
+                "reference": "Practitioner/f202"
+              },
+              "collectedDateTime": "2015-08-16T06:40:17Z"
+            },
+            "container": [
+              {
+                "type": {
+                  "coding": [
+                    {
+                      "system": "https://acme.com/labs",
+                      "code": "UCUP"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
           
           {
             "fullUrl": "resource:4",

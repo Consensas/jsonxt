@@ -1,179 +1,152 @@
 {
-  "shc:1": {
-      "columns": [
-        {"path": "vc.credentialSubject.fhirBundle.diagnosticReports", "encoder": "array", "encoder_param": "fhirDiagnosticReports:1"},
-        {"path": "vc.credentialSubject.fhirBundle.specimens", "encoder": "array", "encoder_param": "fhirSpecimens:1"},
-        {"path": "vc.credentialSubject.fhirBundle.observations", "encoder": "array", "encoder_param": "fhirObservations:1"},
-        {"path": "nbf", "encoder": "integer-base32"}
-      ],
-      "template": {
-        "iss": "https://spec.smarthealth.cards/examples/issuer",
-        "vc": {
-            "type": [
-                "https://smarthealth.cards#health-card"
-            ],
-            "credentialSubject": {
-                "fhirVersion": "4.0.1",
-                "fhirBundle": {
-                    "resourceType": "Bundle",
-                    "type": "collection"
-                }
-            }
+    "shc:1": {
+        "columns": [
+          {"path": "vc.credentialSubject.fhirBundle.entries", "encoder": "array", "encoder_param": "fhirEntry:1"},
+          {"path": "nbf", "encoder": "integer-base32"}
+        ],
+        "template": {
+          "iss": "https://spec.smarthealth.cards/examples/issuer",
+          "vc": {
+              "type": [
+                  "https://smarthealth.cards#health-card"
+              ],
+              "credentialSubject": {
+                  "fhirVersion": "4.0.1",
+                  "fhirBundle": {
+                      "resourceType": "Bundle",
+                      "type": "collection"
+                  }
+              }
+          }
         }
-      }
-  }, 
-
-  "fhirObservations:1": {
-    "columns": [
-        {"path": "resource.effectiveDateTime", "encoder": "isodatetime-epoch-base32"},
-        {"path": "resource.issued", "encoder": "isodatetime-epoch-base32"},
-        {"path": "resource.valueCodeableConcept.coding", "encoder": "array", "encoder_param": "fhirCoding:1"},
-        {"path": "resource.specimen", "encoder": "array", "encoder_param": "fhirSpecimen:1"},
-        {"path": "resource.interpretation", "encoder": "array", "encoder_param": "fhirCodingCollection:1"},
-        {"path": "resource.hasMember", "encoder": "array", "encoder_param": "fhirReference:1"},
-        {"path": "resource.referenceRange", "encoder": "array", "encoder_param": "fhirRangeItem:1"},
-        {"path": "resource.valueQuantity.value", "encoder": "float-string"},
-        {"path": "resource.valueQuantity.comparator", "encoder": "string"},
-        {"path": "resource.valueQuantity.unit", "encoder": "string", "compact": ["x10*12/L", "pg","pH","/mL", "/uL","umol/L","mmol/L", "U/L", "g/L", "x10*9/L", "10*9/L", "fL"] },
-        {"path": "resource.valueQuantity.system", "encoder": "string", "compact": ["https://unitsofmeasure.org"]},
-        {"path": "resource.valueQuantity.code", "encoder": "string", "compact": ["x10*12/L", "pg","pH","/mL", "/uL","umol/L", "mmol/L", "U/L", "g/L", "x10*9/L", "10*9/L", "fL"] },
-        {"path": "resource.subject.reference", "encoder": "string", "prefix": ["resource:"]},
-        {"path": "resource.code.coding", "encoder": "array", "encoder_param": "fhirCoding:1"},
-        {"path": "resource.status", "encoder": "string", "compact": ["final"]},
-        {"path": "fullUrl", "encoder": "string", "prefix": ["resource:"]}
-    ],
-    "template": {
-        "resource": {
-            "resourceType": "Observation", 
-            "performer": [
-                {
-                  "reference": "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
-                  "display": "Acme Laboratory, Inc"
-                }
-            ]
-        }
-    }
-  },
-
-  "fhirSpecimens:1": {
+    }, 
+  
+    "fhirEntry:1": {
       "columns": [
-          {"path": "resource.container", "encoder": "array", "encoder_param": "fhirContainerItems:1"},
-          {"path": "resource.collection.collectedDateTime", "encoder": "isodatetime-epoch-base32"},
-          {"path": "resource.collection.collector.reference", "encoder": "ascii-base32"},
-          {"path": "resource.subject.reference", "encoder": "string", "prefix": ["resource:"]},
+          {"path": "fullUrl", "encoder": "intstr-base32", "prefix": ["resource:"]},
+          {"path": "resource.resourceType", "encoder": "string", "compact": ["AllergyIntolerance", "Appointment", "AppointmentResponse", "AuditEvent", "Basic", "Binary", "BodySite", "Bundle", "CarePlan", "Claim", "ClaimResponse", "ClinicalImpression", "Communication", "CommunicationRequest", "Composition", "ConceptMap", "Condition", "Conformance", "Contract", "Contraindication", "Coverage", "DataElement", "Device", "DeviceComponent", "DeviceMetric", "DeviceUseRequest", "DeviceUseStatement", "DiagnosticOrder", "DiagnosticReport", "DocumentManifest", "DocumentReference", "EligibilityRequest", "EligibilityResponse", "Encounter", "EnrollmentRequest", "EnrollmentResponse", "EpisodeOfCare", "ExplanationOfBenefit", "FamilyMemberHistory", "Flag", "Goal", "Group", "HealthcareService", "ImagingObjectSelection", "ImagingStudy", "Immunization", "ImmunizationRecommendation", "List", "Location", "Media", "Medication", "MedicationAdministration", "MedicationDispense", "MedicationPrescription", "MedicationStatement", "MessageHeader", "NamingSystem", "NutritionOrder", "Observation", "OperationDefinition", "OperationOutcome", "Order", "OrderResponse", "Organization", "Patient", "PaymentNotice", "PaymentReconciliation", "Person", "Practitioner", "Procedure", "ProcedureRequest", "ProcessRequest", "ProcessResponse", "Provenance", "Questionnaire", "QuestionnaireAnswers", "ReferralRequest", "RelatedPerson", "RiskAssessment", "Schedule", "SearchParameter", "Slot", "Specimen", "StructureDefinition", "Subscription", "Substance", "Supply", "ValueSet", "VisionPrescription"]},
+          {"path": "resource.status", "encoder": "string", "compact":["registered", "preliminary", "final", "amended", "corrected", "cancelled", "entered-in-error", "unknown"]},
+          {"path": "resource.subject.reference", "encoder": "intstr-base32", "prefix": ["resource:"]},
+          {"path": "resource.performer", "encoder": "array", "encoder_param": "fhirPerformer:1"},
+          {"path": "resource.code.coding", "encoder": "array", "encoder_param": "fhirCoding:1"},
+          {"path": "resource.valueQuantity.value", "encoder": "float-string"},
+          {"path": "resource.valueQuantity.unit", "encoder":  "string", "compact": ["g/L", "x10*12/L","10*12/L", "10*9/L", "%", "fL","pg", "x10*9/L","mmol/L", "umol/L","U/L", "pH","/uL", "/mL"] },
+          {"path": "resource.referenceRange", "encoder": "array", "encoder_param": "fhirRangeItem:1"},
+          {"path": "resource.valueQuantity.system", "encoder": "string", "compact": ["https://unitsofmeasure.org"]},
+          {"path": "resource.valueQuantity.code", "encoder": "string", "compact": ["g/L", "x10*12/L","10*12/L", "10*9/L", "%", "fL","pg", "x10*9/L","mmol/L", "umol/L","U/L", "pH","/uL", "/mL"] },
+          
+          {"path": "resource.effectiveDateTime", "encoder": "isodatetime-epoch-base32"},
+          {"path": "resource.issued", "encoder": "isodatetime-epoch-base32"},
+          {"path": "resource.specimen", "encoder": "array", "encoder_param": "fhirSpecimen:1"},
+          
+          {"path": "resource.interpretation", "encoder": "array", "encoder_param": "fhirCodingCollection:1"},
+          
+          {"path": "resource.valueCodeableConcept.coding", "encoder": "array", "encoder_param": "fhirCoding:1"},
           {"path": "resource.type.coding", "encoder": "array", "encoder_param": "fhirCoding:1"},
+          {"path": "resource.container", "encoder": "array", "encoder_param": "fhirContainerItems:1"},
+          
+          {"path": "resource.collection.collectedDateTime", "encoder": "isodatetime-epoch-base32"},
+          {"path": "resource.collection.collector.reference", "encoder": "hex-base32", "prefix":["Practitioner/"]},
           {"path": "resource.accessionIdentifier.value", "encoder": "string"},
           {"path": "resource.accessionIdentifier.system", "encoder": "string", "compact": ["https://acme.com/labs/accession-ids"]},
-          {"path": "fullUrl", "encoder": "string", "prefix": ["resource:"]}
+          {"path": "resource.hasMember", "encoder": "array", "encoder_param": "fhirReference:1"},
+          {"path": "resource.valueQuantity.comparator", "encoder": "string", "compact": ["<", ">", "<=", ">="]},
+          {"path": "resource.identifier", "encoder": "array", "encoder_param": "fhirIdentifier:1"},
+          {"path": "resource.result", "encoder": "array", "encoder_param": "fhirResult:1"}
       ],
       "template": {
-        "resource": {
-            "resourceType": "Specimen"
+          "resource": {
+              "resourceType": "Observation"
+          }
+      }
+    },
+  
+    "fhirRangeItem:1": {
+        "columns": [
+            {"path": "low.value", "encoder": "float-string"},
+            {"path": "low.unit", "encoder": "string", "compact": ["g/L", "x10*12/L", "10*12/L", "10*9/L", "%", "fL","pg", "x10*9/L","mmol/L", "umol/L","U/L", "pH","/uL", "/mL"]},
+            {"path": "low.system", "encoder": "string", "compact": ["https://unitsofmeasure.org"]},
+            {"path": "low.code", "encoder": "string", "compact": ["g/L", "x10*12/L", "10*12/L", "10*9/L","%", "fL","pg", "x10*9/L","mmol/L", "umol/L","U/L", "pH","/uL", "/mL"]},
+            {"path": "high.value", "encoder": "float-string"},
+            {"path": "high.unit", "encoder": "string", "compact": ["g/L", "x10*12/L", "10*12/L", "10*9/L", "%", "fL","pg", "x10*9/L","mmol/L", "umol/L","U/L", "pH","/uL", "/mL"]},
+            {"path": "high.system", "encoder": "string", "compact": ["https://unitsofmeasure.org"]},
+            {"path": "high.code", "encoder": "string", "compact": ["g/L", "x10*12/L", "10*12/L", "10*9/L", "%", "fL","pg", "x10*9/L","mmol/L", "umol/L","U/L", "pH","/uL", "/mL"]}
+        ],
+        "template": {
+        
         }
-      }
-  },
-
-  "fhirDiagnosticReports:1": {
-    "columns": [
-        {"path": "resource.result", "encoder": "array", "encoder_param": "fhirResult:1"},
-        {"path": "resource.specimen", "encoder": "array", "encoder_param": "fhirSpecimen:1"},
-        {"path": "resource.effectiveDateTime", "encoder": "isodatetime-epoch-base32"},
-        {"path": "resource.issued", "encoder": "isodatetime-epoch-base32"},
-        {"path": "resource.subject.reference", "encoder": "string", "prefix": ["resource:"]},
-        {"path": "resource.code.coding", "encoder": "array", "encoder_param": "fhirCoding:1"},
-        {"path": "resource.status", "encoder": "string", "compact": ["final"]},
-        {"path": "resource.identifier", "encoder": "array", "encoder_param": "fhirIdentifier:1"},
-        {"path": "fullUrl", "encoder": "string", "prefix": ["resource:"]}
-    ],
-    "template": {
-        "resource": {
-            "resourceType": "DiagnosticReport", 
-            "performer": [
-                {
-                  "reference": "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f",
-                  "display": "Acme Laboratory, Inc"
-                }
-            ]
+    }, 
+  
+    "fhirCodingCollection:1": {
+        "columns": [
+          {"path": "coding", "encoder": "array", "encoder_param": "fhirCoding:1"}
+        ],
+        "template": {
+        
         }
-    }
-},
-
-  "fhirRangeItem:1": {
+    }, 
+  
+    "fhirReference:1": {
+        "columns": [
+          {"path": "reference", "encoder": "intstr-base32", "prefix": ["resource:"]}
+        ],
+        "template": {
+        
+        }
+    }, 
+  
+    "fhirContainerItems:1": {
+        "columns": [
+          {"path": "type.coding", "encoder": "array", "encoder_param": "fhirCoding:1"}
+        ],
+        "template": {
+        
+        }
+    }, 
+  
+    "fhirIdentifier:1": {
+        "columns": [                                                                                          
+        {"path": "system", "encoder": "string", "compact": ["https://loinc.org","https://snomed.info/sct", "https://acme.com/lab/reports", "https://acme.com/labs/reports", "https://acme.com/labs", "https://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"]},
+        {"path": "value", "encoder": "ascii-base32"}
+        ],
+        "template": {
+        
+        }
+    }, 
+  
+    "fhirCoding:1": {
+        "columns": [
+        {"path": "system", "encoder": "string", "compact": ["https://loinc.org","https://snomed.info/sct", "https://acme.com/lab/reports", "https://acme.com/labs/reports", "https://acme.com/labs", "https://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"]},
+        {"path": "code", "encoder": "string"}
+        ],
+        "template": {
+        
+        }
+    }, 
+  
+    "fhirSpecimen:1": {
+        "columns": [
+        {"path": "reference", "encoder": "intstr-base32", "prefix": ["resource:"]},
+        {"path": "display", "encoder": "ascii-base32"}
+        ],
+        "template": {
+        
+        }
+    }, 
+  
+    "fhirResult:1": {
+        "columns": [
+        {"path": "reference", "encoder": "intstr-base32", "prefix": ["resource:"]},
+        {"path": "display", "encoder": "ascii-base32"}
+        ],
+        "template": {
+        
+        }
+    },
+  
+    "fhirPerformer:1": {
       "columns": [
-      {"path": "low.value", "encoder": "float-string"},
-      {"path": "low.unit", "encoder": "string", "compact": ["x10*12/L", "pg","pH","/mL", "/uL","umol/L","mmol/L", "U/L", "g/L", "x10*9/L", "10*9/L", "fL"] },
-      {"path": "low.system", "encoder": "string", "compact": ["https://unitsofmeasure.org"]},
-      {"path": "low.code", "encoder": "string", "compact": ["x10*12/L", "pg","pH","/mL", "/uL","umol/L","mmol/L", "U/L", "g/L", "x10*9/L", "10*9/L", "fL"] },
-      {"path": "high.value", "encoder": "float-string"},
-      {"path": "high.unit", "encoder": "string", "compact": ["x10*12/L", "pg","pH","/mL", "/uL","umol/L","mmol/L", "U/L", "g/L", "x10*9/L", "10*9/L", "fL"] },
-      {"path": "high.system", "encoder": "string", "compact": ["https://unitsofmeasure.org"]},
-      {"path": "high.code", "encoder": "string", "compact": ["x10*12/L", "pg","pH","/mL", "/uL","umol/L","mmol/L", "U/L", "g/L", "x10*9/L", "10*9/L", "fL"] }
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirCodingCollection:1": {
-      "columns": [
-        {"path": "coding", "encoder": "array", "encoder_param": "fhirCoding:1"}
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirReference:1": {
-      "columns": [
-        {"path": "reference", "encoder": "string", "prefix": ["resource:"]}
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirContainerItems:1": {
-      "columns": [
-        {"path": "type.coding", "encoder": "array", "encoder_param": "fhirCoding:1"}
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirIdentifier:1": {
-      "columns": [                                                                                          
-      {"path": "system", "encoder": "string", "compact": ["https://loinc.org","https://snomed.info/sct", "https://acme.com/lab/reports", "https://acme.com/labs/reports", "https://acme.com/labs", "https://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"]},
-      {"path": "value", "encoder": "ascii-base32"}
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirCoding:1": {
-      "columns": [
-      {"path": "system", "encoder": "string", "compact": ["https://loinc.org","https://snomed.info/sct", "https://acme.com/lab/reports", "https://acme.com/labs/reports", "https://acme.com/labs", "https://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"]},
-      {"path": "code", "encoder": "string"}
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirSpecimen:1": {
-      "columns": [
-      {"path": "reference", "encoder": "string", "prefix": ["resource:"]},
-      {"path": "display", "encoder": "string", "compact":["Urine Sample", "Red Top Tube", "Lavender Top Tube"]}
-      ],
-      "template": {
-      
-      }
-  }, 
-
-  "fhirResult:1": {
-      "columns": [
-      {"path": "reference", "encoder": "string", "prefix": ["resource:"]},
+      {"path": "reference", "encoder": "uuid-base32", "prefix": ["Organization/"]},
       {"path": "display", "encoder": "ascii-base32"}
       ],
       "template": {
