@@ -50,6 +50,7 @@ const unpack_template = async (payloadStack, template, templates) => {
     if (template && template.columns) {
         for (let li = 0; li < template.columns.length && payloadStack.length > 0; li++) {
             let payloadElement = payloadStack.shift();
+
             const rule = template.columns[li]
 
             if (rule.encoder === "array") {
@@ -83,11 +84,51 @@ const unpack_template = async (payloadStack, template, templates) => {
 }
 
 /**
+ *  
+ */
+const remove_term_map = async (array) => {
+    array.forEach(function(key, index) {
+        if (key.charAt(0) === "*"){ 
+            const mappedIndex = parseInt(_util.base32_to_integer(key.slice(1)));
+            array[index] = array[mappedIndex];
+        } 
+    });
+    return array;
+}
+
+/**
  *  Creates a stack of payload fields to unpack and starts the recursion 
  */
 const unpack_payload = async (payload, template, templates) => {
-    const payloadStack = payload.split("/");
-    return await unpack_template(payloadStack, template, templates)
+    // Rebuilds sequences of null fields that were mapped into ' ' + index. 
+    // Reverts * and $ as field separators: * -> /* and $ -> /$
+    const dup = payload
+        .replace(/ G/g, "///////////////////")
+        .replace(/ F/g, "//////////////////")
+        .replace(/ E/g, "/////////////////")
+        .replace(/ D/g, "////////////////")
+        .replace(/ C/g, "///////////////")
+        .replace(/ B/g, "//////////////")
+        .replace(/ A/g, "/////////////")
+        .replace(/ 9/g, "////////////")
+        .replace(/ 8/g, "///////////")
+        .replace(/ 7/g, "//////////")
+        .replace(/ 6/g, "/////////")
+        .replace(/ 5/g, "////////")
+        .replace(/ 4/g, "///////")
+        .replace(/ 3/g, "//////")
+        .replace(/ 2/g, "/////")
+        .replace(/ 1/g, "////")
+        .replace(/ 0/g, "///")
+        .replace(/\*/g, "/*")
+        .replace(/\$/g, "/$")
+
+    // Splits string into fields. 
+    const payloadStack = dup.split('/');
+    // Removes the term map
+    const expanded = await remove_term_map(payloadStack);
+    // Standard JSONXT
+    return await unpack_template(expanded, template, templates)
 }
 
 /**

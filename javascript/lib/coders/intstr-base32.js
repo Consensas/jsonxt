@@ -1,8 +1,8 @@
 /*
  *  lib/encoders/string-base32.js
  *
- *  David Janes
- *  Consenas
+ *  Vitor Pamplona
+ *  PathCheck Foundation
  *  2021-03-16
  *
  *  Copyright (2013-2021) Consensas
@@ -40,7 +40,7 @@ exports.encode = (rule, value) => {
         throw new Error(`${NAME}: expected value to be string for ${rule.path} (got "${value}")`)
     }
 
-    const _encoder = s => require("base32url").encode(s)
+    const _encoder = s => _util.integer_to_base32(parseInt(s))
 
     if (rule.compact && (rule.compact.indexOf(value) > -1)) {
         return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(rule.compact.indexOf(value))
@@ -80,7 +80,7 @@ exports.decode = (rule, value) => {
         return ""
     }
 
-    const _decoder = s => require("base32url").decodeAsString(s)
+    const _decoder = s => _util.base32_to_integer(s).toString();
 
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {

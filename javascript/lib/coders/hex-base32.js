@@ -1,8 +1,8 @@
 /*
- *  lib/encoders/string-base32.js
+ *  lib/encoders/string.js
  *
- *  David Janes
- *  Consenas
+ *  Vitor Pamplona
+ *  PathCheck Foundation
  *  2021-03-16
  *
  *  Copyright (2013-2021) Consensas
@@ -23,12 +23,27 @@
 "use strict"
 
 const _util = require("../_util")
-const NAME = "string-base32"
+const NAME = "uuid-base32"
+const Base32 = require("base32url")
+
+function parse(hex) { 
+    for (var bytes = [], c = 0; c < hex.length; c += 2)
+        bytes.push(parseInt(hex.substr(c, 2), 16));
+    
+    return bytes;
+}
+
+function stringify(bytes) {
+    for (var hex = [], i = 0; i < bytes.length; i++) {
+        var current = bytes[i] < 0 ? bytes[i] + 256 : bytes[i];
+        hex.push((current >>> 4).toString(16));
+        hex.push((current & 0xF).toString(16));
+    }
+    return hex.join("");
+}
 
 /**
- *  TESTING ONLY (for now, anyway)
  */
-/* istanbul ignore next */
 exports.encode = (rule, value) => {
     const jsonxt = require("..")
 
@@ -40,7 +55,7 @@ exports.encode = (rule, value) => {
         throw new Error(`${NAME}: expected value to be string for ${rule.path} (got "${value}")`)
     }
 
-    const _encoder = s => require("base32url").encode(s)
+    const _encoder = s => Base32.encode(parse(s))
 
     if (rule.compact && (rule.compact.indexOf(value) > -1)) {
         return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(rule.compact.indexOf(value))
@@ -68,7 +83,6 @@ exports.encode = (rule, value) => {
 
 /**
  */
-/* istanbul ignore next */
 exports.decode = (rule, value) => {
     const jsonxt = require("..")
 
@@ -80,7 +94,7 @@ exports.decode = (rule, value) => {
         return ""
     }
 
-    const _decoder = s => require("base32url").decodeAsString(s)
+    const _decoder = s => stringify(Base32.decode(s))
 
     if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
         if (value[1] === jsonxt.ENCODE.ESCAPE) {
@@ -109,5 +123,5 @@ exports.decode = (rule, value) => {
 }
 
 exports.schema = {
-    type: "string-base32",
+    type: "string",
 }

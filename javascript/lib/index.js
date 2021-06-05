@@ -38,6 +38,9 @@ module.exports = Object.assign(
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").encode,
             "json": require("./coders/json").encode,
             "string-base32": require("./coders/string-base32").encode,
+            "uuid-base32": require("./coders/uuid-base32").encode,
+            "intstr-base32": require("./coders/intstr-base32").encode,
+            "hex-base32": require("./coders/hex-base32").encode,
             "ascii-base32": require("./coders/ascii-base32").encode,
             "base64-base32": require("./coders/base64-base32").encode,
             "string": require("./coders/string").encode,
@@ -50,6 +53,9 @@ module.exports = Object.assign(
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").decode,
             "json": require("./coders/json").decode,
             "string-base32": require("./coders/string-base32").decode,
+            "uuid-base32": require("./coders/uuid-base32").decode,
+            "intstr-base32": require("./coders/intstr-base32").decode,
+            "hex-base32": require("./coders/hex-base32").decode,
             "ascii-base32": require("./coders/ascii-base32").decode,
             "base64-base32": require("./coders/base64-base32").decode,
             "string": require("./coders/string").decode,
@@ -59,6 +65,8 @@ module.exports = Object.assign(
 
 module.exports.ENCODE = {
     ESCAPE: "$",
+    SPACE: "+",
+    TERM_INDEX: "*",
     UNDEFINED: "",
     EMPTY_STRING: "$",
     NULL: "$.",

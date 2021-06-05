@@ -1,5 +1,5 @@
 /*
- *  lib/encoders/float-base32.js
+ *  lib/encoders/float-string.js
  *
  *  Vitor Pamplona
  *  PathCheck Foundation

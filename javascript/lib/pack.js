@@ -75,12 +75,97 @@ const pack_template = async (original, template, templates) => {
     return payload;
 }
 
+
+/**
+ *  
+ */
+const get_dict = async (array) => {
+    // iterate the array and set and update the counter in map
+    const dict = {}; // Empty dictionary
+    array.forEach(function(num) {
+        dict[num] = dict[num] ? dict[num] + 1 : 1;
+    });
+    return dict;
+}
+
+const filter_dict = async (dict) => {
+    var filtered = Object.keys(dict).reduce(function (filtered, key) {
+        if (dict[key] > 1 && key.length > 3) filtered[key] = dict[key];
+        return filtered;
+    }, {});
+    return filtered;
+}
+
+const find_first_dict = async (array, dict) => {
+    // iterate the array and set and update the counter in map
+    const dictKeyFirstIndex = {}; // Empty dictionary
+    Object.keys(dict).forEach(function(key) {
+        dictKeyFirstIndex[key] = array.findIndex(element => element === key);
+        //console.log("TermMap", "*"+_util.integer_to_base32(dictKeyFirstIndex[key]), key);
+    });
+    return dictKeyFirstIndex;
+}
+
+const replace_all_but_first = async (array, dict, dictKeyFirstIndex) => {
+    // iterate the array and set and update the counter in map
+    const ret = [];
+    array.forEach(function(key, index) {
+        if (key in dict && index != dictKeyFirstIndex[key])
+            ret[index] = "*"+_util.integer_to_base32(dictKeyFirstIndex[key]);
+        else 
+            ret[index] = key;
+    });
+    return ret;
+}
+
+/**
+ *  
+ */
+const apply_term_map = async (array) => {
+    // iterate the array and set and update the counter in map
+    const dict = await get_dict(array);
+    const filterredDict = await filter_dict(dict);
+    const dictKeyFirstIndex = await find_first_dict(array, filterredDict);
+    return await replace_all_but_first(array, filterredDict, dictKeyFirstIndex);
+}
+
+
 /**
  *  Recursively creates an array payload fields and turns it into a string
  */
 const pack_payload = async (original, template, templates) => {
+    // Traditional JSONXT
     const payload = await pack_template(original, template, templates);
-    return payload.join("/").replace(/[/]*$/, "")
+    // Applies a Term Map to remove duplicated fields within the array. Uses * to index terms
+    const compressed = await apply_term_map(payload);
+    // Transforms the array into a string, removes the last null fields. 
+    const stringified = compressed.join("/").replace(/[/]*$/, "");
+    
+    // * (termmaps) and $ (compact,prefix) become separators (/* -> *, /$ -> $) to reduce size in highly compressed objects.
+    // Sequences of null fields are mapped into ' ' + index. 
+    // TODO: This is UGLY. Need to find a better way to run over all these regex in order. 
+    const usingSpaceToRepresentNullFieldsInSequence = stringified
+        .replace(/\/\*/g, "*")
+        .replace(/\/\$/g, "$")
+        .replace(/[\/]{19}/g, " G")
+        .replace(/[\/]{18}/g, " F")
+        .replace(/[\/]{17}/g, " E")
+        .replace(/[\/]{16}/g, " D")
+        .replace(/[\/]{15}/g, " C")
+        .replace(/[\/]{14}/g, " B")
+        .replace(/[\/]{13}/g, " A")
+        .replace(/[\/]{12}/g, " 9")
+        .replace(/[\/]{11}/g, " 8")
+        .replace(/[\/]{10}/g, " 7")
+        .replace(/[\/]{9}/g, " 6")
+        .replace(/[\/]{8}/g, " 5")
+        .replace(/[\/]{7}/g, " 4")
+        .replace(/[\/]{6}/g, " 3")
+        .replace(/[\/]{5}/g, " 2")
+        .replace(/[\/]{4}/g, " 1")
+        .replace(/[\/]{3}/g, " 0")
+
+    return usingSpaceToRepresentNullFieldsInSequence;
 }
 
 /**
