@@ -65,6 +65,8 @@ module.exports = Object.assign(
 
 module.exports.ENCODE = {
     ESCAPE: "$",
+    SPACE: "+",
+    TERM_INDEX: "*",
     UNDEFINED: "",
     EMPTY_STRING: "$",
     NULL: "$.",

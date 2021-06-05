@@ -132,13 +132,14 @@ const percentEncode = s => {
 const encodeExtended = (s, hex) => {
     s = encodeURIComponent(s)
     s = s.replace(/\$/g, "%7E")
-    s = s.replace(new RegExp(hex, "g"), "$")
+    s = s.replace(new RegExp(hex, "g"), "+")
+    s = s.replace(/\*/g, "%2A")
 
     return s
 }
 
 const decodeExtended = (s, hex) => {
-    s = s.replace(/\$/g, hex)
+    s = s.replace(/\+/g, hex)
     s = decodeURIComponent(s)
 
     return s
