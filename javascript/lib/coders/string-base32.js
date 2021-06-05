@@ -36,8 +36,34 @@ exports.encode = (rule, value) => {
         return rule.NULL || jsonxt.ENCODE.NULL
     } else if (_util.isUndefined(value)) {
         return rule.UNDEFINED || jsonxt.ENCODE.UNDEFINED
+    } else if (!_util.isString(value)) {
+        throw new Error(`${NAME}: expected value to be string for ${rule.path} (got "${value}")`)
     }
-    return require("base32url").encode(`${value}`)
+
+    const _encoder = s => require("base32url").encode(s)
+
+    if (rule.compact && (rule.compact.indexOf(value) > -1)) {
+        return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(rule.compact.indexOf(value))
+    }
+
+    if (rule.prefix) {
+        for (let pi = 0; pi < rule.prefix.length && pi < 32; pi++) {
+            const prefix = rule.prefix[pi]
+            if (!value.startsWith(prefix)) {
+                continue
+            }
+
+            return jsonxt.ENCODE.ESCAPE + _util.integer_to_base32(pi) + _encoder(value.substring(prefix.length))
+        }
+    }
+
+    if (value === "") {
+        return rule.EMPTY_STRING || jsonxt.ENCODE.EMPTY_STRING
+    } else if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
+        return jsonxt.ENCODE.ESCAPE + jsonxt.ENCODE.ESCAPE + _encoder(value.substring(1))
+    } else {
+        return _encoder(value)
+    }
 }
 
 /**
@@ -50,11 +76,38 @@ exports.decode = (rule, value) => {
         return null
     } else if ((value === rule.UNDEFINED) || (value === jsonxt.ENCODE.UNDEFINED)) {
         return undefined
+    } else if ((value === rule.EMPTY_STRING) || (value === jsonxt.ENCODE.EMPTY_STRING)) {
+        return ""
     }
 
-    return require("base32url").decode(`${value}`)
+    const _decoder = s => require("base32url").decodeAsString(s)
+
+    if (value.startsWith(jsonxt.ENCODE.ESCAPE)) {
+        if (value[1] === jsonxt.ENCODE.ESCAPE) {
+            value = value.substring(2)
+            value = jsonxt.ENCODE.ESCAPE + _decoder(value)
+        } else {
+            if (rule.compact) {
+                const index = _util.base32_to_integer(value.substring(1))
+                if ((index >= 0) && (index < rule.compact.length)) {
+                    return rule.compact[index]
+                }
+            } else if (rule.prefix) {
+                const index = _util.base32_to_integer(value.substring(1, 2))
+                if ((index >= 0) && (index < rule.prefix.length)) {
+                    return rule.prefix[index] + _decoder(value.substring(2))
+                }
+            }
+            
+            throw new Error(`did not understand escape sequence for "${rule.path}" "${value}"`)
+        }
+    } else {
+        value = _decoder(value)
+    }
+
+    return value
 }
 
 exports.schema = {
-    type: "string",
+    type: "string-base32",
 }
