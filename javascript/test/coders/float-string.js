@@ -1,5 +1,5 @@
 /*
- *  test/coders/base64-base32.js
+ *  test/coders/float-string.js
  *
  *  Vitor Pamplona
  *  PathCheck Foundation
@@ -34,6 +34,8 @@ const _util = require("./../_util")
 const WRITE = process.env.WRITE === "1"
 const DUMP = process.env.DUMP === "1"
 
+const TESTCLASS = "float-string";
+
 describe("coders/float-string", function() {
     before(function() {
         _util.shims_on()
@@ -48,8 +50,8 @@ describe("coders/float-string", function() {
 
     it("works - zero", function() {
         const start = 0
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = '0'
 
         if (DUMP) {
@@ -64,8 +66,8 @@ describe("coders/float-string", function() {
 
     it("works - floating point number", function() {
         const start = 2.34
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = "2.34"
 
         if (DUMP) {
@@ -80,8 +82,8 @@ describe("coders/float-string", function() {
 
     it("works - negative floating point number", function() {
         const start = -2.34
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = "-2.34"
 
         if (DUMP) {
@@ -96,8 +98,8 @@ describe("coders/float-string", function() {
 
     it("works - integer", function() {
         const start = 4
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = "4"
 
         if (DUMP) {
@@ -112,8 +114,8 @@ describe("coders/float-string", function() {
 
     it("works - thousands separator", function() {
         const start = 40000.03
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = "40000.03"
 
         if (DUMP) {
@@ -128,8 +130,8 @@ describe("coders/float-string", function() {
 
     it("works - null", function() {
         const start = null
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = "$."
 
         if (DUMP) {
@@ -144,8 +146,8 @@ describe("coders/float-string", function() {
 
     it("works - undefined", function() {
         const start = undefined
-        const got_encoded = jsonxt.encoders["float-string"](rule, start)
-        const got_decoded = jsonxt.decoders["float-string"](rule, got_encoded)
+        const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
+        const got_decoded = jsonxt.decoders[TESTCLASS](rule, got_encoded)
         const want = ""
 
         if (DUMP) {
@@ -162,21 +164,21 @@ describe("coders/float-string", function() {
         const start = "1"
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["float-string"](rule, start)
+            const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
         })
     })
     it("expected fail - string", function() {
         const start = "3.14"
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["float-string"](rule, start)
+            const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
         })
     })
     it("expected fail - boolean", function() {
         const start = true
 
         assert.rejects(async () => {
-            const got_encoded = jsonxt.encoders["float-string"](rule, start)
+            const got_encoded = jsonxt.encoders[TESTCLASS](rule, start)
         })
     })
 })
