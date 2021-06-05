@@ -264,7 +264,7 @@ describe("pack", function() {
             const unpacked = await jsonxt.pack(json, ARRAY_TEMPLATES, "data", "1", RESOLVER_NAME);
 
             const got = unpacked
-            const want = "jxt:jsonxt.io:data:1:2/Jane/Doe/2/MDL/23EFG3D5CC/Passport/YNW32ND/John/Doe/2/MDL/94568DDS1/Passport/2SC6223";
+            const want = "jxt:jsonxt.io:data:1:2/Jane/Doe/2/MDL/23EFG3D5CC/Passport/YNW32ND/John/Doe/2/MDL/94568DDS1*6/2SC6223";
 
             assert.deepEqual(got, want)
         });
@@ -461,7 +461,7 @@ describe("pack", function() {
         
         const got = await jsonxt.pack(CombinedDGC, DGC_TEMPLATES, "dgc", "1", RESOLVER_NAME);
 
-        const want = "jxt:jsonxt.io:dgc:1:d'Ars%C3%B8ns$-$van$Halen/Fran%C3%A7ois-Joan/DARSONS%3CVAN%3CHALEN/FRANCOIS%3CJOAN/3AGM//2/$0%3A01%3ANL%3APlA8UWS60Z4RZXVALl6GAZ/Ministry$of$VWS/NL/840539006/1119349007/3MBL/1/2/ORG-100030215/EU%2F1%2F20%2F1528/$0%3A01%3ANL%3AATS342XDYS358FDFH3GTK5/Ministry$of$VWS/NL/840539006/1119349007/3MC9/2/2/ORG-100030215/EU%2F1%2F20%2F1528/2/$0%3A01%3ANL%3AGGD%2F81AAH16AZ/Ministry$of$VWS/NL/LP217198-3/260415000/GGD$Frysl%C3%A2n%2C$L-Heliconweg/840539006/COVID$PCR/1232/1G2FO0G/$0%3A01%3ANL%3AGGD%2F23BBS36BC/Ministry$of$VWS/NL/LP6464-4/260373001/GGD$Frysl%C3%A2n%2C$L-Heliconweg/840539006/NAAT$TEST/1343/1G7BA4G/1/$0%3A01%3ANL%3ALSP%2FREC%2F1289821/Ministry$of$VWS/NL/840539006/3MAJ/3MBH/3MJV";
+        const want = "jxt:jsonxt.io:dgc:1:d'Ars%C3%B8ns+-+van+Halen/Fran%C3%A7ois-Joan/DARSONS%3CVAN%3CHALEN/FRANCOIS%3CJOAN/3AGM//2$0%3A01%3ANL%3APlA8UWS60Z4RZXVALl6GAZ/Ministry+of+VWS/NL/840539006/1119349007/3MBL/1/2/ORG-100030215/EU%2F1%2F20%2F1528$0%3A01%3ANL%3AATS342XDYS358FDFH3GTK5*8/NL*A*B/3MC9/2/2*F*G/2$0%3A01%3ANL%3AGGD%2F81AAH16AZ*8/NL/LP217198-3/260415000/GGD+Frysl%C3%A2n%2C+L-Heliconweg*A/COVID+PCR/1232/1G2FO0G$0%3A01%3ANL%3AGGD%2F23BBS36BC*8/NL/LP6464-4/260373001*11*A/NAAT+TEST/1343/1G7BA4G/1$0%3A01%3ANL%3ALSP%2FREC%2F1289821*8/NL*A/3MAJ/3MBH/3MJV";
 
         const unpacked = await jsonxt.unpack(got, () => { return DGC_TEMPLATES; });
 

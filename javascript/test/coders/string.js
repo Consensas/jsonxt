@@ -73,7 +73,7 @@ describe("coders/string", function() {
         const start = "Hello World"
         const got_encoded = jsonxt.encoders.string(rule_simple, start)
         const got_decoded = jsonxt.decoders.string(rule_simple, got_encoded)
-        const want = "Hello$World"
+        const want = "Hello+World"
 
         if (DUMP) {
             console.log("")
@@ -168,7 +168,7 @@ describe("coders/string", function() {
         const start = "Hello, World!"
         const got_encoded = jsonxt.encoders.string(rule_compact, start)
         const got_decoded = jsonxt.decoders.string(rule_compact, got_encoded)
-        const want = "Hello%2C$World!"
+        const want = "Hello%2C+World!"
 
         if (DUMP) {
             console.log("")
@@ -185,7 +185,7 @@ describe("coders/string", function() {
         const start = "https://google.ca/hello/world"
         const got_encoded = jsonxt.encoders.string(rule_prefix_slash, start)
         const got_decoded = jsonxt.decoders.string(rule_prefix_slash, got_encoded)
-        const want = "$1google.ca$hello$world"
+        const want = "$1google.ca+hello+world"
 
         if (DUMP) {
             console.log("")
@@ -200,7 +200,7 @@ describe("coders/string", function() {
         const start = "urn:uvci:example:test#web"
         const got_encoded = jsonxt.encoders.string(rule_prefix_colon, start)
         const got_decoded = jsonxt.decoders.string(rule_prefix_colon, got_encoded)
-        const want = "$0example$test%23web"
+        const want = "$0example+test%23web"
 
         if (DUMP) {
             console.log("")
@@ -215,7 +215,7 @@ describe("coders/string", function() {
         const start = "did:web:example:test#web"
         const got_encoded = jsonxt.encoders.string(rule_prefix_colon, start)
         const got_decoded = jsonxt.decoders.string(rule_prefix_colon, got_encoded)
-        const want = "$1web$example$test%23web"
+        const want = "$1web+example+test%23web"
 
         if (DUMP) {
             console.log("")
