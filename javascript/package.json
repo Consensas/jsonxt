@@ -1,5 +1,5 @@
 {
-    "author": "", 
+    "author": "",
     "bugs": {
         "url": "https://github.com/dpjanes/jsonxt/issues"
     }, 
@@ -12,20 +12,22 @@
         "js-yaml": "~4.1.0", 
         "lodash": "~4.17.21", 
         "webpack": "^4.44.1", 
+        "mocha": "^9.0.0",
         "webpack-cli": "~4.7.2"
     }, 
-    "homepage": "https://jsonxt.io", 
-    "license": "Apache-2.0", 
-    "main": "index.js", 
-    "name": "jsonxt", 
+    },
+    "homepage": "https://jsonxt.io",
+    "license": "Apache-2.0",
+    "main": "index.js",
+    "name": "jsonxt",
     "repository": {
         "type": "git", 
         "url": "https://github.com/dpjanes/jsonxt"
     }, 
     "scripts": {
-        "cover": "nyc --reporter=html mocha --recursive", 
-        "test": "mocha --recursive --bail", 
+        "cover": "nyc --reporter=html mocha --recursive",
+        "test": "mocha --recursive --bail",
         "webpack": "webpack --config webpack.config.js"
-    }, 
+    },
     "version": "0.0.16"
 }
