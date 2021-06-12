@@ -4,7 +4,7 @@
         "url": "https://github.com/dpjanes/jsonxt/issues"
     }, 
     "dependencies": {
-        "base32url": "~0.0.5", 
+        "base32url": "~0.0.6", 
         "base64-js": "~1.5.1"
     }, 
     "description": "JSON External Templates", 
@@ -12,7 +12,7 @@
         "js-yaml": "~4.1.0", 
         "lodash": "~4.17.21", 
         "webpack": "^4.44.1", 
-        "webpack-cli": "~4.7.0"
+        "webpack-cli": "~4.7.2"
     }, 
     "homepage": "https://jsonxt.io", 
     "license": "Apache-2.0", 
@@ -27,5 +27,5 @@
         "test": "mocha --recursive --bail", 
         "webpack": "webpack --config webpack.config.js"
     }, 
-    "version": "0.0.15"
+    "version": "0.0.16"
 }
