@@ -1,8 +1,8 @@
 {
     "author": "",
     "bugs": {
-        "url": "https://github.com/dpjanes/jsonxt/issues"
-    }, 
+        "url": "https://github.com/Consensas/jsonxt/issues"
+    },
     "dependencies": {
         "base32url": "~0.0.6", 
         "base64-js": "~1.5.1"
@@ -21,9 +21,9 @@
     "main": "index.js",
     "name": "jsonxt",
     "repository": {
-        "type": "git", 
-        "url": "https://github.com/dpjanes/jsonxt"
-    }, 
+        "type": "git",
+        "url": "https://github.com/Consensas/jsonxt"
+    },
     "scripts": {
         "cover": "nyc --reporter=html mocha --recursive",
         "test": "mocha --recursive --bail",
