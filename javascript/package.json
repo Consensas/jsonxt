@@ -4,17 +4,17 @@
         "url": "https://github.com/Consensas/jsonxt/issues"
     },
     "dependencies": {
-        "base32url": "~0.0.6", 
-        "base64-js": "~1.5.1"
-    }, 
-    "description": "JSON External Templates", 
+        "base32url": "~0.0.6",
+        "base64-js": "~1.5.1",
+        "multibase": "^4.0.4"
+    },
+    "description": "JSON External Templates",
     "devDependencies": {
-        "js-yaml": "~4.1.0", 
-        "lodash": "~4.17.21", 
-        "webpack": "^4.44.1", 
+        "js-yaml": "~4.1.0",
+        "lodash": "~4.17.21",
         "mocha": "^9.0.0",
+        "webpack": "^4.44.1",
         "webpack-cli": "~4.7.2"
-    }, 
     },
     "homepage": "https://jsonxt.io",
     "license": "Apache-2.0",

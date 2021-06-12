@@ -43,6 +43,7 @@ module.exports = Object.assign(
             "hex-base32": require("./coders/hex-base32").encode,
             "ascii-base32": require("./coders/ascii-base32").encode,
             "base64-base32": require("./coders/base64-base32").encode,
+            "multibase-base36": require("./coders/multibase-base36").encode,
             "string": require("./coders/string").encode,
         },
         decoders: {
@@ -58,6 +59,7 @@ module.exports = Object.assign(
             "hex-base32": require("./coders/hex-base32").decode,
             "ascii-base32": require("./coders/ascii-base32").decode,
             "base64-base32": require("./coders/base64-base32").decode,
+            "multibase-base36": require("./coders/multibase-base36").decode,
             "string": require("./coders/string").decode,
         },
     }
