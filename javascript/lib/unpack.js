@@ -102,6 +102,7 @@ const remove_term_map = async (array) => {
 const unpack_payload = async (payload, template, templates) => {
     // Rebuilds sequences of null fields that were mapped into ' ' + index. 
     // Reverts * and $ as field separators: * -> /* and $ -> /$
+    // TODO: This is UGLY. Need to find a better way to run over all these regex in order.  
     const dup = payload
         .replace(/ G/g, "///////////////////")
         .replace(/ F/g, "//////////////////")
