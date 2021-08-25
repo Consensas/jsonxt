@@ -30,10 +30,9 @@ const resolve = async (resolver_name, resolver_key) => {
     const url = `https://${resolver_name}/.well-known/${resolver_key}`
 
     try {
-        const page = await _util.fetch(url);
-        return page;
+        return await _util.fetch(url)
     } catch {
-        return null;
+        return null
     }
 }
 
