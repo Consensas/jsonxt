@@ -29,5 +29,5 @@
         "test": "mocha --recursive --bail", 
         "webpack": "webpack --config webpack.config.js"
     }, 
-    "version": "0.0.18"
+    "version": "0.0.19"
 }
