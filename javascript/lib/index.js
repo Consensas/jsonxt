@@ -33,6 +33,7 @@ module.exports = Object.assign(
         encoders: {
             "integer-base32": require("./coders/integer-base32").encode,
             "float-string": require("./coders/float-string").encode,
+            "boolean": require("./coders/boolean").encode,
             "isodate-1900-base32": require("./coders/isodate-1900-base32").encode,
             "isodatetime-epoch-base32": require("./coders/isodatetime-epoch-base32").encode,
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").encode,
@@ -49,6 +50,7 @@ module.exports = Object.assign(
         decoders: {
             "integer-base32": require("./coders/integer-base32").decode,
             "float-string": require("./coders/float-string").decode,
+            "boolean": require("./coders/boolean").decode,
             "isodate-1900-base32": require("./coders/isodate-1900-base32").decode,
             "isodatetime-epoch-base32": require("./coders/isodatetime-epoch-base32").decode,
             "isoyyyymm-2020-base32": require("./coders/isoyyyymm-2020-base32").decode,
