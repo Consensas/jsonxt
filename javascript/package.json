@@ -6,15 +6,15 @@
     "dependencies": {
         "base32url": "~0.0.6", 
         "base64-js": "~1.5.1", 
-        "multibase": "~4.0.4"
+        "multibase": "~4.0.6"
     }, 
     "description": "JSON External Templates", 
     "devDependencies": {
         "js-yaml": "~4.1.0", 
         "lodash": "~4.17.21", 
-        "mocha": "~9.0.0", 
+        "mocha": "~9.1.1", 
         "webpack": "^4.44.1", 
-        "webpack-cli": "~4.7.2"
+        "webpack-cli": "~4.8.0"
     }, 
     "homepage": "https://jsonxt.io", 
     "license": "Apache-2.0", 
@@ -29,5 +29,5 @@
         "test": "mocha --recursive --bail", 
         "webpack": "webpack --config webpack.config.js"
     }, 
-    "version": "0.0.17"
+    "version": "0.0.18"
 }
